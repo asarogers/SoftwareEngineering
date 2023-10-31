@@ -1,4 +1,4 @@
-function About() {
+function CartPage() {
     return (
       <div className="App">
         About
@@ -6,5 +6,5 @@ function About() {
     );
   }
   
-  export default About;
+  export default CartPage;
   
