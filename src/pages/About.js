@@ -1,7 +1,7 @@
 function About() {
     return (
       <div className="App">
-        Login Page
+        About
       </div>
     );
   }
