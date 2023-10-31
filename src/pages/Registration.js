@@ -1,7 +1,7 @@
 function Registration() {
     return (
       <div className="App">
-        About
+        Registration
       </div>
     );
   }

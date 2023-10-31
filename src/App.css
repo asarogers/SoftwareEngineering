@@ -1,38 +1,1322 @@
-.App {
-  text-align: center;
+body{
+  margin: 0;
+  background-color: #eeee;
+  height: auto;
+  overflow-x:hidden;
+}
+link{
+  text-decoration: none;
+  color:none;
+}
+a{
+  text-decoration: none;
+  color:white;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a:hover{
+  text-decoration: none;
+  color: rgb(246, 166, 17) !important;
+  transition: color 500ms ease;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.hide {
+    display: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+}
+
+.invalid {
+    color: red;
+    margin-left: 0.25rem;
+}
+
+ul{
+  list-style-type: none;
+}
+
+#header h2{
+  border-left: dotted 1px #fff;
+  border-right: dotted 1px #fff;
+  display: inline-block;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+
+
+
+/*-----------------NAVBAR START --------------------- */
+/* display flex is what formats the */
+
+.exclusive-text{
+  width:3vw;
+  margin-right: 15vw;
+  font-weight: 1000;
+  font-size: 4vw;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.exclusive-text:hover{
+  color: rgb(243, 159, 4) !important;
+  cursor: pointer;
+}
+/* */
+.cart-counter{
+  position: "absolute";
+  z-index: 2;
+  top: 0;
+  right: 3;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.signIn-text{
+  width: 3vw;
+  font-weight: 600;
+  font-size: 4vw;
+  font-family: 'roboto,arial,verdana,sans-serif';
+}
+
+.Order-text{
+  font-weight: 600;
+  font-size: 4vw;
+  margin-left: 0.5rem;
+}
+.navbar{
+  display: flex !important;
+  background-color: purple;
+  justify-content: space-around !important;
+  align-items: center; /* align vertical */
+  color: white;
+}
+
+/* This controls the cart css*/
+.cart span:nth-child(1){
+  position: relative;
+  top: -1.5vh;
+  left:-3vw;
+  font-size: 1.7vw;
+}
+.cart span:nth-child(1):hover{
+  cursor: pointer;
+  color: rgb(246, 166, 17) !important;
+  transition: color 500ms ease;
+}
+
+.menu span:nth-child(1){
+  font-size: 7vw;
+  color: white;
+}
+
+.menu span:nth-child(1):hover{
+  cursor: pointer;
+  color: rgb(246, 166, 17) !important;
+  transition: color 500ms ease;
+}
+.offscreen{
+  position: absolute;
+  left: 1000px;
+}
+
+.call-text:hover{
+  cursor: pointer;
+  color: rgb(246, 166, 17) !important;
+  transition: color 500ms ease;
+}
+
+.exclusive-text:hover{
+  color: rgb(246, 166, 17) !important;
+  transition: color 500ms ease;
+} 
+
+.signIn-text:hover{
+  cursor: pointer;
+  color: rgb(246, 166, 17) !important;
+  transition: color 500ms ease;
+}
+.Order-text:hover{
+  cursor: pointer;
+  color: rgb(246, 166, 17) !important;
+  transition: color 500ms ease;
+}
+/*-----------------NAVBAR END --------------------- */
+
+
+.caption{
+  padding: 0.8rem;
+  text-align: center;
+}
+footer{
+  text-align: center;
+  padding: 2rem 1rem;
+  margin: auto;
+  color: #333;
+
+}
+
+footer h3{
+  font-size: 3rem;
+  margin-bottom: 0;
+}
+h1{
+  font-weight: 400;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+h2{
+  font-weight: 400;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+img{
+  display: block;
+  width: 100%;
+}
+
+main{
+  max-width: 900px;
+  margin: auto;
+  box-shadow: 30px 0px 40px rgba(0,0,0,0.1) -30px 0px 40px rgba(0,0,0,0.1);
+}
+/*------------------------Search Area START------------------------- */
+.view-text{
+  position: relative;
+  left: 70vw;
+  top: -8vh;
+}
+
+.view-selector{
+  width: 40vw;
+  left: 60vw;
+  top: -7.0vh;
+}
+.sort-text{
+  position: relative;
+  right: 70vw;
+  top: -0.7vh;
+}
+.shop-btn{
+  position: relative;
+  top: -8vh;
+}
+
+/* search button*/
+.search-btn{
+  position: relative;
+  width: 40px;
+  height: 32.0px;
+  top: 13.5px;
+  left: -3.4vw;
+  font-size: 1.2rem;
+  background-color: #cf7d03;
+  border-radius: #cf7d03;
+  color: white;
+  cursor: pointer;
+  border-style: hidden;
+}
+
+.search-btn i{
+  display: flex;
+  justify-content: center;
+}
+
+/* search button*/
+.search-btn:hover{
+  color: rgb(123, 17, 123);
+  background-color: #9a5c00;
+  transition: background 500ms ease;
+  transition: color 500ms ease;
+
+}
+
+.sort-selector{
+  width: 50vw;
+}
+.search-bar{
+  position: relative;
+  left: 3vw;
+  top: 10.5px;
+  width: 88.5vw;
+  max-width: 800px;
+  height: 31px;
+  border-radius: 10%;
+}
+.search-body{
+  margin-top: 0vh;
+  background-color: rgb(75, 1, 75);
+  height: 13vh;
+  width: 100vw;
+}
+
+.shop-btn-cate{
+  position: relative;
+  left: 24vw;
+  top:2vh;
+  height:3.6vh;
+  min-height: 24.5px;
+  color: rgb(89, 1, 89);
+  font-weight: 1000;
+  width: 55vw;
+  max-width: 270px;
+  font-size: 3.5vw;
+}
+.shop-btn-sport{
+  position: relative;
+  top:-1.6vh;
+  left: 0vw;
+  height:3.6vh;
+  min-height: 24.5px;
+  color: rgb(89, 1, 89);
+  font-weight: 1000;
+  width: 50vw;
+  max-width: 200px;
+  min-width: 100px;
+  float: right;
+  font-size: 4vw;
+}
+
+
+/*------------------------Search Area End------------------------- */
+#landing{
+  background-color: white;
+}
+
+
+
+#landing-text h2{
+  color: #888;
+}
+
+#landing-image{
+  background: url("https://images.unsplash.com/photo-1519575706483-221027bfbb31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 50vh;
+  flex: 0 1 60vw;
+  margin: 0;
+}
+
+
+.btn{
+  padding: 0.5rem 2rem;
+  border: 1px #ccc solid;
+  display: inline-block;
+  margin: 2rem 0 0;
+  border-radius: 50px;
+  text-decoration: none;
+  color: #333;
+  transition: background 500ms ease;
+}
+
+.btn:hover{
+  background-color: #f4f4f4;
+}
+
+.cart{
+  width: 10px;
+  height: 10px;
+}
+
+.text-links{
+  margin-left: 0.7rem;
+  margin-right: 0.5rem;
+}
+.rights{
+  text-align: center;
+}
+
+/*-------------------------------Start of footer css controls-------------------------------------  */
+.footer-body{
+  bottom: 0;
+  background-color: #888;
+  color: rgb(255, 255, 255);
+  height: 10vh;
+}
+
+.footer-body a{
+  color: rgb(255, 255, 255);
+}
+.footer-body a:hover{
+  cursor: pointer;
+    color: rgb(246, 166, 17) !important;
+    transition: color 500ms ease;
+}
+.signUp-text{
+  background-color: rgb(103, 100, 100);
+  color: white;
+  text-align: center;
+  font-size: 1.1rem;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  
+}
+.signUp-text:hover{
+  cursor: pointer;
+  color: rgb(246, 166, 17) !important;
+  transition: color 500ms ease;
+}
+
+.back-top{
+  background-color: rgb(103, 100, 100);
+  color: white;
+  text-align: center;
+  font-size: 1.1rem;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  width:100vw ;
+}
+
+.back-top:hover{
+  cursor: pointer;
+  color: rgb(246, 166, 17) !important;
+    transition: color 500ms ease;
+}
+
+
+
+.contactUs{
+  background-color: rgb(103, 100, 100);
+  color: yellow;
+  text-align: center;
+  font-size: 1.1rem;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+.contactUs u:hover{
+  cursor: pointer;
+  color: rgb(246, 166, 17) !important;
+    transition: color 500ms ease;
+}
+
+/*-----------------------SIGN IN START ----------------------*/
+
+.start-body{
+  justify-content: center;
+  min-height: 100vh;
+    position: relative;
+    background-color: purple;
+    overflow: hidden;
+    overflow-x:hidden;
+    
+}
+
+
+.forgot-password{
+  position: absolute;
+  text-align: end;
+  right: 20px;
+  color: #4899eb;
+  text-decoration:underline;
+  font-size: 0.9rem !important;
+}
+
+.start-text{
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.start-create{
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  padding: 0.25rem;
+  background-color: black !important;
+}
+.start-section {
+  position: relative;
+  font-family: 'Nunito', sans-serif;
+    font-size: 2rem;
+    color: #fff;
+    width: 94vw;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+    background-color: rgba(0,0,0,0.4);
+}
+
+
+.start-form{
+  font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+}
+
+
+.start-label,
+.start-button {
+  margin-top: 1rem;
+}
+
+.input-username,
+.input-password,
+.start-button {
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+}
+
+.start-button {
+  padding: 0.5rem;
+  cursor: pointer;
+  background-color: #cf7d03;
+    border-color: #cf7d03;
+    color:rgb(255, 255, 255);
+}
+.start-button:hover {
+  background-color: #a96602;
+    border-color: #a66402;
+  transition: background 500ms ease;
+}
+
+
+
+
+.errmsg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+
+/*-----------------------------------------SIGN IN END -----------------------------------------*/
+
+/*---------------------------------------Orders START------------------------------------------ */
+.order-nav{
+  position: relative;
+  left: 1000vw;
+  height: 6vh;
+}
+.status-area{
+  display: grid;
+  position: relative;
+}
+
+.status-area h1{
+  background-color: rgb(103, 1, 103);
+  color: #cd8f32;
+  margin-bottom: 10px;;
+}
+
+.order-status-h2{
+  color: #cd8f32;
+  margin-bottom: 10px;;
+}
+
+
+.status-area input{
+  height: 2.5vh;
+  width: 95%;
+  margin-bottom: 10px;;
+}
+.order-status-body{
+  height: 50vh;
+}
+
+.order-status-body button{
+  top: -10px;
+  
+
+}
+.order-history-area{
+  padding-bottom: 20vh;
+}
+
+.order-history-area button{
+  left: 0%;
+}
+
+.forgot-password{
+  font-size: 0.9rem;
+  width: 100vw;
+}
+
+.start-button{
+  width:125px !important;
+  font-weight: 100;
+  font-size: 1.2rem;
+  font-family: 'roboto,arial,verdana,sans-serif';
+  clear: both;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-right: 4vw;
+  left: 30%;
+  position: relative;
+  background-color: #cf7d03;
+  border-color: #cf7d03;
+  color: white;
+}
+.start-button:hover{
+  background-color: #965a00;
+  border-color: #935800;
+  color: rgb(255, 255, 255);
+  transition: color 500ms ease;
+}
+.order-history-area{
+  padding-top: 3vh;
+  padding-left: 2.6vh;
+  text-align: center;
+  align-items: center;
+  position: relative;
+  width: 90.0vw;
+  border-left: 1px solid rgb(3, 3, 3);
+  height: 26.4vh;
+  display: grid;
+  font-size: 1.5rem;
+}
+.order-history-area label{
+  display: flex;
+  height: 5vh;
+  align-items: flex-end;
+}
+.order-history-area label a{
+  font-size: 1vw;
+}
+.order-history-body text{
+  padding-top: 0vh;
+  display: grid;
+  width: 100vw;
+  text-align: center;
+  position: relative;
+  font-size: 2rem;
+}
+.order-history-area input{
+  height: 35px;
+  width: 100%;
+}
+
+
+/*---------------------------------------Orders END------------------------------------------ */
+/*---------------------------------------CONTACT US START -----------------------------------------*/
+.help-body-text{
+  width: 80vw;
+  white-space: nowrap;
+  font-size: 1.5rem;
+}
+.help-body{
+  background-color: rgb(187, 154, 187);
+  width: 100vw;
+  height: 575px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.help-body h2{
+  background-color: #000000;
+  height: 45px;
+  color:white;
+  font-weight: 800;;
+}
+.help-body select{
+  height: 30px;
+  width: 80vw ;
+}
+
+.order-history-area label{
+  font-size: 1.4rem;
+}
+
+.order-history-area input{
+  width: 80vw;
+}
+
+.help-body textarea{
+  height: 150px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  width: 80vw;
+}
+.submit-btn{
+  height: 30px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  background-color: #cf7d03;
+  border-color: #cf7d03;
+  color:rgb(255, 255, 255);
+  width: 80vw;
+}
+.submit-btn:hover{
+  background-color: #a96602;
+  border-color: #a66402;
+  transition: background 500ms ease;
+}
+
+.get-in-body{
+  text-align: center;
+  white-space: nowrap;
+  background-color: rgb(187, 154, 187);
+  width: 100vw;
+  font-size: 1.4rem;;
+  
+}
+.get-in-body h2{
+  background-color: rgb(95, 95, 95);
+  color: whitesmoke;
+  font-size: 1.4rem;
+}
+
+.contact-area{
+  display: grid;
+}
+/*---------------------------------------CONTACT US END -----------------------------------------*/
+
+.image{
+  width: 700px;
+  height: 100px
+}
+
+/* Screen sizes 500px and up*/
+@media (min-width: 600px) {
+  .search{
+    top:2.5vh;
   }
-  to {
-    transform: rotate(360deg);
+  /*-----------------UPLOAD START --------------------- */
+
+  .upload-container{
+    display: flex;
+    justify-content: center;
   }
+
+  .upload-form{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+    width:30vw;
+    background-color: #888;
+    height: 600px;
+  }
+
+  .upload-form input{
+    height: 2vh;
+    width: 20vw;
+  }
+
+  .upload-form button{
+    width: 10vw;
+  }
+
+   .upload-form textarea{
+    height: 300px;
+    width: 24vw;
+   }
+
+   .upload-form div{
+    background-color: white;
+    width: 20vw;
+    text-align: start;
+    height: 24px;
+    font-size: 13pt;
+   }
+
+   .upload-form p{
+    width: 1.5vw;
+    height: 20px;
+    font-size: 13pt;
+    margin: 0px !important;
+    float: left;
+   }
+
+   .upload-form div input{
+    float: right;
+    width: 18vw;
+    border-radius: 0;
+    border-style: hidden;
+    font-size: 12pt;
+   }
+
+   .upload-form div input:focus-visible{
+    border-color: #f00000;
+    
+   }
+  /*-----------------UPLOAD END --------------------- */
+
+  /*-----------------NAVBAR START --------------------- */
+  .navbar{
+    display: none;
+    background-color: purple;
+    justify-content: space-around !important;
+    align-items: center; /* align vertical */
+    color:white;
+  }
+
+  .cart-counter{
+    position: absolute;
+    z-index: 2;
+    top: 2px;
+    right: 3px;
+    background:#000000;
+    color: red;
+    border-radius: 40%;
+    width: 25px;
+  }
+
+  .exclusive-text{
+    clear: both;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width:55vw;
+    font-weight: 100;
+    font-size: 1.2rem;
+    font-family: 'roboto,arial,verdana,sans-serif';
+    cursor: pointer;
+    margin-right: 0;
+  }
+
+  .exclusive-text:hover{
+    color: rgb(246, 166, 17) !important;
+    transition: color 500ms ease;
+  } 
+  .signIn-text{
+    width:15vw;
+    font-weight: 100;
+    font-size: 1.2rem;
+    font-family: 'roboto,arial,verdana,sans-serif';
+    clear: both;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-right: 4vw;
+    
+  }
+  .signIn-text:hover{
+    cursor: pointer;
+    color: rgb(246, 166, 17) !important;
+    transition: color 500ms ease;
+  }
+
+
+  .Order-text{
+    font-weight: 100;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding-right: 4vw;
+  }
+  .Order-text:hover{
+    cursor: pointer;
+    color: rgb(246, 166, 17) !important;
+    transition: color 500ms ease;
+  }
+
+  
+
+  .payment-text{
+    padding-right: 2vw;
+  }
+  .payment-text:hover{
+    cursor: pointer;
+    color: rgb(246, 166, 17) !important;
+    transition: color 500ms ease;
+  }
+
+  
+  .call-text{
+    clear: both;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-right: 5vw;
+  }
+  .call-text:hover{
+    cursor: pointer;
+    color: rgb(246, 166, 17) !important;
+    transition: color 500ms ease;
+  }
+
+  
+
+  .payment-text:hover{
+    cursor: pointer;
+    color: rgb(246, 166, 17) !important;
+    transition: color 500ms ease;
+  }
+
+
+  .item-text{
+    padding-right: 4vw;
+  }
+  .item-text:hover{
+    cursor: pointer;
+    color: rgb(246, 166, 17) !important;
+    transition: color 500ms ease;
+  }
+  /* This controls the cart css*/
+  .cart span:nth-child(1){
+    font-size: .3rem;
+    position: absolute;
+    color: white;
+  }
+  
+  .menu span:nth-child(1){
+    position: absolute;
+    color: white;
+  }
+  .view-btn{
+    background-color: #cf7d03;
+    color:white;
+    font-size: 1.1rem;
+  }
+  .view-btn:hover{
+    background-color: #b56e03;
+    cursor: pointer;
+    transition: background 500ms ease;
+  }
+  /*-----------------NAVBAR END --------------------- */
+
+  /*-----------------SEARCH BODY START --------------------- */
+  .search-body{
+    margin-top: 0vh;
+    background-color: rgb(75, 1, 75);
+    height: calc(13vh + 20px);
+    width: 100vw;
+  }
+  .shop-btn-container{
+    position: relative;
+    top:-4.70vh;
+    height:5vh;
+    text-align: end;
+    width: 100%;
+  }
+  .search-container{
+    left: 0px;
+    width: 88vw;
+    max-width: 1650px;
+    height: 60px;
+    float: top;
+  }
+
+  .search-dropdown{
+    position: absolute;
+    background: rgb(224, 224, 224);
+    left: 39.1vw;
+    top: 96px;
+    z-index: 2;
+    width: calc(44.5% - 70px);
+    max-width: 745px;
+    border-radius: 5%;
+  }
+
+  .search-bar{
+    position: relative;
+    left: 39vw;
+    height: 42px;
+    min-height: 23px;
+    width: 50%;
+    TOP:15px;
+    border-radius: 5%;
+    z-index: 1;
+    float: left;
+  }
+  .search-btn{
+    position: relative;
+    TOP:15.5px;
+    height: 42px;
+    min-height: 24.8px;
+    font-size: 1.65rem;
+    width:6vw;
+    max-width: 50px;
+    min-width: 35px;
+    background-color: #cf7d03;
+    color: white;
+    cursor: pointer;
+    z-index: 3;
+    float: right;
+  }
+  .search-btn:hover{
+    color: rgb(123, 17, 123);
+    background-color: #9a5c00;
+    transition: background 500ms ease;
+    transition: color 500ms ease;
+  }
+  
+
+  .search-btn i{
+    top: 1%;
+    display: flex;
+    vertical-align: center;
+  }
+
+  .fa-search{
+    position: relative;
+    top: -0.35vh;
+  }
+  .shop-btn-sport{
+    position: relative;
+    top:25px;
+    height:3.6vh;
+    min-height: 24.5px;
+    color: rgb(89, 1, 89);
+    font-weight: 1000;
+    width: 25vw;
+    max-width: 200px;
+    min-width: 160px;
+    font-size: 1rem;
+  }
+  /* This container holds the shop by sports button*/
+
+
+
+
+  
+  .shop-btn-cate{
+    position: relative;
+    left: 0vw;
+    top:-40px;
+    height:3.6vh;
+    min-height: 24.5px;
+    color: rgb(89, 1, 89);
+    font-weight: 1000;
+    width: 28vw;
+    min-width: 215px;
+    max-width: 240px;
+    font-size: 1rem;
+  }
+  /*-----------------SEARCH BODY END --------------------- */
+
+  /*-----------------------SIGN IN START ----------------------*/
+
+.start-body{
+  justify-content: center;
+  min-height: 100vh;
+    position: relative;
+    background-color: purple;
+    overflow: hidden;
+    overflow-x:hidden;
+}
+.start-container{
+  display: flex;
+  justify-content: center;
+}
+
+.start-section {
+  position: relative;
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  color: #fff;
+  width: 100%;
+  max-width: 420px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  background-color: rgba(0,0,0,0.4);
+  left: 0;
+}
+
+
+.start-form{
+  font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+}
+.start-label,
+.start-button {
+  margin-top: 1rem;
+}
+
+.input-username,
+.input-password,
+.start-button {
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+}
+
+.start-button {
+  padding: 0.5rem;
+  cursor: pointer;
+  background-color: #cf7d03;
+  border-color: #cf7d03;
+  color:rgb(255, 255, 255);
+}
+.start-button:hover {
+  background-color: #a96602;
+    border-color: #a66402;
+  transition: background 500ms ease;
+}
+
+.start-text{
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+.start-create{
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  padding: 0.25rem;
+  cursor: pointer;
+  background-color: black !important;
+  
+}
+.start-create:hover{
+  transition: background 500ms ease;
+  
+}
+
+
+
+.errmsg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+
+/*-----------------------SIGN IN END ----------------------*/
+
+/*---------------------------------------Orders START------------------------------------------ */
+.order-sidebar-body{
+  width: 50vw;
+  float: left;
+}
+.order-nav{
+  position:relative;
+  height: 80vh;
+  text-align: center;
+  margin-left: 0vw !important;
+  padding: 0 !important;
+  min-width: 200px;
+  float: left;
+  z-index: 1;
+  left: 0vw;
+}
+.order-sidebar{
+  position: relative;
+  background-color: rgb(56, 0, 56);
+  max-width: 20vw !important;
+  min-width: 200px;
+  height: 121.6vh;
+  border-right: 1px solid #ccc;
+  margin: 0 !important;
+  padding: 0 !important;
+  
+}
+.your-order{
+  color: rgb(228, 150, 5);
+  display: grid;
+  height: auto;
+  padding-bottom: 40px;
+  cursor: pointer;
+}
+.your-order a{
+}
+.your-order a:hover{
+  text-decoration: underline;
+}
+
+.top-header{
+  font-size: 1.2rem;
+  padding-bottom: 15px;
+  height: 10px;
+  white-space: nowrap;
+}
+.order-status-body{
+  text-align: center;
+  align-items: center;
+  position: relative;
+  width: 45vw;
+  
+  height: 40.4vh;
+  white-space: nowrap;
+  top: -80vh;
+  float:right;
+}
+
+.status-area h1{
+  background-color: rgb(235, 235, 235);
+  color: #000000;
+  margin-bottom: 10px;;
+}
+
+.status-area{
+  position: relative;
+  text-align: center;
+  display: grid;
+  width: 65%;
+  left: 8vw;
+  margin: 0 !important;
+  padding: 0 !important;
+  float: right;
+  top: 0px;
+}
+.status-area input{
+  position: relative;
+  height: 35px;
+  width: 100%;
+  
+}
+.order-status-h2{
+  font-size: 10pt;
+}
+.status-area h1{
+  padding-top: 20px;
+}
+.order-status-body label{
+  padding-top: 20px;
+  font-size: 1.5rem;
+}
+.order-history-body{
+  float: right;
+  
+}
+.order-history-area{
+  padding-top: 3vh;
+  padding-left: 2.6vh;
+  text-align: center;
+  align-items: center;
+  position: relative;
+  width: 28.0vw;
+  border-left: 1px solid rgb(3, 3, 3);
+  height: 26.4vh;
+  display: grid;
+  font-size: 1.5rem;
+}
+.order-history-area label{
+  display: flex;
+  height: 5vh;
+  align-items: flex-end;
+}
+
+
+.order-history-area label a{
+  font-size: 1.2vw !important;
+}
+.order-history-body text{
+  padding-top: 2vh;
+  display: grid;
+  width: 28.0vw;
+  text-align: center;
+  position: relative;
+  font-size: 2rem;
+}
+.order-history-area input{
+  height: 35px;
+  width: 100%;
+}
+/*---------------------------------------Orders END------------------------------------------ */
+
+/*---------------------------------------CONTACT US START -----------------------------------------*/
+.help-body-text{
+  padding-top: 20px;
+  width: 100vw;
+  white-space: nowrap;
+}
+.help-body{
+  background-color: rgb(187, 154, 187);
+  width: 60vw;
+  height: 550px;
+  text-align: center;
+  white-space: nowrap;
+  max-width: 920px;
+}
+
+.help-body h2{
+  background-color: #000000;
+  height: 45px;
+  color:white;
+  font-weight: 800;;
+}
+
+
+.order-history-area label{
+  font-size: 1.4rem;
+}
+
+.order-history-area input{
+  width: 25vw;
+}
+
+.help-body select{
+  height: 30px;
+  width: 25vw;
+}
+.help-body textarea{
+  height: 150px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  width: 25vw;
+}
+.submit-btn{
+  height: 30px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  background-color: #cf7d03;
+  border-color: #cf7d03;
+  color:rgb(255, 255, 255);
+  width: 25vw;
+}
+.submit-btn:hover{
+  background-color: #a96602;
+  border-color: #a66402;
+  transition: background 500ms ease;
+}
+
+.get-in-body{
+  float: right;
+  margin-top: 70px;
+  text-align: center;
+  white-space: nowrap;
+  background-color: rgb(187, 154, 187);
+  width: 25vw;
+  font-size: 1.4rem;;
+  
+}
+.get-in-body h2{
+  background-color: rgb(95, 95, 95);
+  color: whitesmoke;
+  font-size: 1.4rem;
+}
+
+.contact-area{
+  display: grid;
+  
+}
+/*---------------------------------------CONTACT US END -----------------------------------------*/
+  .offscreen{
+    position: relative;
+    left: 0px;
+  }
+
+  .onscreen{
+    position: relative;
+    left: 100vw;
+  }
+
 }
