@@ -13,7 +13,8 @@ import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
-
+import Footer from "./Footer";
+import Navbar from "./Navbar.jsx";
 
 const useStyles = makeStyles((theme) => ({
   signIn: {
@@ -111,6 +112,9 @@ function Cart(props) {
   };
   return (
     <>
+      <Navbar data={data} setData={setData}>
+        {" "}
+      </Navbar>
 
       <Box>
         {auth?.user ? (
@@ -426,6 +430,7 @@ function Cart(props) {
           </Grid>
         )}
       </Box>
+      <Footer />
     </>
   );
 }
