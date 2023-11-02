@@ -13,6 +13,8 @@ import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
+import Navbar from "../components/Navbar";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -111,6 +113,7 @@ function Cart(props) {
   };
   return (
     <>
+    < Navbar/>
 
       <Box>
         {auth?.user ? (
