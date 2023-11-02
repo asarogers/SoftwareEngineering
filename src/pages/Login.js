@@ -35,6 +35,7 @@ function Login(props) {
     e.preventDefault();
     
     if (user === "user1" && pwd === "password1") {
+      console.log("works")
       const roles = 2001;
       setAuth({ roles, user });
       navigate("/", { replace: true });
@@ -43,7 +44,9 @@ function Login(props) {
   return (
     <>
       <div className="start-body">
-      <Navbar />
+        <div className="exclusive-text">
+        <Navbar />
+        </div>
         <div className="start-container">
           <section className="start-section">
             <p
@@ -53,9 +56,7 @@ function Login(props) {
             >
               {errMsg}
             </p>
-            <label className="start-label" htmlFor="password">
-              <h1>Sign In</h1>
-            </label>
+            <h1>Sign In</h1>
             <form className="start-form" onSubmit={handleSubmit}>
               <label className="start-label" htmlFor="username">
                 Username:
@@ -74,7 +75,9 @@ function Login(props) {
               <label className="start-label" htmlFor="password">
                 Password:
               </label>
-
+              <a className="forgot-password" href="/forgot">
+                Forgot Password?
+              </a>
               <input
                 className="input-password"
                 type="password"
@@ -83,17 +86,12 @@ function Login(props) {
                 value={pwd}
                 required
               />
-
               <button className="start-button">Sign In</button>
             </form>
-            <span className="start-text">New to Tubmate?</span>
-            <button
-              className="start-create start-button"
-              onClick={() => {
-                navigate("/register");
-              }}
-            >
-              Sign Up
+            <span className="start-text">New to Exclusive Rewards?</span>
+            <button className="start-create">
+              {" "}
+              <Link to={"/Registration"}>CREATE AN ACCOUNT</Link>
             </button>
           </section>
         </div>

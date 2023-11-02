@@ -8,7 +8,7 @@ const Missing = () => {
           <h1>Oops!</h1>
           <p>Page Not Found</p>
           <div className="flexGrow">
-            <Link to="/" className="visit">
+            <Link to="/login" className="visit">
               Login
             </Link>
           </div>

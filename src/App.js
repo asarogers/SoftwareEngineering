@@ -10,9 +10,6 @@ import RequireAuth from "./components/RequireAuth";
 import CartPage from "./pages/CartPage";
 import About from "./pages/About";
 
-
-
-
 function App() {
   const { auth, setAuth } = useAuth();
   const [data, setData] = useState({
@@ -30,24 +27,33 @@ function App() {
   return (
     <>
       {/* Routes are different ways to move between URLs, the home URL has a path of '/', so by given it the element of Home, we have made that the base url */}
-       <Routes>
+      <Routes>
+        <Route
+          path="/login"
+          element={<Login data={data} setData={setData} />}
+        />
+        <Route
+          path="Registration"
+          element={<Registration data={data} setData={setData} />}
+        />
+        <Route
+          path="About"
+          element={<About data={data} setData={setData} />}
+        />
+        <Route
+          path="CartPage"
+          element={<CartPage data={data} setData={setData} />}
+        />
 
-        <Route path="" element={<Login data={data} setData={setData}/>} />
-        <Route path="Registration" element={<Registration data={data} setData={setData}/>} />
-        <Route path="About" element={<CartPage data={data} setData={setData}/>} />
-        <Route path="CartPage" element={<About data={data} setData={setData}/>} />
-        <Route path="Home" element={<Home data={data} setData={setData}/>} />
-
-        {/* everyone can access the othes
         <Route
           element={<RequireAuth allowedRoles={process.env.REACT_APP_ALLOWED} />}
         >
-          <Route path="/" element={<Home modelPath={"./models/scene.gltf"}/>} />
+          <Route path="/" element={<Home data={data} setData={setData} />} />
         </Route>
 
-        {/* catch all 
-      <Route path="*" element={<Missing />} /> */}
-      </Routes> 
+        {/* catch all */}
+        <Route path="*" element={<Missing />} />
+      </Routes>
     </>
   );
 }

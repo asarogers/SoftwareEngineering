@@ -1,7 +1,7 @@
 function CartPage() {
     return (
       <div className="App">
-        About
+        Cartpage
       </div>
     );
   }
