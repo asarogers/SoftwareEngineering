@@ -44,9 +44,9 @@ function Login(props) {
   return (
     <>
       <div className="start-body">
-        <div className="exclusive-text">
+
         <Navbar />
-        </div>
+
         <div className="start-container">
           <section className="start-section">
             <p
