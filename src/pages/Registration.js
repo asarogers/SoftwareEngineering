@@ -85,9 +85,7 @@ const Register = () => {
     return (
         <>
             <div className='start-body'>
-                <div className="exclusive-text">
                     < Navbar/>
-                </div>
                 <div className="start-container">
                     <section className="start-section">
                         <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>

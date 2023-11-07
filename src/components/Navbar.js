@@ -27,7 +27,7 @@ export default function Navbar() {
       <div className="payment-text offscreen">
         <div>
           <Link to="/CartPage" className="visit">
-            CartPage
+            Cart Page
           </Link>
         </div>
       </div>
