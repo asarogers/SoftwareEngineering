@@ -13,6 +13,7 @@ a{
   color:white;
 }
 
+/*-------------------home page controls------------- */
 .home-body{
   width: 100vw;
 }
@@ -26,6 +27,17 @@ a{
   width: 50vw;
 }
 
+.control-select{
+  width: 20vw;
+}
+
+.start-button {
+  font-family: "Nunito", sans-serif;
+  font-size: 22px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+}
+/*-----------------------home page end controls---------------- */
 a:hover{
   text-decoration: none;
   color: rgb(246, 166, 17) !important;
