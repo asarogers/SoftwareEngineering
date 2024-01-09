@@ -23,6 +23,30 @@ a:hover{
 .hide {
     display: none;
 }
+/*------------------------------About page------------------------- */
+
+.About_body{
+  background-color: forestgreen;
+  height: 100vh
+}
+
+.text-block {
+  position: absolute;
+  bottom: 200px;
+  left: 50px;
+  right: 150px;
+  background-color: rgba(15, 19, 15, 0.5);
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  top: 200px
+  font;
+  font-size: 1.3vw;
+
+}
+
+/*------------------------------About page------------------------- */
+
 
 .valid {
     color: limegreen;
