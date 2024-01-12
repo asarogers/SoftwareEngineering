@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import axios from '../api/axios';
 import useAuth from "../hooks/useAuth";
+import bcrypt from 'bcryptjs';
 
 
 
@@ -49,37 +50,37 @@ const Register = () => {
         // if button enabled with JS hack
         console.log("Register")
 
-        // try {
-        //     const salt = await bcrypt.genSalt();
-        //     const hashed = bcrypt.hashSync(pwd, salt);
-        //     axios.post(REGISTER_URL, { user: user, password: hashed }).then(response => {
+        try {
+            const salt = await bcrypt.genSalt();
+            const hashed = bcrypt.hashSync(pwd, salt);
+            axios.post(REGISTER_URL, { user: user, password: hashed }).then(response => {
 
-        //         if (response?.data?.code === "success") {
+                if (response?.data?.code === "success") {
                     
-        //             const roles = response?.data?.role;
-        //             //const accessToken = response?.data?.accessToken;
-        //             setAuth({ user, hashed, roles });
-        //             navigate("/cart", { replace: true })
-        //             //console.log("success")
-        //         } else {
-        //             console.log("failed")
-        //             alert("email already exist")
-        //         }
-        //         setUser('');
-        //         setPwd('');
-        //         setMatchPwd('');
-        //     })
+                    const roles = response?.data?.role;
+                    //const accessToken = response?.data?.accessToken;
+                    setAuth({ user, hashed, roles });
+                    navigate("/cart", { replace: true })
+                    //console.log("success")
+                } else {
+                    console.log("failed")
+                    alert("email already exist")
+                }
+                setUser('');
+                setPwd('');
+                setMatchPwd('');
+            })
 
-        // } catch (err) {
-        //     if (!err?.response) {
-        //         setErrMsg('No Server Response');
-        //     } else if (err.response?.status === 409) {
-        //         setErrMsg('Username Taken');
-        //     } else {
-        //         setErrMsg('Registration Failed')
-        //     }
-        //     errRef.current.focus();
-        // }
+        } catch (err) {
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            } else if (err.response?.status === 409) {
+                setErrMsg('Username Taken');
+            } else {
+                setErrMsg('Registration Failed')
+            }
+            errRef.current.focus();
+        }
     }
 
     return (

@@ -90,9 +90,38 @@ function insertIntoTable(req, res) {
   res.send(msg);
 }
 
+const registerUser = async (email, password, res) => {
+  try {
+      if (email.includes(process.env.REACT_APP_WORD)) {
+          //check if user exist
+          const userExist = await UserModel.findOne({ email: email })
+
+          //if user does exist, update their password
+          if (userExist) {
+              console.log(password)
+              const update = await UserModel.updateOne({ email: email }, { "$set": { password: password } });
+              //console.log(userExist)
+              res.send({ code: "success", role: userExist.role, email: userExist.email, accessToken: userExist._id })
+          } else {
+              //if not, return failure
+              res.send("Email does not exist, you must use the code first")
+          }
+      }
+      else {
+          res.send("No personal emails")
+      }
+
+  }
+  catch (error) {
+      res.json("error")
+  }
+
+}
+
 module.exports = {
   insertIntoTable: insertIntoTable,
   readCommand: readCommand,
   postIntoTable: postIntoTable,
   getTableNames: getTableNames,
+  registerUser: registerUser
 };

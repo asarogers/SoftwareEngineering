@@ -14,6 +14,12 @@ function Home() {
     { label: "Turn Right", value: "4" },
   ];
 
+  const sep = [
+    { label: "patton hall", value: "34.7826° N, 86.5702° W" },
+    { label: "Move Backward", value: "2" },
+    { label: "Turn Left", value: "3" },
+    { label: "Turn Right", value: "4" },
+  ];
   const handleSelectChange = (selectedOption) => {
     setSelectedOption(selectedOption);
   };
