@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require('dotenv').config();
-const {readCommand, postIntoTable, insertIntoTable, getTableNames, registerUser} = require("./CRUD.js")
+const {readCommand, postIntoTable, insertIntoTable, getTableNames, registerUser, queryData} = require("./CRUD.js")
 const {sendCommand} = require("./sendCommand.js");
 
 
@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/get-command",(req, res)=>{readCommand(req, res)})
 app.get("/get-tableNames",(req, res)=>{getTableNames(req, res)})
+app.get("/get-data",(req, res)=>{queryData(req, res)})
 
 app.post("/post-data",(req, res, next) => {postIntoTable(req, res)})
 app.post("/insert-data", (req, res, next)=>{insertIntoTable(req, res)})

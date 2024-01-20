@@ -22,51 +22,8 @@ function getTableNames(req, res) {
 
 function postIntoTable(req, res) {
   const { columnName, results, university, database } = req.body;
-  var msg;
 
-  switch (database) {
-    case "scrappedata":
-      results.forEach((url) => {
-        dbConnection.query(
-          `INSERT INTO ${database} (url, columnName, University) VALUES ('${url}', '${columnName}', '${university}')`,
-          function (err, result, fields) {
-            if (err) throw err;
-            msg = result;
-          }
-        );
-      });
-      console.log("posted to the scrappedata");
-      break;
-    case "tablenames":
-      msg = "tablenames";
-      console.log("posted to tablenames");
-      break;
-    case "rental":
-      results.forEach((url) => {
-        dbConnection.query(
-          `INSERT INTO ${database} (url) VALUES ('${url}')`,
-          function (err, result, fields) {
-            if (err) throw err;
-            msg = result;
-          }
-        );
-      });
-      msg = "rental";
-      console.log("posted to rental");
-      break;
-    default:
-      results.forEach((url) => {
-        dbConnection.query(
-          `INSERT INTO scrappedData (url, columnName, University) VALUES ('${url}', '${columnName}', '${university}')`,
-          function (err, result, fields) {
-            if (err) throw err;
-            msg = result;
-          }
-        );
-      });
-      break;
-  }
-  res.send(msg);
+ 
 }
 
 function insertIntoTable(req, res) {
@@ -118,10 +75,22 @@ const registerUser = async (email, password, res) => {
 
 }
 
+const queryData = async (req, res) => {
+  dbConnection.query(
+    `Create Table users(userID int, email varchar(50),  password varchar(50))`,
+    function (err, result, fields) {
+      if (err) throw err;
+      msg = result;
+    }
+  );
+  res.send(msg)
+}
+
 module.exports = {
   insertIntoTable: insertIntoTable,
   readCommand: readCommand,
   postIntoTable: postIntoTable,
   getTableNames: getTableNames,
-  registerUser: registerUser
+  registerUser: registerUser,
+  queryData: queryData
 };

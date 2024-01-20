@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-
+import axios from "../api/axios"
 import useAuth from "../hooks/useAuth";
 
 function Login(props) {
@@ -34,12 +34,15 @@ function Login(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (user === "user1" && pwd === "password1") {
-      console.log("works")
-      const roles = 2001;
-      setAuth({ roles, user });
-      navigate("/", { replace: true });
-    }
+    // if (user === "user1" && pwd === "password1") {
+    //   console.log("works")
+    //   const roles = 2001;
+    //   setAuth({ roles, user });
+    //   navigate("/", { replace: true });
+    // }
+    axios.get("/get-data").then((response) => {
+      console.log(response.data)
+  })
   };
   return (
     <>
