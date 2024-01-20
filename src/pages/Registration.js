@@ -53,7 +53,7 @@ const Register = () => {
         try {
             const salt = await bcrypt.genSalt();
             const hashed = bcrypt.hashSync(pwd, salt);
-            axios.post(REGISTER_URL, { user: user, password: hashed }).then(response => {
+            axios.post(REGISTER_URL, { email: user, password: hashed }).then(response => {
 
                 if (response?.data?.code === "success") {
                     

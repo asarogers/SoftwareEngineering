@@ -21,7 +21,13 @@ function Login(props) {
 
   useEffect(() => {
     userRef.current.focus();
+    axios.get("/read-all")
+        .then((response) => {
+          console.log(response.data)
+        })
+
   }, []);
+
 
   useEffect(() => {
     console.log(auth);

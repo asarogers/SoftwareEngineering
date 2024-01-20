@@ -8,7 +8,7 @@ function Command() {
 
     //on load function
     useEffect(() => {
-        axios.get("/get-command")
+        axios.get("/read-all")
             .then((response) => {
                 setCommands(response.data)
             })

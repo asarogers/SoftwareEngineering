@@ -1,8 +1,8 @@
 const dbConnection = require("./DatabaseConnection.js");
 
-function readCommand(req, res) {
+function readFromTable(req, res) {
   dbConnection.query(
-    `SELECT * FROM commands`,
+    `SELECT * FROM user`,
     function (err, result, fields) {
       if (err) throw err;
       res.send(result);
@@ -47,38 +47,27 @@ function insertIntoTable(req, res) {
   res.send(msg);
 }
 
-const registerUser = async (email, password, res) => {
-  try {
-      if (email.includes(process.env.REACT_APP_WORD)) {
-          //check if user exist
-          const userExist = await UserModel.findOne({ email: email })
-
-          //if user does exist, update their password
-          if (userExist) {
-              console.log(password)
-              const update = await UserModel.updateOne({ email: email }, { "$set": { password: password } });
-              //console.log(userExist)
-              res.send({ code: "success", role: userExist.role, email: userExist.email, accessToken: userExist._id })
-          } else {
-              //if not, return failure
-              res.send("Email does not exist, you must use the code first")
-          }
-      }
-      else {
-          res.send("No personal emails")
-      }
-
-  }
-  catch (error) {
-      res.json("error")
-  }
-
+const registerUser = async (req, res) => {
+  const {email, password} = req.body
+  //get email, passsword 
+  var msg;
+  dbConnection.query(
+    `insert into user (email, password) values('${email}', '${password}');`,
+    function (err, result, fields) {
+      if (err) throw err;
+      msg = result;
+    }
+  );
+  res.send(msg)
 }
 
 const queryData = async (req, res) => {
+  var msg;
   dbConnection.query(
-    `Create Table users(userID int, email varchar(50),  password varchar(50))`,
-    function (err, result, fields) {
+   //'CREATE TABLE user ( userID int NOT NULL AUTO_INCREMENT, email varchar(50),  password varchar(50), PRIMARY KEY (userID) );', 
+   //'Drop Table users',
+   "ALTER TABLE user MODIFY COLUMN password VARCHAR(100);",
+   function (err, result, fields) {
       if (err) throw err;
       msg = result;
     }
@@ -88,7 +77,7 @@ const queryData = async (req, res) => {
 
 module.exports = {
   insertIntoTable: insertIntoTable,
-  readCommand: readCommand,
+  readFromTable: readFromTable,
   postIntoTable: postIntoTable,
   getTableNames: getTableNames,
   registerUser: registerUser,
