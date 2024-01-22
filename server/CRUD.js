@@ -49,6 +49,7 @@ function insertIntoTable(req, res) {
 
 const registerUser = async (req, res) => {
   const {email, password} = req.body
+  console.log(email, password)
   //get email, passsword 
   var msg;
   dbConnection.query(
@@ -66,12 +67,14 @@ const queryData = async (req, res) => {
   dbConnection.query(
    //'CREATE TABLE user ( userID int NOT NULL AUTO_INCREMENT, email varchar(50),  password varchar(50), PRIMARY KEY (userID) );', 
    //'Drop Table users',
-   "ALTER TABLE user MODIFY COLUMN password VARCHAR(100);",
+   'select * from user',
+   //"ALTER TABLE user MODIFY COLUMN password VARCHAR(100);",
    function (err, result, fields) {
       if (err) throw err;
       msg = result;
     }
   );
+  console.log(msg)
   res.send(msg)
 }
 
