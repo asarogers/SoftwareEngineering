@@ -21,10 +21,10 @@ function Login(props) {
 
   useEffect(() => {
     userRef.current.focus();
-    axios.get("/read-all")
-        .then((response) => {
-          console.log(response.data)
-        })
+    // axios.get("/read-all")
+    //     .then((response) => {
+    //       console.log(response.data)
+    //     })
 
   }, []);
 
@@ -45,6 +45,7 @@ function Login(props) {
     //   const roles = 2001;
     //   setAuth({ roles, user });
     //   navigate("/", { replace: true });
+
     // }
     axios.get("/get-data").then((response) => {
       console.log(response.data)

@@ -65,9 +65,9 @@ const registerUser = async (req, res) => {
 const queryData = async (req, res) => {
   var msg;
   dbConnection.query(
-   //'CREATE TABLE user ( userID int NOT NULL AUTO_INCREMENT, email varchar(50),  password varchar(50), PRIMARY KEY (userID) );', 
+   'CREATE TABLE user ( userID int NOT NULL AUTO_INCREMENT, email varchar(50),  password varchar(50), PRIMARY KEY (userID) );', 
    //'Drop Table users',
-   'select * from user',
+   //'select * from user',
    //"ALTER TABLE user MODIFY COLUMN password VARCHAR(100);",
    function (err, result, fields) {
       if (err) throw err;
@@ -77,6 +77,8 @@ const queryData = async (req, res) => {
   console.log(msg)
   res.send(msg)
 }
+
+
 
 module.exports = {
   insertIntoTable: insertIntoTable,
