@@ -264,7 +264,7 @@ function Cart(props) {
               </Grid>
             </Grid>
           )
-        ) : element?.cartItems.length > 0 ? (
+        ) : element?.cartItems.length == 0 ? (
           <Grid sx={{ display: "flex", justifyContent: "center" }}>
             <Grid item xs={2} md={2} lg={2}>
               <Card className={classes.shoppingBackground}>
@@ -291,7 +291,7 @@ function Cart(props) {
                         </TableCell>
                         <TableCell> Price </TableCell>
                       </TableRow>
-                      {element.cartItems.map((item, index) => {
+                      {[1].map((item, index) => {
                         //console.log(index)
                         return (
                           <>
