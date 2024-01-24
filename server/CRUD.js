@@ -1,8 +1,8 @@
 const dbConnection = require("./DatabaseConnection.js");
 
-function readCommand(req, res) {
+function readFromTable(req, res) {
   dbConnection.query(
-    `SELECT * FROM commands`,
+    `SELECT * FROM user`,
     function (err, result, fields) {
       if (err) throw err;
       res.send(result);
@@ -22,51 +22,8 @@ function getTableNames(req, res) {
 
 function postIntoTable(req, res) {
   const { columnName, results, university, database } = req.body;
-  var msg;
 
-  switch (database) {
-    case "scrappedata":
-      results.forEach((url) => {
-        dbConnection.query(
-          `INSERT INTO ${database} (url, columnName, University) VALUES ('${url}', '${columnName}', '${university}')`,
-          function (err, result, fields) {
-            if (err) throw err;
-            msg = result;
-          }
-        );
-      });
-      console.log("posted to the scrappedata");
-      break;
-    case "tablenames":
-      msg = "tablenames";
-      console.log("posted to tablenames");
-      break;
-    case "rental":
-      results.forEach((url) => {
-        dbConnection.query(
-          `INSERT INTO ${database} (url) VALUES ('${url}')`,
-          function (err, result, fields) {
-            if (err) throw err;
-            msg = result;
-          }
-        );
-      });
-      msg = "rental";
-      console.log("posted to rental");
-      break;
-    default:
-      results.forEach((url) => {
-        dbConnection.query(
-          `INSERT INTO scrappedData (url, columnName, University) VALUES ('${url}', '${columnName}', '${university}')`,
-          function (err, result, fields) {
-            if (err) throw err;
-            msg = result;
-          }
-        );
-      });
-      break;
-  }
-  res.send(msg);
+ 
 }
 
 function insertIntoTable(req, res) {
@@ -90,9 +47,44 @@ function insertIntoTable(req, res) {
   res.send(msg);
 }
 
+const registerUser = async (req, res) => {
+  const {email, password} = req.body
+  console.log(email, password)
+  //get email, passsword 
+  var msg;
+  dbConnection.query(
+    `insert into user (email, password) values('${email}', '${password}');`,
+    function (err, result, fields) {
+      if (err) throw err;
+      msg = result;
+    }
+  );
+  res.send(msg)
+}
+
+const queryData = async (req, res) => {
+  var msg;
+  dbConnection.query(
+   'CREATE TABLE user ( userID int NOT NULL AUTO_INCREMENT, email varchar(50),  password varchar(50), PRIMARY KEY (userID) );', 
+   //'Drop Table users',
+   //'select * from user',
+   //"ALTER TABLE user MODIFY COLUMN password VARCHAR(100);",
+   function (err, result, fields) {
+      if (err) throw err;
+      msg = result;
+    }
+  );
+  console.log(msg)
+  res.send(msg)
+}
+
+
+
 module.exports = {
   insertIntoTable: insertIntoTable,
-  readCommand: readCommand,
+  readFromTable: readFromTable,
   postIntoTable: postIntoTable,
   getTableNames: getTableNames,
+  registerUser: registerUser,
+  queryData: queryData
 };

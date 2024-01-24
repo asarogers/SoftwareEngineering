@@ -9,7 +9,7 @@ import useAuth from "./hooks/useAuth";
 import RequireAuth from "./components/RequireAuth";
 import CartPage from "./pages/CartPage";
 import About from "./pages/About";
-import Command from "./pages/Command";
+
 
 function App() {
   const { auth, setAuth } = useAuth();
@@ -45,11 +45,6 @@ function App() {
           path="CartPage"
           element={<CartPage data={data} setData={setData} />}
         />
-        <Route
-          path="Command"
-          element={<Command />}
-        />
-
         <Route
           element={<RequireAuth allowedRoles={process.env.REACT_APP_ALLOWED} />}
         >
