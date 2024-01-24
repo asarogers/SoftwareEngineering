@@ -6,7 +6,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         #   ip                  port
 # s.connect(("192.168.1.209", 1234))
 #s.connect((socket.gethostname(), 1234))
-s.connect(("192.168.12.223", 1234))
+s.connect(("10.235.43.195", 1234))
 #socket sends and recieves data
 
 #how much data would we like to recieve at once?
