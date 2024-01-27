@@ -1,90 +1,98 @@
 const dbConnection = require("./DatabaseConnection.js");
+const util = require('util');
+const queryAsync = util.promisify(dbConnection.query).bind(dbConnection);
 
-function readFromTable(req, res) {
-  dbConnection.query(
-    `SELECT * FROM user`,
-    function (err, result, fields) {
-      if (err) throw err;
-      res.send(result);
-    }
-  );
-}
 
-function getTableNames(req, res) {
-  dbConnection.query(
-    `SELECT * FROM tablenames`,
-    function (err, result, fields) {
-      if (err) throw err;
-      res.send(result);
-    }
-  );
-}
+// Function to read all records from the "user" table
+const readFromTable = async (req, res) => {
+  try {
+    const result = await queryAsync("SELECT * FROM user;");
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
 
-function postIntoTable(req, res) {
-  const { columnName, results, university, database } = req.body;
+// Function to read all records from the "tablenames" table
+const getTableNames = async (req, res) => {
+  try {
+    const result = await queryAsync("SELECT * FROM tablenames;");
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
 
- 
-}
+// Placeholder function for handling POST requests to insert data into a table
+const postIntoTable = (req, res) => {
+  // Add your logic here based on the requirements
+  res.send("Placeholder function - Add logic for inserting data into a table");
+};
 
-function insertIntoTable(req, res) {
+// Function to update records in the "scrappedData" table
+const insertIntoTable = async (req, res) => {
   const { results, dictionary, targetColumn } = req.body;
-  var msg;
-  console.log(dictionary);
-  results.forEach((elem) => {
-    // use the url as a key for dictioanry to insert data into the target column
-    dbConnection.query(
-      `UPDATE scrappedData SET ${targetColumn} = '${
-        dictionary[elem.url]
-      }' where url = '${elem.url}'`,
-      function (err, result, fields) {
-        if (err) throw err;
-        msg = result;
-      }
-    );
-  });
 
-  console.log("done with insertion");
-  res.send(msg);
-}
+  try {
+    const updates = results.map((elem) => {
+      return queryAsync(
+        `UPDATE scrappedData SET ${targetColumn} = '${dictionary[elem.url]}' WHERE url = '${elem.url}';`
+      );
+    });
 
+    // Wait for all updates to complete before sending the response
+    await Promise.all(updates);
+
+    console.log("done with insertion");
+    res.send("Records updated successfully");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+
+// Function to register a new user
 const registerUser = async (req, res) => {
-  const {email, password} = req.body
-  console.log(email, password)
-  //get email, passsword 
-  var msg;
-  dbConnection.query(
-    `insert into user (email, password) values('${email}', '${password}');`,
-    function (err, result, fields) {
-      if (err) throw err;
-      msg = result;
-    }
-  );
-  res.send(msg)
-}
+  const { email, password } = req.body;
 
+  try {
+    const result = await queryAsync(
+      `INSERT INTO user (email, password) VALUES ('${email}', '${password}');`
+    );
+    res.send({result: result, code: "success"});
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+// Function to query data from the "user" table using async/await
 const queryData = async (req, res) => {
-  var msg;
-  dbConnection.query(
-   'CREATE TABLE user ( userID int NOT NULL AUTO_INCREMENT, email varchar(50),  password varchar(50), PRIMARY KEY (userID) );', 
-   //'Drop Table users',
-   //'select * from user',
-   //"ALTER TABLE user MODIFY COLUMN password VARCHAR(100);",
-   function (err, result, fields) {
-      if (err) throw err;
-      msg = result;
-    }
-  );
-  console.log(msg)
-  res.send(msg)
-}
+  try {
+    var query;
+    //query = 'Drop Table user';
+    //query = 'CREATE TABLE user ( userID int NOT NULL AUTO_INCREMENT, email varchar(50) UNIQUE,  password varchar(100), PRIMARY KEY (userID) );';
+     query =  ""
+    // query =  "GRANT ALL PRIVILEGES ON sql5680080.* TO 'sql5680080'@'%';"
+    // query =  "ALTER TABLE user MODIFY COLUMN password VARCHAR(100);"
+    const result = await queryAsync(query);
+    console.log(result);
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
 
-
-
+// Exporting all the functions
 module.exports = {
-  insertIntoTable: insertIntoTable,
-  readFromTable: readFromTable,
-  postIntoTable: postIntoTable,
-  getTableNames: getTableNames,
-  registerUser: registerUser,
-  queryData: queryData
+  readFromTable,
+  getTableNames,
+  postIntoTable,
+  insertIntoTable,
+  registerUser,
+  queryData
 };

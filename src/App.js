@@ -25,6 +25,7 @@ function App() {
   var appConditon = ["/show", "/Control", "/assign"];
   var cond = appConditon.indexOf(useLocation().pathname);
 
+  
   return (
     <>
       {/* Routes are different ways to move between URLs, the home URL has a path of '/', so by given it the element of Home, we have made that the base url */}

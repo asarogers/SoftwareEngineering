@@ -291,7 +291,9 @@ function Cart(props) {
                         </TableCell>
                         <TableCell> Price </TableCell>
                       </TableRow>
-                      {[1].map((item, index) => {
+                      {[
+                        {price: 12, itemName:"thing" }, {price: 15}
+                      ].map((item, index) => {
                         //console.log(index)
                         return (
                           <>
