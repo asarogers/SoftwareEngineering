@@ -18,6 +18,7 @@ import useAuth from "../hooks/useAuth";
 import Navbar from "../components/Navbar";
 import NotAuthenticated from "../components/NotAuthenticated";
 import EmptyCart from "../components/EmptyCart";
+import img from "../components/imgs/green.jpg"
 
 // Styling using makeStyles
 const useStyles = makeStyles((theme) => ({
@@ -162,7 +163,7 @@ const Cart = (props) => {
                           <TableCell> Price </TableCell>
                         </TableRow>
                         {/* Mapping through cart items and rendering each item using CartItem component */}
-                        {data.cartItems.map((item, index) => (
+                        {[{itemName:"random", price: "25", image: img}].map((item, index) => (
                           <CartItem key={index} item={item} deleteItem={deleteItem} />
                         ))}
                       </TableBody>
