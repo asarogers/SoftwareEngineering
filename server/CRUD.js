@@ -36,6 +36,7 @@ const upload = async (req, res) => {
   const { upload } = req.body;
   console.log(upload)
 
+  
   try {
     const result = await queryAsync(
       //`CREATE TABLE building ( buildingID int NOT NULL AUTO_INCREMENT, buildingName varchar(50) UNIQUE, coordinates varchar(100), PRIMARY KEY (buildingID));`

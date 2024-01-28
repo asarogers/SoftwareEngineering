@@ -1,3 +1,5 @@
+// Importing necessary dependencies and components
+import React from "react";
 import {
   Box,
   Button,
@@ -14,9 +16,10 @@ import { makeStyles } from "@mui/styles";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
 import Navbar from "../components/Navbar";
+import NotAuthenticated from "../components/NotAuthenticated";
+import EmptyCart from "../components/EmptyCart";
 
-
-
+// Styling using makeStyles
 const useStyles = makeStyles((theme) => ({
   signIn: {
     fontSize: "8pt",
@@ -79,58 +82,71 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Cart(props) {
+// Component for rendering individual items in the cart
+const CartItem = ({ item, deleteItem }) => (
+  <TableRow sx={{ background: "white", border: "2px solid #c2c0be", marginTop: 0 }}>
+    <TableCell>
+      <CardMedia component="img" image={item.image} sx={{ height: 50, minWidth: 50 }} />
+    </TableCell>
+    <TableCell>{item.itemName}</TableCell>
+    <TableCell>${item.price}</TableCell>
+    <TableCell>
+      <Button size="small" onClick={() => deleteItem(item)}>
+        Delete
+      </Button>
+    </TableCell>
+  </TableRow>
+);
+
+// Main Cart component
+const Cart = (props) => {
+  // Initializing styles and extracting data and setData from props
   const classes = useStyles();
   const { data, setData } = props || [];
-
   const { auth } = useAuth();
 
-  var element = data;
+  // Function to delete an item from the cart
   const deleteItem = (deletedItem) => {
-    //console.log(data.totalPrice, deletedItem.price)
     const newPrice = data.totalPrice - deletedItem.price;
-    const newCart = element.cartItems.filter(
-      (item) => item.id !== deletedItem.id
-    );
-    setData({
-      ...data,
-      totalPrice: newPrice,
-      cartItems: newCart,
-    });
+    const newCart = data.cartItems.filter((item) => item.id !== deletedItem.id);
+    setData({ ...data, totalPrice: newPrice, cartItems: newCart });
 
-    //send to backend
+    // Sending updated cart data to the backend
     if (auth?.user) {
-      axios
-        .post(process.env.REACT_APP_CART_SUBTRACTION, {
-          cart: newCart,
-          auth: auth,
-          totalPrice: newPrice,
-        })
-        .then((response) => {
-          console.log(response.data);
-        });
+      axios.post(process.env.REACT_APP_CART_SUBTRACTION, {
+        cart: newCart,
+        auth: auth,
+        totalPrice: newPrice,
+      }).then((response) => {
+        console.log(response.data);
+      });
     }
   };
+
   return (
     <>
-    < Navbar/>
-
+      {/* Displaying the Navbar */}
+      <Navbar />
       <Box>
         {auth?.user ? (
-          element.cartItems.length > 0 ? (
+          data.cartItems.length > 0 ? (
+            // Rendering the shopping cart when there are items
             <Grid sx={{ display: "flex", justifyContent: "center" }}>
               <Grid item xs={2} md={2} lg={2}>
+                {/* Shopping Cart card */}
                 <Card className={classes.shoppingBackground}>
                   <Typography
                     variant="h6"
                     component="div"
                     className={classes.tableBody}
                   >
+                    {/* Table displaying cart items */}
                     <Table>
                       <TableBody>
                         <TableRow>
                           <TableCell> . </TableCell>
                           <TableCell>
+                            {/* Heading */}
                             <Typography
                               variant="body4"
                               component="p"
@@ -144,57 +160,23 @@ function Cart(props) {
                           </TableCell>
                           <TableCell> Price </TableCell>
                         </TableRow>
-                        {element.cartItems.map((item, index) => {
-                          //console.log(index)
-                          return (
-                            <>
-                              <TableRow
-                                key={index + "row"}
-                                sx={{
-                                  background: "white",
-                                  border: "2px solid #c2c0be",
-                                  marginTop: 0,
-                                }}
-                              >
-                                <TableCell key={index + "cell1"}>
-                                  <CardMedia
-                                    component="img"
-                                    image={item.image}
-                                    sx={{ height: 50, minWidth: 50 }}
-                                  />
-                                  {}
-                                </TableCell>
-                                <TableCell key={index + "cell2"}>
-                                  {item.itemName}
-                                </TableCell>
-                                <TableCell key={index + "cell3"}>
-                                  ${item.price}
-                                </TableCell>
-                                <TableCell key={index + "cell4"}>
-                                  <Button
-                                    size="small"
-                                    onClick={() => {
-                                      deleteItem(item);
-                                    }}
-                                  >
-                                    Delete
-                                  </Button>
-                                </TableCell>
-                              </TableRow>
-                            </>
-                          );
-                        })}
+                        {/* Mapping through cart items and rendering each item using CartItem component */}
+                        {data.cartItems.map((item, index) => (
+                          <CartItem key={index} item={item} deleteItem={deleteItem} />
+                        ))}
                       </TableBody>
                     </Table>
                   </Typography>
                 </Card>
               </Grid>
-
+              {/* Subtotal card */}
               <Card className={classes.subtotalBody}>
                 <Box className={classes.subtotalBox}>
+                  {/* Subtotal information */}
                   <h2 style={{ marginRight: 10 }}>Subtotal</h2>
-                  <h2>${element.totalPrice?.toFixed(2)}</h2>
+                  <h2>${data.totalPrice?.toFixed(2)}</h2>
                 </Box>
+                {/* Proceed to Checkout button */}
                 <Box
                   height={30}
                   alignItems={"center"}
@@ -212,223 +194,13 @@ function Cart(props) {
               </Card>
             </Grid>
           ) : (
-            <Grid align="center">
-              <Grid item xs={1} md={1} lg={1.1}>
-                <Card
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: 800,
-                    height: 650,
-                    borderRadius: 1,
-                    boxShadow: 2,
-                    backgroundColor: "rgb(246,240,240)",
-                  }}
-                >
-                  <Typography
-                    variant="h6"
-                    component="div"
-                    sx={{
-                      alignSelf: "center",
-                      position: "relative",
-                      fontSize: "1.5rem",
-                      fontWeight: 500,
-                      marginBottom: 0,
-                      top: 70,
-                      right: 50,
-                      width: 600,
-                      height: 120,
-                      backgroundColor: "#e8dfd1",
-                    }}
-                  >
-                    <Typography
-                      variant="body4"
-                      component="p"
-                      sx={{
-                        marginTop: 2,
-                        textAlign: "center",
-                        fontSize: "19pt",
-                      }}
-                    >
-                      {"Your Cart is Empty"}
-                    </Typography>
-                    <Button
-                      variant="contained"
-                      size="small"
-                      className={classes.signIn}
-                    >
-                      Continue Shopping
-                    </Button>
-                  </Typography>
-                </Card>
-              </Grid>
-            </Grid>
+            // Render when the cart is empty
+            < EmptyCart/>
           )
-        ) : element?.cartItems.length == 0 ? (
-          <Grid sx={{ display: "flex", justifyContent: "center" }}>
-            <Grid item xs={2} md={2} lg={2}>
-              <Card className={classes.shoppingBackground}>
-                <Typography
-                  variant="h6"
-                  component="div"
-                  className={classes.tableBody}
-                >
-                  <Table>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell> . </TableCell>
-                        <TableCell>
-                          <Typography
-                            variant="body4"
-                            component="p"
-                            sx={{
-                              textAlign: "center",
-                              fontSize: "19pt",
-                            }}
-                          >
-                            {"Shopping Cart"}
-                          </Typography>
-                        </TableCell>
-                        <TableCell> Price </TableCell>
-                      </TableRow>
-                      {[
-                        {price: 12, itemName:"thing" }, {price: 15}
-                      ].map((item, index) => {
-                        //console.log(index)
-                        return (
-                          <>
-                            <TableRow
-                              key={index + "row"}
-                              sx={{
-                                background: "white",
-                                border: "2px solid #c2c0be",
-                                marginTop: 0,
-                              }}
-                            >
-                              <TableCell key={index + "cell1"}>
-                                <CardMedia
-                                  component="img"
-                                  image={item.image}
-                                  sx={{ height: 50, minWidth: 50 }}
-                                />
-                                {}
-                              </TableCell>
-                              <TableCell key={index + "cell2"}>
-                                {item.itemName}
-                              </TableCell>
-                              <TableCell key={index + "cell3"}>
-                                ${item.price}
-                              </TableCell>
-                              <TableCell key={index + "cell4"}>
-                                <Button
-                                  size="small"
-                                  onClick={() => {
-                                    deleteItem(item);
-                                  }}
-                                >
-                                  Delete
-                                </Button>
-                              </TableCell>
-                            </TableRow>
-                          </>
-                        );
-                      })}
-                    </TableBody>
-                  </Table>
-                </Typography>
-              </Card>
-            </Grid>
-
-            <Card className={classes.subtotalBody}>
-              <Box className={classes.subtotalBox}>
-                <h2 style={{ marginRight: 10 }}>Subtotal</h2>
-                <h2>${element.totalPrice.toFixed(2)}</h2>
-              </Box>
-              <Box
-                height={30}
-                alignItems={"center"}
-                justifyContent={"center"}
-                display={"flex"}
-              >
-                <Button
-                  variant="contained"
-                  size="small"
-                  className={classes.signIn}
-                >
-                  Proceed to Checkout
-                </Button>
-              </Box>
-            </Card>
-          </Grid>
         ) : (
-          <Grid align="center">
-            <Grid item xs={1} md={1} lg={1.1}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  width: 800,
-                  height: 650,
-                  borderRadius: 1,
-                  boxShadow: 2,
-                  backgroundColor: "rgb(246,240,240)",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  component="div"
-                  sx={{
-                    alignSelf: "center",
-                    position: "relative",
-                    fontSize: "1.5rem",
-                    fontWeight: 500,
-                    marginBottom: 0,
-                    top: 70,
-                    right: 50,
-                    width: 600,
-                    height: 120,
-                    backgroundColor: "#e8dfd1",
-                  }}
-                >
-                  <Typography
-                    variant="body4"
-                    component="p"
-                    sx={{ marginTop: 2, textAlign: "center", fontSize: "19pt" }}
-                  >
-                    {"Your Cart is Empty"}
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    size="small"
-                    className={classes.signIn}
-                  >
-                    Sign in to your account
-                  </Button>
-                  <Button
-                    variant="contained"
-                    size="small"
-                    sx={{
-                      fontSize: "8pt",
-                      backgroundColor: "white",
-                      border: "1px solid white",
-                      outlineColor: "#3498ca",
-                      color: "black",
-                      borderRadius: "30px",
-                      width: "auto",
-                      marginTop: 0.2,
-                      "&:hover": {
-                        backgroundColor: "#a8a7a5",
-                        outlineColor: "#a8a7a5",
-                        color: "white",
-                      },
-                    }}
-                  >
-                    Sign up now
-                  </Button>
-                </Typography>
-              </Card>
-            </Grid>
-          </Grid>
+          // Render when the user is not authenticated
+          <NotAuthenticated/>
+          
         )}
       </Box>
     </>
