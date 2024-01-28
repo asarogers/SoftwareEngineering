@@ -33,6 +33,14 @@ export default function Navbar() {
       </div>
       <div className="call-text">
         <div>
+          <Link to="/AdminPage" className="visit">
+            Admin Page
+          </Link>
+        </div>
+        </div>
+
+      <div className="call-text">
+        <div>
           <Link to="/Registration" className="visit">
             Registration
           </Link>

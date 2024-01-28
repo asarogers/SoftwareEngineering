@@ -9,6 +9,7 @@ import useAuth from "./hooks/useAuth";
 import RequireAuth from "./components/RequireAuth";
 import CartPage from "./pages/CartPage";
 import About from "./pages/About";
+import AdminPage from "./pages/AdminPage"
 
 
 function App() {
@@ -46,6 +47,11 @@ function App() {
           path="CartPage"
           element={<CartPage data={data} setData={setData} />}
         />
+        <Route
+          path="AdminPage"
+          element={<AdminPage data={data} setData={setData} />}
+        />
+
         <Route
           element={<RequireAuth allowedRoles={process.env.REACT_APP_ALLOWED} />}
         >

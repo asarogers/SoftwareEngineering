@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import axios from "../api/axios"
 import useAuth from "../hooks/useAuth";
 
+
 function Login(props) {
   const { data, setData } = props;
   const { auth, setAuth } = useAuth();
@@ -39,16 +40,13 @@ function Login(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // if (user === "user1" && pwd === "password1") {
-    //   console.log("works")
-    //   const roles = 2001;
-    //   setAuth({ roles, user });
-    //   navigate("/", { replace: true });
+   
 
-    // }
-    axios.get("/get-data").then((response) => {
-      console.log(response.data)
+    axios.post("/login", {pwd: pwd, user: user}).then((response) => {
+      const {user, roles} = response.data
+      setAuth({ roles, user });
+      navigate("/", { replace: true });
+      //console.log(roles, user)
   })
   };
   
