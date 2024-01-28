@@ -1,21 +1,14 @@
 // Importing necessary dependencies and components
 import React from "react";
 import {
-  Box,
   Button,
-  CardMedia,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
   Typography,
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
-import axios from "../api/axios";
-import useAuth from "../hooks/useAuth";
-import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
+
 
 // Styling using makeStyles
 const useStyles = makeStyles((theme) => ({
@@ -39,6 +32,8 @@ const useStyles = makeStyles((theme) => ({
 
 const NotAuthenticated = () => {
     const classes = useStyles();
+    const navigate = useNavigate();
+
 
   return (
     <Grid align="center">
@@ -81,6 +76,7 @@ const NotAuthenticated = () => {
                     variant="contained"
                     size="small"
                     className={classes.signIn}
+                    onClick={()=>{ navigate("/login", { replace: true });}}
                   >
                     Sign in to your account
                   </Button>

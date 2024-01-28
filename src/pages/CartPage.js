@@ -129,7 +129,8 @@ const Cart = (props) => {
       <Navbar />
       <Box>
         {auth?.user ? (
-          data.cartItems.length > 0 ? (
+          //checks if there are items in the carItem array
+          data.cartItems.length === 0 ? (
             // Rendering the shopping cart when there are items
             <Grid sx={{ display: "flex", justifyContent: "center" }}>
               <Grid item xs={2} md={2} lg={2}>
