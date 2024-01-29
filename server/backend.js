@@ -1,9 +1,9 @@
-const express = require("express");
+const express = require("express");//the server
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require('dotenv').config();
-const {readFromTable, postIntoTable, insertIntoTable, getTableNames, registerUser, queryData} = require("./CRUD.js")
+const {readFromTable, registerUser, queryData, loginUser, upload} = require("./CRUD.js")
 const {sendCommand} = require("./sendCommand.js");
 
 
@@ -12,13 +12,12 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/read-all",(req, res)=>{readFromTable(req, res)})
-app.get("/get-tableNames",(req, res)=>{getTableNames(req, res)})
 app.get("/get-data",(req, res)=>{queryData(req, res)})
 
-app.post("/post-data",(req, res, next) => {postIntoTable(req, res)})
-app.post("/insert-data", (req, res, next)=>{insertIntoTable(req, res)})
 app.post("/send-command", (req, res, next)=>{sendCommand(req, res)})
 app.post("/register", (req, res, next) =>{registerUser(req, res)})
+app.post("/login", (req, res, next) =>{loginUser(req, res)})
+app.post("/upload-building", (req, res, next) =>{upload(req, res)})
 
 
 

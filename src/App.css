@@ -44,7 +44,11 @@ a:hover{
   transition: color 500ms ease;
 }
 
+.upload-body{
 
+  background-color: rgb(0, 78, 0);
+  height: 100vh;
+}
 .hide {
     display: none;
 }
@@ -451,7 +455,7 @@ main{
   justify-content: center;
   min-height: 100vh;
     position: relative;
-    background-color: purple;
+    background-color: rgb(0, 78, 0);
     overflow: hidden;
     overflow-x:hidden;
     
@@ -744,11 +748,13 @@ main{
   /*-----------------UPLOAD START --------------------- */
 
   .upload-container{
+    
     display: flex;
     justify-content: center;
   }
 
   .upload-form{
+    margin-top: 100px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -756,7 +762,9 @@ main{
     align-items: center;
     width:30vw;
     background-color: #888;
-    height: 600px;
+    height: 300px;
+    padding: 100px;
+    border-radius: 50px;
   }
 
   .upload-form input{
@@ -1100,6 +1108,24 @@ main{
   font-size: 22px;
   padding: 0.25rem;
   border-radius: 0.5rem;
+}
+
+.admin-button{
+  background-color: #cf7d03;
+  border-color: #cf7d03;
+  color:rgb(255, 255, 255);
+  font-size: 1.25rem;
+  width:200px !important;
+  height: 40px;
+  border-radius: 50px;
+}
+
+.admin-button:hover {
+  background-color: #a96602;
+    border-color: #a66402;
+  transition: background 500ms ease;
+  cursor: pointer;
+  
 }
 
 .start-button {
