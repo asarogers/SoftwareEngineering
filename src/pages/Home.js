@@ -34,37 +34,111 @@ function Home() {
 
   return (
     <div className="App">
-      < Navbar />
+      <Navbar />
       <div className="home-body">
-        <div className="controls">
-          controls
+        <div className="Pick-Up Location">
+          Pick-Up Location
           <div className="control-select">
-          <Select
-                options={cycleOptions}
-                onChange={handleSelectChange}
-                // Add custom styles as needed
-                styles={{
-                  control: (provided, state) => ({
-                    ...provided,
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                    boxShadow: state.isFocused
-                      ? "0 0 0 2px rgba(0, 123, 255, 0.6)"
-                      : "none",
-                  }),
-                  option: (provided, state) => ({
-                    ...provided,
-                    backgroundColor: state.isSelected ? "#007BFF" : "white",
-                    color: state.isSelected ? "white" : "black",
-                  }),
-                }}
-              />
-              <button className="start-create start-button" onClick={()=>{onSubmit()}}>Start</button>
-              </div>
+            <Select
+              options={cycleOptions}
+              onChange={handleSelectChange}
+              // Add custom styles as needed
+              styles={{
+                control: (provided, state) => ({
+                  ...provided,
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  boxShadow: state.isFocused
+                    ? "0 0 0 2px rgba(0, 123, 255, 0.6)"
+                    : "none",
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: state.isSelected ? "#007BFF" : "white",
+                  color: state.isSelected ? "white" : "black",
+                }),
+              }}
+            />
+            <button
+              className="start-create start-button"
+              onClick={() => {
+                onSubmit();
+              }}
+            >
+              Start
+            </button>
+          </div>
         </div>
-        <div className="map">
-          map
+
+        <div className="Item Selection">
+          Item Selection
+          <div className="control-select">
+            <Select
+              options={cycleOptions}
+              onChange={handleSelectChange}
+              // Add custom styles as needed
+              styles={{
+                control: (provided, state) => ({
+                  ...provided,
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  boxShadow: state.isFocused
+                    ? "0 0 0 2px rgba(0, 123, 255, 0.6)"
+                    : "none",
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: state.isSelected ? "#007BFF" : "white",
+                  color: state.isSelected ? "white" : "black",
+                }),
+              }}
+            />
+            <button
+              className="start-create start-button"
+              onClick={() => {
+                onSubmit();
+              }}
+            >
+              Start
+            </button>
+          </div>
         </div>
+
+        <div className="Drop-Off Location">
+          Drop-Off Location
+          <div className="control-select">
+            <Select
+              options={cycleOptions}
+              onChange={handleSelectChange}
+              // Add custom styles as needed
+              styles={{
+                control: (provided, state) => ({
+                  ...provided,
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  boxShadow: state.isFocused
+                    ? "0 0 0 2px rgba(0, 123, 255, 0.6)"
+                    : "none",
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: state.isSelected ? "#007BFF" : "white",
+                  color: state.isSelected ? "white" : "black",
+                }),
+              }}
+            />
+            <button
+              className="start-create start-button"
+              onClick={() => {
+                onSubmit();
+              }}
+            >
+              Start
+            </button>
+          </div>
+        </div>
+
+        <div className="map">map</div>
       </div>
     </div>
   );
