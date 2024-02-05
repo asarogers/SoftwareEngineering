@@ -92,7 +92,7 @@ const queryData = async (req, res) => {
     var query;
     //query = 'Drop Table user';
     //query = 'CREATE TABLE user ( userID int NOT NULL AUTO_INCREMENT, email varchar(50) UNIQUE,  password varchar(100), PRIMARY KEY (userID) );';
-     query =  ""
+    // query =  ""
     // query =  "GRANT ALL PRIVILEGES ON sql5680080.* TO 'sql5680080'@'%';"
     // query =  "ALTER TABLE user MODIFY COLUMN password VARCHAR(100);"
     const result = await queryAsync(query);

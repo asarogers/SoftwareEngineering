@@ -2,10 +2,10 @@ require('dotenv').config()
 const mysql = require("mysql2")
 
 var connection  = mysql.createConnection({
-  host: "sql5.freesqldatabase.com",
-    user: "sql5680080",
-    password:"V5DaAUXJIB",
-    database:"sql5680080"
+  host: "database-0.chy844gqevgm.us-east-2.rds.amazonaws.com",
+    user: "admin",
+    password:"A123456789s",
+    database:"esdir"
 })
 
 
