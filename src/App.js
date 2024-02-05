@@ -9,8 +9,7 @@ import useAuth from "./hooks/useAuth";
 import RequireAuth from "./components/RequireAuth";
 import CartPage from "./pages/CartPage";
 import About from "./pages/About";
-import AdminPage from "./pages/AdminPage"
-
+import AdminPage from "./pages/AdminPage";
 
 function App() {
   const { auth, setAuth } = useAuth();
@@ -26,7 +25,6 @@ function App() {
   var appConditon = ["/show", "/Control", "/assign"];
   var cond = appConditon.indexOf(useLocation().pathname);
 
-  
   return (
     <>
       {/* Routes are different ways to move between URLs, the home URL has a path of '/', so by given it the element of Home, we have made that the base url */}
@@ -39,10 +37,7 @@ function App() {
           path="Registration"
           element={<Registration data={data} setData={setData} />}
         />
-        <Route
-          path="About"
-          element={<About data={data} setData={setData} />}
-        />
+        <Route path="About" element={<About data={data} setData={setData} />} />
         <Route
           path="CartPage"
           element={<CartPage data={data} setData={setData} />}
@@ -51,12 +46,12 @@ function App() {
           path="AdminPage"
           element={<AdminPage data={data} setData={setData} />}
         />
-
-        <Route
+        <Route path="/" element={<Home data={data} setData={setData} />} />
+        {/* <Route
           element={<RequireAuth allowedRoles={process.env.REACT_APP_ALLOWED} />}
         >
           <Route path="/" element={<Home data={data} setData={setData} />} />
-        </Route>
+        </Route> */}
 
         {/* catch all */}
         <Route path="*" element={<Missing />} />
