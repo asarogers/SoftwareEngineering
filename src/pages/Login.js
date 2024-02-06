@@ -58,7 +58,7 @@ function Login(props) {
     <>
       <div className="start-body">
 
-        <Navbar />
+        {/* <Navbar /> */}
 
         <div className="start-container">
           <section className="start-section">
