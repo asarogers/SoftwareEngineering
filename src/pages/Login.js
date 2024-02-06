@@ -47,7 +47,7 @@ function Login(props) {
 
     axios.post("/login", {pwd: pwd, user: user}).then((response) => {
       const {user, roles} = response.data
-      setAuth({ roles, user });
+      setAuth({ roles, user});
       navigate("/", { replace: true });
       //console.log(roles, user)
   })

@@ -24,7 +24,7 @@ const registerUser = async (req, res) => {
     const result = await queryAsync(
       `INSERT INTO user (email, password) VALUES ('${email}', '${password}');`
     );
-    res.send({result: result, code: "success"});
+    res.send({result: result, code: "success", roles: '2001'});
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");

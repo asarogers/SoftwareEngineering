@@ -62,7 +62,7 @@ const Register = () => {
                     const roles = response?.data?.role;
                     //const accessToken = response?.data?.accessToken;
                     setAuth({ user, hashed, roles });
-                    navigate("/", { replace: true })
+                    navigate("/login", { replace: true })
                     //console.log("success")
                 } else {
                     console.log("failed")

@@ -4,7 +4,7 @@ import useAuth from "../hooks/useAuth";
 const RequireAuth = ({ allowedRoles }) => {
     const { auth } = useAuth();
     const location = useLocation();
-    console.log("working",allowedRoles)
+    console.log("working",allowedRoles?.includes(auth.roles))
 
     return (
         //checks if the role that has been authenticated is in the allowedRoles
