@@ -46,12 +46,12 @@ function App() {
           path="AdminPage"
           element={<AdminPage data={data} setData={setData} />}
         />
-        <Route path="/" element={<Home data={data} setData={setData} />} />
-        {/* <Route
+
+        <Route
           element={<RequireAuth allowedRoles={process.env.REACT_APP_ALLOWED} />}
         >
           <Route path="/" element={<Home data={data} setData={setData} />} />
-        </Route> */}
+        </Route>
 
         {/* catch all */}
         <Route path="*" element={<Missing />} />

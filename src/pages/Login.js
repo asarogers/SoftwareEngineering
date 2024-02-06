@@ -41,6 +41,9 @@ function Login(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
    
+    // axios.get("/get-data").then((resp)=>{
+    //   console.log(resp.data)
+    // })
 
     axios.post("/login", {pwd: pwd, user: user}).then((response) => {
       const {user, roles} = response.data
@@ -48,6 +51,7 @@ function Login(props) {
       navigate("/", { replace: true });
       //console.log(roles, user)
   })
+
   };
   
   return (
