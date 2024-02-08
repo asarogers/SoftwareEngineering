@@ -30,15 +30,12 @@ const registerUser = async (req, res) => {
 };
 
 // Function to register a new user
-const upload = async (req, res) => {
+const uploadBuilding = async (req, res) => {
   const { upload } = req.body;
   console.log(upload);
 
   try {
     const result = await queryAsync(
-      //`CREATE TABLE building ( buildingID int NOT NULL AUTO_INCREMENT, buildingName varchar(50) UNIQUE, coordinates varchar(100), PRIMARY KEY (buildingID));`
-      //`DROP table building`
-      //`SELECT * from building`
       `INSERT INTO building (buildingName, coordinates) VALUES ('${upload.buildingName}', '${upload.coordinates}');`
     );
     res.send({ result: result, code: "success" });
@@ -123,6 +120,6 @@ module.exports = {
   registerUser,
   queryData,
   loginUser,
-  upload,
+  uploadBuilding,
   retrieveLocationData,
 };
