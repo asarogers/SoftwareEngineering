@@ -14,12 +14,9 @@ import AdminPage from "./pages/AdminPage";
 function App() {
   const { auth, setAuth } = useAuth();
   const [data, setData] = useState({
-    returnedData: [],
-    folder: [],
-    selectedData: [],
-    searchData: [],
-    cartItems: [],
-    totalPrice: 0,
+    pickupLocation: [],
+    fitemSelection: [],
+    dropoffLocation: [],
   });
 
   var appConditon = ["/show", "/Control", "/assign"];

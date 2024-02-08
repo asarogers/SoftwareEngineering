@@ -3,8 +3,10 @@ import Select from "react-select";
 import { useState } from "react";
 import axios from "../api/axios";
 
-function Home() {
+function Home(props) {
   const [selectedOption, setSelectedOption] = useState(null);
+  const { data, setData } = props || [];
+  console.log(data)
 
   const cycleOptions = [
     { label: "Move Forward", value: "1" },
@@ -36,7 +38,7 @@ function Home() {
       <div className="home-body">
         <div className="home-container">
           <div className="home-form">
-            <div className="pick-up-location">
+            <div className="-pickup-location">
               <strong style={{ color: "white" }}>Pick-Up Location</strong>
               <div className="control-select">
                 <Select options={cycleOptions} onChange={handleSelectChange} />
