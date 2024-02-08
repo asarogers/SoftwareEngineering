@@ -7,9 +7,20 @@ function Home(props) {
   const [selectedOption, setSelectedOption] = useState(null);
   const { order, setOrder } = props || [];
 
+  //on load function
   useEffect(()=>{
-    console.log(order)
-  },[order])
+    //requests the locations from the database
+    axios.get("/get-locations")
+    //
+    .then((response)=>{
+      //dispalys to the screen
+      console.log(response.data)
+
+      //setOrder({ ...order,  pickupLocation: [], dropoffLocation: []});
+    })
+  },[])
+
+
   
 
   const cycleOptions = [
