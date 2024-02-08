@@ -101,18 +101,19 @@ const CartItem = ({ item, deleteItem }) => (
 
 // Main Cart component
 const Cart = (props) => {
-  // Initializing styles and extracting data and setData from props
+  // Initializing styles and extracting order and setOrder from props
   const classes = useStyles();
-  const { data, setData } = props || [];
+  const { order, setOrder } = props || [];
   const { auth } = useAuth();
 
+  console.log("checking",order)
   // Function to delete an item from the cart
   const deleteItem = (deletedItem) => {
-    const newPrice = data.totalPrice - deletedItem.price;
-    const newCart = data.cartItems.filter((item) => item.id !== deletedItem.id);
-    setData({ ...data, totalPrice: newPrice, cartItems: newCart });
+    const newPrice = order.totalPrice - deletedItem.price;
+    const newCart = order.cartItems.filter((item) => item.id !== deletedItem.id);
+    setOrder({ ...order, totalPrice: newPrice, cartItems: newCart });
 
-    // Sending updated cart data to the backend
+    // Sending updated cart order to the backend
     if (auth?.user) {
       axios.post(process.env.REACT_APP_CART_SUBTRACTION, {
         cart: newCart,
@@ -131,7 +132,7 @@ const Cart = (props) => {
       <Box>
         {auth?.user ? (
           //checks if there are items in the carItem array
-          data.cartItems.length === 0 ? (
+          order.cartItems.length === 0 ? (
             // Rendering the shopping cart when there are items
             <Grid sx={{ display: "flex", justifyContent: "center" }}>
               <Grid item xs={2} md={2} lg={2}>
@@ -176,7 +177,7 @@ const Cart = (props) => {
                 <Box className={classes.subtotalBox}>
                   {/* Subtotal information */}
                   <h2 style={{ marginRight: 10 }}>Subtotal</h2>
-                  <h2>${data.totalPrice?.toFixed(2)}</h2>
+                  <h2>${order.totalPrice?.toFixed(2)}</h2>
                 </Box>
                 {/* Proceed to Checkout button */}
                 <Box

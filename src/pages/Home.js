@@ -1,10 +1,16 @@
 import Navbar from "../components/Navbar";
 import Select from "react-select";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "../api/axios";
 
-function Home() {
+function Home(props) {
   const [selectedOption, setSelectedOption] = useState(null);
+  const { order, setOrder } = props || [];
+
+  useEffect(()=>{
+    console.log(order)
+  },[order])
+  
 
   const cycleOptions = [
     { label: "Move Forward", value: "1" },
@@ -18,16 +24,17 @@ function Home() {
   };
 
   const onSubmit = () => {
-    if (selectedOption) {
-      console.log("clicked", selectedOption);
-      axios
-        .post("/send-command", { command: selectedOption })
-        .then((response) => {
-          console.log(response.data);
-        });
-    } else {
-      console.log("Please select an option.");
-    }
+    setOrder({ ...order, totalPrice: 25, cartItems: "newCart" });
+    // if (selectedOption) {
+    //   console.log("clicked", selectedOption);
+    //   axios
+    //     .post("/send-command", { command: selectedOption })
+    //     .then((response) => {
+    //       console.log(response.order);
+    //     });
+    // } else {
+    //   console.log("Please select an option.");
+    // }
   };
 
   return (

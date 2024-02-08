@@ -6,7 +6,7 @@ import useAuth from "../hooks/useAuth";
 
 
 function Login(props) {
-  const { data, setData } = props;
+  const { order, setOrder } = props || [];
   const { auth, setAuth } = useAuth();
 
   const navigate = useNavigate();

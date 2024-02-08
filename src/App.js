@@ -13,7 +13,7 @@ import AdminPage from "./pages/AdminPage";
 
 function App() {
   const { auth, setAuth } = useAuth();
-  const [data, setData] = useState({
+  const [order, setOrder] = useState({
     returnedData: [],
     folder: [],
     selectedData: [],
@@ -31,26 +31,26 @@ function App() {
       <Routes>
         <Route
           path="/login"
-          element={<Login data={data} setData={setData} />}
+          element={<Login order={order} setOrder={setOrder} />}
         />
         <Route
           path="Registration"
-          element={<Registration data={data} setData={setData} />}
+          element={<Registration order={order} setOrder={setOrder}  />}
         />
-        <Route path="About" element={<About data={data} setData={setData} />} />
+        <Route path="About" element={<About order={order} setOrder={setOrder}  />} />
         <Route
           path="CartPage"
-          element={<CartPage data={data} setData={setData} />}
+          element={<CartPage order={order} setOrder={setOrder}  />}
         />
         <Route
           path="AdminPage"
-          element={<AdminPage data={data} setData={setData} />}
+          element={<AdminPage order={order} setOrder={setOrder}  />}
         />
 
         <Route
           element={<RequireAuth allowedRoles={process.env.REACT_APP_ALLOWED} />}
         >
-          <Route path="/" element={<Home data={data} setData={setData} />} />
+          <Route path="/" element={<Home order={order} setOrder={setOrder}  />} />
         </Route>
 
         {/* catch all */}
