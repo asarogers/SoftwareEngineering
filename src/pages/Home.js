@@ -11,6 +11,21 @@ function Home(props) {
   useEffect(() => {
     console.log(order);
   }, [order]);
+  //on load function
+  useEffect(()=>{
+    //requests the locations from the database
+    axios.get("/get-locations")
+    //
+    .then((response)=>{
+      //dispalys to the screen
+      console.log(response.data)
+
+      //setOrder({ ...order,  pickupLocation: [], dropoffLocation: []});
+    })
+  },[])
+
+
+  
 
   const cycleOptions = [
     { label: "Move Forward", value: "1" },

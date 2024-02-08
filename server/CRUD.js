@@ -86,6 +86,19 @@ const loginUser = async (req, res) => {
   }
 };
 
+const retrieveLocationData = async (req, res) => {
+  try {
+    var query;
+    query = "SELECT * from building";
+
+    const result = await queryAsync(query);
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
 // Function to query data from the "user" table using async/await
 const queryData = async (req, res) => {
   try {
@@ -111,4 +124,5 @@ module.exports = {
   queryData,
   loginUser,
   upload,
+  retrieveLocationData,
 };
