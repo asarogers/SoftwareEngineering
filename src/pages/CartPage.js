@@ -18,7 +18,7 @@ import useAuth from "../hooks/useAuth";
 import Navbar from "../components/Navbar";
 import NotAuthenticated from "../components/NotAuthenticated";
 import EmptyCart from "../components/EmptyCart";
-import img from "../components/imgs/green.jpg"
+import img from "../components/imgs/green.jpg";
 
 // Styling using makeStyles
 const useStyles = makeStyles((theme) => ({
@@ -85,9 +85,15 @@ const useStyles = makeStyles((theme) => ({
 
 // Component for rendering individual items in the cart
 const CartItem = ({ item, deleteItem }) => (
-  <TableRow sx={{ background: "white", border: "2px solid #c2c0be", marginTop: 0 }}>
+  <TableRow
+    sx={{ background: "white", border: "2px solid #c2c0be", marginTop: 0 }}
+  >
     <TableCell>
-      <CardMedia component="img" image={item.image} sx={{ height: 50, minWidth: 50 }} />
+      <CardMedia
+        component="img"
+        image={item.image}
+        sx={{ height: 50, minWidth: 50 }}
+      />
     </TableCell>
     <TableCell>{item.itemName}</TableCell>
     <TableCell>${item.price}</TableCell>
@@ -106,22 +112,26 @@ const Cart = (props) => {
   const { order, setOrder } = props || [];
   const { auth } = useAuth();
 
-  console.log("checking",order)
+  console.log("checking", order);
   // Function to delete an item from the cart
   const deleteItem = (deletedItem) => {
     const newPrice = order.totalPrice - deletedItem.price;
-    const newCart = order.cartItems.filter((item) => item.id !== deletedItem.id);
+    const newCart = order.cartItems.filter(
+      (item) => item.id !== deletedItem.id
+    );
     setOrder({ ...order, totalPrice: newPrice, cartItems: newCart });
 
     // Sending updated cart order to the backend
     if (auth?.user) {
-      axios.post(process.env.REACT_APP_CART_SUBTRACTION, {
-        cart: newCart,
-        auth: auth,
-        totalPrice: newPrice,
-      }).then((response) => {
-        console.log(response.data);
-      });
+      axios
+        .post(process.env.REACT_APP_CART_SUBTRACTION, {
+          cart: newCart,
+          auth: auth,
+          totalPrice: newPrice,
+        })
+        .then((response) => {
+          console.log(response.data);
+        });
     }
   };
 
@@ -164,9 +174,15 @@ const Cart = (props) => {
                           <TableCell> Price </TableCell>
                         </TableRow>
                         {/* Mapping through cart items and rendering each item using CartItem component */}
-                        {[{itemName:"random", price: "25", image: img}].map((item, index) => (
-                          <CartItem key={index} item={item} deleteItem={deleteItem} />
-                        ))}
+                        {[{ itemName: "random", price: "25", image: img }].map(
+                          (item, index) => (
+                            <CartItem
+                              key={index}
+                              item={item}
+                              deleteItem={deleteItem}
+                            />
+                          )
+                        )}
                       </TableBody>
                     </Table>
                   </Typography>
@@ -198,16 +214,15 @@ const Cart = (props) => {
             </Grid>
           ) : (
             // Render when the cart is empty
-            < EmptyCart/>
+            <EmptyCart />
           )
         ) : (
           // Render when the user is not authenticated
-          <NotAuthenticated/>
-          
+          <NotAuthenticated />
         )}
       </Box>
     </>
   );
-}
+};
 
 export default Cart;

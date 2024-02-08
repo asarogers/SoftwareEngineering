@@ -7,10 +7,10 @@ function Home(props) {
   const [selectedOption, setSelectedOption] = useState(null);
   const { order, setOrder } = props || [];
 
-  useEffect(()=>{
-    console.log(order)
-  },[order])
-  
+  // on load function
+  useEffect(() => {
+    console.log(order);
+  }, [order]);
 
   const cycleOptions = [
     { label: "Move Forward", value: "1" },
@@ -46,7 +46,10 @@ function Home(props) {
             <div className="-pickup-location">
               <strong style={{ color: "white" }}>Pick-Up Location</strong>
               <div className="control-select">
-                <Select options={cycleOptions} onChange={handleSelectChange} />
+                <Select
+                  options={order.pickupLocation}
+                  onChange={handleSelectChange}
+                />
               </div>
             </div>
             <br />

@@ -14,7 +14,12 @@ import AdminPage from "./pages/AdminPage";
 function App() {
   const { auth, setAuth } = useAuth();
   const [order, setOrder] = useState({
-    pickupLocation: [],
+    pickupLocation: [
+      { label: "Move Forward", value: "1" },
+      { label: "Move Backward", value: "2" },
+      { label: "Turn Left", value: "3" },
+      { label: "Turn Right", value: "4" },
+    ],
     fitemSelection: [],
     dropoffLocation: [],
   });
@@ -32,22 +37,28 @@ function App() {
         />
         <Route
           path="Registration"
-          element={<Registration order={order} setOrder={setOrder}  />}
+          element={<Registration order={order} setOrder={setOrder} />}
         />
-        <Route path="About" element={<About order={order} setOrder={setOrder}  />} />
+        <Route
+          path="About"
+          element={<About order={order} setOrder={setOrder} />}
+        />
         <Route
           path="CartPage"
-          element={<CartPage order={order} setOrder={setOrder}  />}
+          element={<CartPage order={order} setOrder={setOrder} />}
         />
         <Route
           path="AdminPage"
-          element={<AdminPage order={order} setOrder={setOrder}  />}
+          element={<AdminPage order={order} setOrder={setOrder} />}
         />
 
         <Route
           element={<RequireAuth allowedRoles={process.env.REACT_APP_ALLOWED} />}
         >
-          <Route path="/" element={<Home order={order} setOrder={setOrder}  />} />
+          <Route
+            path="/"
+            element={<Home order={order} setOrder={setOrder} />}
+          />
         </Route>
 
         {/* catch all */}
