@@ -43,7 +43,7 @@ function Home(props) {
       <div className="home-body">
         <div className="home-container">
           <div className="home-form">
-            <div className="pick-up-location">
+            <div className="-pickup-location">
               <strong style={{ color: "white" }}>Pick-Up Location</strong>
               <div className="control-select">
                 <Select options={cycleOptions} onChange={handleSelectChange} />

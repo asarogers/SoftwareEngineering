@@ -13,13 +13,10 @@ import AdminPage from "./pages/AdminPage";
 
 function App() {
   const { auth, setAuth } = useAuth();
-  const [order, setOrder] = useState({
-    returnedData: [],
-    folder: [],
-    selectedData: [],
-    searchData: [],
-    cartItems: [],
-    totalPrice: 0,
+  const [data, setData] = useState({
+    pickupLocation: [],
+    fitemSelection: [],
+    dropoffLocation: [],
   });
 
   var appConditon = ["/show", "/Control", "/assign"];
