@@ -13,7 +13,7 @@ import AdminPage from "./pages/AdminPage";
 
 function App() {
   const { auth, setAuth } = useAuth();
-  const [data, setData] = useState({
+  const [order, setOrder] = useState({
     pickupLocation: [],
     fitemSelection: [],
     dropoffLocation: [],
