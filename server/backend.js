@@ -5,6 +5,7 @@ const cors = require("cors");
 require('dotenv').config();
 const {readFromTable, registerUser, queryData, loginUser, uploadBuilding, retrieveLocationData} = require("./CRUD.js")
 const {sendCommand} = require("./sendCommand.js");
+const connectToServer = require("../sockets/server.js")
 
 
 app.use(cors({origin: "*",}));
@@ -21,7 +22,7 @@ app.post("/login", (req, res, next) =>{loginUser(req, res)})
 app.post("/upload-building", (req, res, next) =>{uploadBuilding(req, res)})
 
 
-
+connectToServer()
 
 var PORT = parseInt(process.env.PORT) + 1 || 3001;
 app.listen(PORT, () => {
