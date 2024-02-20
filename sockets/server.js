@@ -1,4 +1,3 @@
-const io = require('socket.io-client');
 
 function connectToServer() {
 
@@ -26,7 +25,8 @@ io.on('connection', (socket) => {
 });
 
 // Start the server on port 1234
-io.listen(1234);
+io.listen(1234,{host:"0.0.0.0"});
+console.log(io.httpServer.address())
 console.log('Server listening on port 1234');
 
 }
