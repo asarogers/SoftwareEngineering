@@ -2,7 +2,7 @@ import socket
 
 #                  ipv4             tcp
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind(("192.168.12.223   ", 1234))
+s.bind(("192.168.104.34", 1234))
 #socket sends and recieves data
 
 #qeue of 5

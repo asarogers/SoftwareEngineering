@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import Select from "react-select";
 import { useState, useEffect } from "react";
 import axios from "../api/axios";
+import GoogleMapAPI from "../components/GoogleMapAPI";
 
 function Home(props) {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -122,20 +123,21 @@ function Home(props) {
                     }),
                   }}
                 />
-                <br />
                 <button
-                  className="start-create start-button"
+                  className="home-btn"
                   onClick={() => {
                     onSubmit();
                   }}
                 >
                   Start
                 </button>
+                
               </div>
             </div>
           </div>
+          <div className="map"><GoogleMapAPI /></div>
         </div>
-        <div className="map">map</div>
+        
       </div>
     </div>
   );
