@@ -112,7 +112,7 @@ const Cart = (props) => {
   const { order, setOrder } = props || [];
   const { auth } = useAuth();
 
-  console.log("checking", order);
+  //console.log("checking", order);
   // Function to delete an item from the cart
   const deleteItem = (deletedItem) => {
     const newPrice = order.totalPrice - deletedItem.price;
@@ -130,7 +130,7 @@ const Cart = (props) => {
           totalPrice: newPrice,
         })
         .then((response) => {
-          console.log(response.data);
+          //console.log(response.data);
         });
     }
   };

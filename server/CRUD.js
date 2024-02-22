@@ -32,7 +32,7 @@ const registerUser = async (req, res) => {
 // Function to register a new user
 const uploadBuilding = async (req, res) => {
   const { upload } = req.body;
-  console.log(upload);
+  //console.log(upload);
 
   try {
     const result = await queryAsync(
@@ -106,7 +106,7 @@ const queryData = async (req, res) => {
     // query =  "GRANT ALL PRIVILEGES ON sql5680080.* TO 'sql5680080'@'%';"
     // query =  "ALTER TABLE user MODIFY COLUMN password VARCHAR(100);"
     const result = await queryAsync(query);
-    console.log(result);
+    //console.log(result);
     res.send(result);
   } catch (error) {
     console.error(error);

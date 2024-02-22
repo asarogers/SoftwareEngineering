@@ -9,23 +9,29 @@ function Home(props) {
 
   // on load function
   useEffect(() => {
-    console.log(order);
+    //console.log(order);
   }, [order]);
   //on load function
-  useEffect(()=>{
+  useEffect(() => {
     //requests the locations from the database
-    axios.get("/get-locations")
-    //
-    .then((response)=>{
-      //dispalys to the screen
-      console.log(response.data)
-
-      //setOrder({ ...order,  pickupLocation: [], dropoffLocation: []});
-    })
-  },[])
-
-
-  
+    axios
+      .get("/get-locations")
+      //
+      .then((response) => {
+        // temopraray array that holds the value of building and coordinates
+        const tempArray = [];
+        //dispalys to the screen
+        //console.log(response.data, order)
+        response.data.forEach((element) => {
+          //console.log("label", element.buildingName, "value", element.coordinates)
+          // pushed onj(build and coordinates) to the temporary array
+          tempArray.push({ label: element.buildingName, value: element.coordinates });
+        });
+        // set the order --> takes all the previous orders  + adds the new one
+        setOrder({ ...order, pickupLocation:tempArray, dropoffLocation:tempArray});
+        console.log(order);
+      });
+  }, []);
 
   const cycleOptions = [
     { label: "Move Forward", value: "1" },
@@ -41,14 +47,14 @@ function Home(props) {
   const onSubmit = () => {
     setOrder({ ...order, totalPrice: 25, cartItems: "newCart" });
     // if (selectedOption) {
-    //   console.log("clicked", selectedOption);
+    //   //console.log("clicked", selectedOption);
     //   axios
     //     .post("/send-command", { command: selectedOption })
     //     .then((response) => {
-    //       console.log(response.order);
+    //       //console.log(response.order);
     //     });
     // } else {
-    //   console.log("Please select an option.");
+    //   //console.log("Please select an option.");
     // }
   };
 

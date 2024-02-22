@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import axios from "../api/axios"
+import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
-
 
 function Login(props) {
   const { order, setOrder } = props || [];
@@ -24,14 +23,12 @@ function Login(props) {
     userRef.current.focus();
     // axios.get("/read-all")
     //     .then((response) => {
-    //       console.log(response.data)
+    //       //console.log(response.data)
     //     })
-
   }, []);
 
-
   useEffect(() => {
-    console.log(auth);
+    //console.log(auth);
   }, [auth]);
 
   useEffect(() => {
@@ -40,24 +37,22 @@ function Login(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   
+
     // axios.get("/get-data").then((resp)=>{
-    //   console.log(resp.data)
+    //   //console.log(resp.data)
     // })
 
-    axios.post("/login", {pwd: pwd, user: user}).then((response) => {
-      const {user, roles} = response.data
-      setAuth({ roles, user});
+    axios.post("/login", { pwd: pwd, user: user }).then((response) => {
+      const { user, roles } = response.data;
+      setAuth({ roles, user });
       navigate("/", { replace: true });
-      //console.log(roles, user)
-  })
-
+      ////console.log(roles, user)
+    });
   };
-  
+
   return (
     <>
       <div className="start-body">
-
         {/* <Navbar /> */}
 
         <div className="start-container">
