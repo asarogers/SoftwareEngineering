@@ -1,4 +1,4 @@
-const express = require("express");//the server
+const express = require("express"); //the server
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -7,8 +7,7 @@ const {readFromTable, registerUser, queryData, loginUser, uploadBuilding, retrie
 const {sendCommand} = require("./sendCommand.js");
 const connectToServer = require("../sockets/server.js")
 
-
-app.use(cors({origin: "*",}));
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -26,6 +25,5 @@ connectToServer()
 
 var PORT = parseInt(process.env.PORT) + 1 || 3001;
 app.listen(PORT, () => {
-  console.log(`The server is listen to port ${PORT}`);
+  //console.log(`The server is listen to port ${PORT}`);
 });
-

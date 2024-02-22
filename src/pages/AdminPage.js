@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "../api/axios";
 
-
 const AdminPage = () => {
   const [upload, setUpload] = useState({
     buildingName: "",
@@ -9,19 +8,17 @@ const AdminPage = () => {
   });
 
   useEffect(() => {
-    console.log(upload);
+    //console.log(upload);
   }, [upload]);
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      axios.post("/upload-building", {upload: upload})
-      .then((response)=>{
-        console.log(response.data)
+      axios.post("/upload-building", { upload: upload }).then((response) => {
+        //console.log(response.data)
       });
-
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
@@ -49,7 +46,7 @@ const AdminPage = () => {
             }
             placeholder="Building Coordinates?"
           />
-            <button className="admin-button">Upload</button>
+          <button className="admin-button">Upload</button>
         </form>
       </div>
     </div>
