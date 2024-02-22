@@ -19,9 +19,10 @@ const center = {lat: 48.854, lng: 2.2945}
 function App() {
 
 const {isLoaded} = useJsApiLoader({
-googleMapsApiKey:process.env.REACT_GOOGLE_MAPS_API_KEY,
+googleMapsApiKey:process.env.REACT_APP_GOOGLE_KEY,
 })
 
+console.log(process.env.REACT_APP_GOOGLE_KEY, "works")
 if(!isLoaded){
   return <SkeletonText/>
 }

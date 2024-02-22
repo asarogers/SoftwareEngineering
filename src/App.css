@@ -22,10 +22,7 @@ a{
   width: 50vw;
 }
 
-.map{
-  float: right;
-  width: 50vw;
-}
+
 
 .control-select{
   width: 20vw;
@@ -37,6 +34,29 @@ a{
   padding: 0.25rem;
   border-radius: 0.5rem;
 }
+
+.home-btn{
+  width:125px;
+  font-weight: 100;
+  position: relative;
+  cursor: pointer;
+  background-color: #cf7d03;
+  border-color: #cf7d03;
+  color:rgb(255, 255, 255);
+  margin-top: 1rem;
+  font-family: "Nunito", sans-serif;
+  font-size: 22px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+}
+
+
+.home-btn:hover{
+  background-color: #965a00;
+  border-color: #935800;
+  transition: background 500ms ease;
+}
+
 /*-----------------------home page end controls---------------- */
 a:hover{
   text-decoration: none;
@@ -475,6 +495,7 @@ main{
   text-align: center;
   font-size: 0.9rem;
   margin-bottom: 15px;
+  margin-left: -35px;
 }
 
 .start-create{
@@ -513,15 +534,16 @@ main{
 .start-label,
 .start-button {
   margin-top: 1rem;
+  
 }
 
 .input-username,
-.input-password,
-.start-button {
+.input-password{
   font-family: 'Nunito', sans-serif;
   font-size: 22px;
   padding: 0.25rem;
   border-radius: 0.5rem;
+  
 }
 
 .start-button {
@@ -530,12 +552,15 @@ main{
   background-color: #cf7d03;
     border-color: #cf7d03;
     color:rgb(255, 255, 255);
+    
 }
 .start-button:hover {
   background-color: #a96602;
     border-color: #a66402;
   transition: background 500ms ease;
 }
+
+
 
 
 
@@ -604,6 +629,7 @@ main{
   font-size: 0.9rem;
   width: 100vw;
 }
+
 
 .start-button{
   width:125px !important;
@@ -944,115 +970,7 @@ main{
   }
   /*-----------------NAVBAR END --------------------- */
 
-  /*-----------------SEARCH BODY START --------------------- */
-  .search-body{
-    margin-top: 0vh;
-    background-color: rgb(75, 1, 75);
-    height: calc(13vh + 20px);
-    width: 100vw;
-  }
-  .shop-btn-container{
-    position: relative;
-    top:-4.70vh;
-    height:5vh;
-    text-align: end;
-    width: 100%;
-  }
-  .search-container{
-    left: 0px;
-    width: 88vw;
-    max-width: 1650px;
-    height: 60px;
-    float: top;
-  }
-
-  .search-dropdown{
-    position: absolute;
-    background: rgb(224, 224, 224);
-    left: 39.1vw;
-    top: 96px;
-    z-index: 2;
-    width: calc(44.5% - 70px);
-    max-width: 745px;
-    border-radius: 5%;
-  }
-
-  .search-bar{
-    position: relative;
-    left: 39vw;
-    height: 42px;
-    min-height: 23px;
-    width: 50%;
-    TOP:15px;
-    border-radius: 5%;
-    z-index: 1;
-    float: left;
-  }
-  .search-btn{
-    position: relative;
-    TOP:15.5px;
-    height: 42px;
-    min-height: 24.8px;
-    font-size: 1.65rem;
-    width:6vw;
-    max-width: 50px;
-    min-width: 35px;
-    background-color: #cf7d03;
-    color: white;
-    cursor: pointer;
-    z-index: 3;
-    float: right;
-  }
-  .search-btn:hover{
-    color: rgb(123, 17, 123);
-    background-color: #9a5c00;
-    transition: background 500ms ease;
-    transition: color 500ms ease;
-  }
   
-
-  .search-btn i{
-    top: 1%;
-    display: flex;
-    vertical-align: center;
-  }
-
-  .fa-search{
-    position: relative;
-    top: -0.35vh;
-  }
-  .shop-btn-sport{
-    position: relative;
-    top:25px;
-    height:3.6vh;
-    min-height: 24.5px;
-    color: rgb(89, 1, 89);
-    font-weight: 1000;
-    width: 25vw;
-    max-width: 200px;
-    min-width: 160px;
-    font-size: 1rem;
-  }
-  /* This container holds the shop by sports button*/
-
-
-
-
-  
-  .shop-btn-cate{
-    position: relative;
-    left: 0vw;
-    top:-40px;
-    height:3.6vh;
-    min-height: 24.5px;
-    color: rgb(89, 1, 89);
-    font-weight: 1000;
-    width: 28vw;
-    min-width: 215px;
-    max-width: 240px;
-    font-size: 1rem;
-  }
-  /*-----------------SEARCH BODY END --------------------- */
 
   /*-----------------------SIGN IN START ----------------------*/
 
@@ -1156,7 +1074,6 @@ main{
 }
 .start-create:hover{
   transition: background 500ms ease;
-  
 }
 
 
@@ -1395,7 +1312,7 @@ main{
   }
 
 }
----------------------HOME CONTAINER -----------------------
+/*---------------------HOME CONTAINER -----------------------*/
 .home-container {
   display: flex;
   justify-content: center;
@@ -1413,6 +1330,8 @@ main{
   height: 250px;
   padding: 90px;
   border-radius: 70px;
+  margin-right: 200px;
+  max-width: 400px;
 }
 
 .home-form input {
@@ -1429,10 +1348,12 @@ main{
 }
 
 .map{
-  width: 25%;
+  height: 100vh;
+  width: 50%;
   background-color: #298bbf;
-  padding: 20px;
   text-align: center;
-  margin-top: -250px;
 }
+
+
+
 /*----------------------HOME CONTAINER ENDS -----------------------*/
