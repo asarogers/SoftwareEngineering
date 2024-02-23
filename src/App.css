@@ -1319,6 +1319,7 @@ main{
 }
 
 .home-form {
+  float: right;
   margin-top: 100px;
   text-align: center;
   display: flex;
@@ -1330,7 +1331,7 @@ main{
   height: 250px;
   padding: 90px;
   border-radius: 70px;
-  margin-right: 200px;
+  margin-right: 50px;
   max-width: 400px;
 }
 
@@ -1352,6 +1353,7 @@ main{
   width: 50%;
   background-color: #298bbf;
   text-align: center;
+  min-width: 250px;
 }
 
 
