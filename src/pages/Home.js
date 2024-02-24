@@ -2,63 +2,68 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Select from "react-select";
 import axios from "../api/axios";
-import GoogleMapAPI from "../components/GoogleMapAPI"; // Assuming this component uses google.maps API
+import GoogleMapAPI from "../components/GoogleMapAPI";
 import useAuth from "../hooks/useAuth";
 
-function Home({ order = {}, setOrder }) {
+function Home({ order = {}, setOrder, robotPosition, setRobotPosition }) {
   const { auth } = useAuth();
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   useEffect(() => {
-    axios
-      .get("/get-locations")
-      .then((response) => {
+    // Fetch locations
+    const fetchLocations = async () => {
+      try {
+        const response = await axios.get("/get-locations");
         const tempArray = response.data.map((element) => ({
           label: element.buildingName,
           value: element.coordinates,
         }));
         setOrder((prevOrder) => ({ ...prevOrder, locations: tempArray }));
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching locations:", error);
-      });
+      }
+    };
+    fetchLocations();
   }, [setOrder]);
 
+  useEffect(() => {
+    console.log(robotPosition);
+  }, [robotPosition]);
+
   const cycleOptions = [
-    { label: "Burger", value: "1", price: "9.95", image: "../components/imgs/burger.jpg" },
-    { label: "Fries", value: "1", price: "2.99", image: "../components/imgs/fries.jpg" },
-    { label: "Icecream", value: "1", price: "4.50", image: "../components/imgs/icecream.jpg" },
-    { label: "Drinks", value: "1", price: "2.90", image: "../components/imgs/drinks.jpg" },
+    { label: "Burger", value: "Burger", price: "9.95", image: "burger.jpg" },
+    { label: "Fries", value: "Fries", price: "2.99", image: "fries.jpg" },
+    { label: "Icecream", value: "Icecream", price: "4.50", image: "icecream.jpg" },
+    { label: "Drinks", value: "Drinks", price: "2.90", image: "drinks.jpg" },
   ];
 
-  const onSubmit = () => {
-    const newItemPrice = parseFloat(order.selectedItem.price);
-    const currentTotal = parseFloat(order.totalPrice) || 0;
-    const newTotal = (currentTotal + newItemPrice).toFixed(2);
-
-    axios
-      .post("/post-cartItem", { user: auth.user, cartItem: order.selectedItem, totalPrice: newTotal })
-      .then((response) => {
-        if (response.data.code === "success") {
-          setShowSuccessMessage(true);
-          setTimeout(() => {
-            setShowSuccessMessage(false);
-          }, 2000);
-        } else {
-          setShowErrorMessage(true);
-          setTimeout(() => {
-            setShowErrorMessage(false);
-          }, 2000);
-        }
-      })
-      .catch((error) => {
-        console.error("Error posting item to cart:", error);
-        setShowErrorMessage(true);
-        setTimeout(() => {
-          setShowErrorMessage(false);
-        }, 2000);
+  const onSubmit = async () => {
+    try {
+      const response = await axios.post("/post-cartItem", {
+        auth: auth,
+        cartItem: order.selectedItem,
+        pickupLocation: order.pickupLocation.value,
+        dropoffLocation: order.dropoffLocation.value,
       });
+
+      if (response.data.code === "success") {
+        setShowSuccessMessage(true);
+      } else {
+        setShowErrorMessage(true);
+      }
+
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+        setShowErrorMessage(false);
+      }, 2000);
+    } catch (error) {
+      console.error("Error posting item to cart:", error);
+      setShowErrorMessage(true);
+      setTimeout(() => {
+        setShowErrorMessage(false);
+      }, 2000);
+    }
   };
 
   const handleScreenClick = () => {
@@ -107,7 +112,7 @@ function Home({ order = {}, setOrder }) {
             </div>
           </div>
           <div className="map">
-            <GoogleMapAPI />
+            <GoogleMapAPI robotPosition={robotPosition} setRobotPosition={setRobotPosition} />
           </div>
         </div>
       </div>

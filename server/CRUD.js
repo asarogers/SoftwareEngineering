@@ -80,13 +80,54 @@ const retrieveLocationData = async (req, res) => {
   }
 };
 
+const retrieveCartItem = async (req, res)=>{
+  console.log("working")
+  try {
+    const { auth } = req.body;
+    const query = `SELECT image,label, orderID, price, pickupLocation,  dropoffLocation FROM orders WHERE user = '${auth.user}';`;
+    const result = await queryAsync(query);
+    
+    let total = 0;
+    const pickupLocation = [],dropoffLocation=[]
+    for(const item of result) {
+      total += Number(item.price);
+      pickupLocation.push(item.pickupLocation)
+      dropoffLocation.push(item.dropoffLocation)
+    }
+
+    res.send({result, total, pickupLocation, dropoffLocation});
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+const deleteItem = async(req, res)=>{
+  try {
+    const query = `DELETE FROM orders WHERE orderID = ${req.body.orderID}`;
+    const result = await queryAsync(query);
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
 const postCartItem = async(req, res) => {
-  console.log(req.body);
   try {
     const result = await queryAsync(
-      `INSERT INTO orders (user, label, price, image) VALUES ('${req.body.user}', '${req.body.cartItem.label}', '${req.body.cartItem.price}', '${req.body.cartItem.image}');`
+      `INSERT INTO orders (user, label, price, image, pickupLocation,  dropoffLocation) VALUES ('${req.body.auth.user}', '${req.body.cartItem.label}', '${req.body.cartItem.price}', '${req.body.cartItem.image}', '${req.body.pickupLocation}', '${req.body.dropoffLocation}');`
     );
-    res.send({ result, code: "success" });
+
+    const { auth } = req.body;
+    const query = `SELECT image,label, orderID, price FROM orders WHERE user = '${auth.user}';`;
+    const cartItems = await queryAsync(query);
+    let total = 0;
+    for(const item of cartItems) {
+      total += Number(item.price);
+    }
+
+    res.send({ result, code: "success", total: total });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -112,6 +153,8 @@ const queryData = async (req, res) => {
 };
 
 module.exports = {
+  deleteItem,
+  retrieveCartItem,
   postCartItem,
   readFromTable,
   registerUser,

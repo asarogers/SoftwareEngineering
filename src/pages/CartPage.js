@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -17,106 +17,110 @@ import useAuth from "../hooks/useAuth";
 import Navbar from "../components/Navbar";
 import NotAuthenticated from "../components/NotAuthenticated";
 import EmptyCart from "../components/EmptyCart";
-import img from "../components/imgs/green.jpg";
+import styles from "../components/styles"
 
-const useStyles = makeStyles((theme) => ({
-  signIn: {
-    fontSize: "8pt",
-    color: "black",
-    borderRadius: "30px",
-    width: "auto",
-    marginTop: 1,
-    marginRight: "1vw",
-    maxWidth: 300,
-    backgroundColor: "#ffb84f",
-    "&:hover": {
-      backgroundColor: "#cf7d03",
-      color: "white",
-    },
-  },
-  tableBody: {
-    alignSelf: "center",
-    position: "relative",
-    fontSize: "1.5rem",
-    fontWeight: 500,
-    marginBottom: 0,
-    top: 20,
-    maxWidth: 600,
-    minWidth: 400,
-    width: "45vw",
-    height: "85vh",
-    backgroundColor: "#e8dfd1",
-    borderRadius: "30px  30px 30px 30px",
-  },
-  subtotalBody: {
-    marginLeft: 5,
-    marginTop: "20vh",
-    width: 250,
-    minWidth: 200,
-    height: 80,
-    backgroundColor: "#e8dfd1",
-    justifyContent: "center",
-    borderRadius: "10px  10px 10px 10px",
-  },
-  shoppingBackground: {
-    display: "flex",
-    flexDirection: "column",
-    maxWidth: 600,
-    minWidth: 400,
-    width: "45vw",
-    height: "85vh",
-    borderRadius: 1,
-    boxShadow: 2,
-    backgroundColor: "rgb(246,240,240)",
-  },
-  subtotalBox: {
-    alignItems: "center",
-    justifyContent: "center",
-    display: "flex",
-    marginTop: 10,
-    height: 30,
-    width: "inherit",
-  },
-}));
 
-const CartItem = ({ item, deleteItem }) => (
-  <TableRow sx={{ background: "white", border: "2px solid #c2c0be", marginTop: 0 }}>
-    <TableCell>
-      {/* <CardMedia component="img" image={item.image} sx={{ height: 50, minWidth: 50 }} /> */}
-      <img src={require("../components/imgs/icecream.jpg")}/>
-    </TableCell>
-    <TableCell>{item.label}</TableCell>
-    <TableCell>${item.price}</TableCell>
-    <TableCell>
-      <Button size="small" onClick={() => deleteItem(item)}>
-        Delete
-      </Button>
-    </TableCell>
-  </TableRow>
-);
+const useStyles = styles
 
-const Cart = ({ order, setOrder }) => {
-  useEffect(()=>{
-    console.log(order)
-  },[])
-  const classes = useStyles();
+const Cart = ({ order, setOrder, robotPosition , setRobotPosition }) => {
+  const onLoad=()=>{
+     // Fetch cart items and calculate total on component mount
+     axios
+     .post("/retrieve-cartItem", { auth })
+     .then((response) => {
+       const totalPrice = response.data.total;
+       setOrder({ ...order, cartItems: response.data.result, totalPrice: totalPrice.toFixed(2), pickupLocation: response.data.pickupLocation, dropoffLocation:response.data.dropoffLocation });
+       //console.log(response.data)
+     })
+     .catch((error) => {
+       console.error("Error fetching cart items:", error);
+     });
+  }
   const { auth } = useAuth();
 
-  const deleteItem = (deletedItem) => {
-    const newPrice = order.totalPrice - deletedItem.price;
-    const newCart = order.cartItems.filter(item => item.id !== deletedItem.id);
-    setOrder({ ...order, totalPrice: newPrice, cartItems: newCart });
+  useEffect(() => {
+    onLoad()
+  }, [auth]);
+
+  const classes = useStyles();
+
+  const deleteItem = (item) => {
+    
 
     if (auth?.user) {
-      axios.post(process.env.REACT_APP_CART_SUBTRACTION, {
-        cart: newCart,
+      const newPrice = order.totalPrice - item.price;
+      const newCart = order.cartItems.filter(item => item.orderID !== item.orderID);
+      setOrder({ ...order, totalPrice: newPrice, cartItems: newCart });
+
+      axios.post("delete-item", {
+        orderID:item.orderID,
         auth: auth,
-        totalPrice: newPrice,
       }).then(response => {
-        // Handle response if needed
+        console.log(response.data)
+        onLoad()
       });
     }
   };
+
+  const CartItem = ({ item}) => (
+    <TableRow sx={{ background: "white", border: "2px solid #c2c0be", marginTop: 0 }}>
+      <TableCell>
+        <img src={require(`../components/imgs/${item.image}`)} alt={item.label} style={{height: 55, width:50}}/>
+      </TableCell>
+      <TableCell>{item.label}</TableCell>
+      <TableCell>${item.price}</TableCell>
+      <TableCell>
+        <Button size="small" onClick={() => deleteItem(item)}>
+          Delete
+        </Button>
+      </TableCell>
+    </TableRow>
+  );
+
+  const startRobot = ()=>{
+    //console.log(order)
+    axios.post("start-robot", {
+      pickupLocation: order.pickupLocation,
+      dropoffLocation: order.dropoffLocation
+    }).then(response => {
+      console.log(response.data)
+      if (response.data === "stop") {
+        console.log("Stop signal received from backend");
+      } else {
+        // Continuously receive messages until a stop signal is received
+        console.log("beginning loop")
+        setTimeout(() => {
+          receiveMessages(1);
+        }, 3000);
+       
+      }
+    });
+  };
+
+  const receiveMessages = async(num) => {
+    const response = await axios.get("retrieve-gps-coordinates")
+    if(response){
+        if (response.data === "stop") {
+          console.log("Stop signal received from backend");
+        } else {
+
+          // Continue receiving messages
+          console.log(response.data, num)
+          const newPosition = {
+            lat: robotPosition.lat + (0.0001 * num), // Adjust the movement speed if needed
+            lng: robotPosition.lng // Keep the longitude the same
+          };
+
+          num = num +1
+          setRobotPosition(newPosition);
+          setTimeout(() => {
+            receiveMessages(num);
+          }, 3000);
+        }
+    }
+  };
+
+
 
   return (
     <>
@@ -153,8 +157,8 @@ const Cart = ({ order, setOrder }) => {
                   <h2>${order.totalPrice}</h2>
                 </Box>
                 <Box height={30} alignItems="center" justifyContent="center" display="flex">
-                  <Button variant="contained" size="small" className={classes.signIn}>
-                    Proceed to Checkout
+                  <Button variant="contained" size="small" className={classes.signIn} onClick={()=>{startRobot()}}>
+                    start robot
                   </Button>
                 </Box>
               </Card>
@@ -171,3 +175,4 @@ const Cart = ({ order, setOrder }) => {
 };
 
 export default Cart;
+                                        

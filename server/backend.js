@@ -3,36 +3,33 @@ const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require('dotenv').config();
-const {
-  postCartItem,
-  readFromTable,
-  registerUser,
-  queryData,
-  loginUser,
-  uploadBuilding,
-  retrieveLocationData
-} = require("./CRUD.js");
-const { sendCommand } = require("./sendCommand.js");
-const connectToServer = require("../sockets/server.js");
+const CRUD = require("./CRUD.js");
+const {sendCommand} = require("./sendCommand.js");
+const SocketServer = require("../sockets/server.js");
 
 // Middleware
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Routes
-app.get("/read-all", readFromTable);
-app.get("/get-data", queryData);
-app.get("/get-locations", retrieveLocationData);
-
-app.post("/post-cartItem", postCartItem);
-app.post("/send-command", sendCommand);
-app.post("/register", registerUser);
-app.post("/login", loginUser);
-app.post("/upload-building", uploadBuilding);
-
 // Socket Connection
-connectToServer();
+const socket = SocketServer;
+socket.startServer();
+
+// Routes
+app.get("/read-all", CRUD.readFromTable);
+app.get("/get-data", CRUD.queryData);
+app.get("/get-locations", CRUD.retrieveLocationData);
+app.get("/retrieve-gps-coordinates", SocketServer.retrieveGPSCoordinates);
+
+app.post("/post-cartItem", CRUD.postCartItem);
+app.post("/send-command", sendCommand);
+app.post("/register", CRUD.registerUser);
+app.post("/login", CRUD.loginUser);
+app.post("/upload-building", CRUD.uploadBuilding);
+app.post("/retrieve-cartItem", CRUD.retrieveCartItem);
+app.post("/delete-item", CRUD.deleteItem);
+app.post("/start-robot", socket.startRobot);
 
 // Server Setup
 const PORT = parseInt(process.env.PORT) + 1 || 3001;
