@@ -1,35 +1,41 @@
+const SocketServer = {
+  io: null, // Reference to the socket.io instance
+  connectedClients: new Map(), // Map to store connected clients
 
-function connectToServer() {
+  startServer: () => {
+    const io = require('socket.io')();
+    SocketServer.io = io;
 
-  // server.js
-const io = require('socket.io')(); // Import socket.io and initialize a server instance
+    io.on('connection', (socket) => {
+      console.log('Client connected');
+      SocketServer.connectedClients.set(socket.id, socket); // Store the connected client
 
-// Event listener for connection
-io.on('connection', (socket) => {
-  console.log('Client connected');
+      socket.on('client_message', (data) => {
+        console.log('Received message from client:', data);
+        socket.emit('server_message', 'more data');
+      });
 
-  // Event listener for receiving messages from client
-  socket.on('client_message', (data) => {
-    console.log('Received message from client:', data);
-    // Send more data if needed
-    socket.emit('server_message', 'more data');
-  });
+      socket.emit('server_message', 'Hello from server');
 
-  // Send initial message to the client upon connection
-  socket.emit('server_message', 'Hello from server');
+      socket.on('disconnect', () => {
+        console.log('Client disconnected');
+        SocketServer.connectedClients.delete(socket.id); // Remove the disconnected client
+      });
+    });
 
-  // Event listener for disconnection
-  socket.on('disconnect', () => {
-    console.log('Client disconnected');
-  });
-});
+    io.listen(1234, { host: "0.0.0.0" });
+    console.log(io.httpServer.address());
+    console.log('Server listening on port 1234');
+  },
 
-// Start the server on port 1234
-io.listen(1234,{host:"0.0.0.0"});
-console.log(io.httpServer.address())
-console.log('Server listening on port 1234');
+  updateCoordinates: (req, res) => {
+    console.log("this is the data that needs to be send", req.body)
+    // Loop through connected clients and send a message
+    for (const [socketId, socket] of SocketServer.connectedClients.entries()) {
+      socket.emit('server_message', req.body); // Assuming req.body contains coordinates
+    }
+    res.send("Message sent to connected clients");
+  }
+};
 
-}
-
-// Export the function
-module.exports = connectToServer;
+module.exports = SocketServer;

@@ -1,20 +1,30 @@
-import socket
+import socketio
 
-#                  ipv4             tcp
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# pass tuple of ip and port we wish to connect to
-        #   ip                  port
-# s.connect(("192.168.1.209", 1234))
-#s.connect((socket.gethostname(), 1234))
-s.connect(("192.168.104.34", 1234))
-#socket sends and recieves data
+# Create a Socket.IO client instance
+sio = socketio.Client()
 
-#how much data would we like to recieve at once?
-msg = s.recv(1024)
+# Define event handlers
+@sio.event
+def connect():
+    print('Connected')
+    sio.emit('client_message', 'Hello from Python')
 
-print(msg.decode("utf-8"))
+@sio.event
+def connect_error():
+    print('Connection failed')
 
-if msg:
-    s.send(bytes("more data","utf-8"))
+@sio.event
+def disconnect():
+    print('Disconnected')
 
+@sio.event
+def server_message(data):
+    print('Received message:', data)
+    # Send more data if needed
+    sio.emit('more_data', 'more data')
 
+# Connect to the server
+sio.connect('http://192.168.1.229:1234')
+
+# Keep the connection alive
+sio.wait()
