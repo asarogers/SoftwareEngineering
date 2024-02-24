@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useJsApiLoader, GoogleMap, Marker } from '@react-google-maps/api';
-
 import robot from "./imgs/robot.png";
 
 const alabamaLocation = { lat: 34.7838, lng: -86.5622 }; // Birmingham, Alabama
-const startLocation = { lat: 34.7838, lng: -86.5722 }; ; // Set the start location to be the same as Birmingham, Alabama
+const startLocation = { lat: 34.7838, lng: -86.5722 }; // Set the start location to be the same as Birmingham, Alabama
 const endLocation = { lat: 34.7938, lng: -86.5702 }; // Set the end location to be north of the start location
 
 const initialRobotPosition = startLocation; // Set the initial position for the robot marker

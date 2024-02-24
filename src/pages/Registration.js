@@ -1,13 +1,7 @@
-import {
-  faCheck,
-  faInfoCircle,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faInfoCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
-// Importing components and libraries
 import Navbar from "../components/Navbar";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
@@ -51,36 +45,28 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // if button enabled with JS hack
-    //console.log("Register")
 
     try {
       const salt = await bcrypt.genSalt();
       const hashed = bcrypt.hashSync(pwd, salt);
-      axios
-        .post(REGISTER_URL, { email: user, password: hashed })
-        .then((response) => {
-          if (response?.data?.code === "success") {
-            const roles = response?.data?.role;
-            //const accessToken = response?.data?.accessToken;
-            setAuth({ user, hashed, roles });
-            navigate("/login", { replace: true });
-            ////console.log("success")
-          } else {
-            //console.log("failed")
-            alert("email already exist");
-          }
-          setUser("");
-          setPwd("");
-          setMatchPwd("");
-        });
+      const response = await axios.post(REGISTER_URL, { email: user, password: hashed });
+      if (response?.data?.code === "success") {
+        const roles = response?.data?.role;
+        setAuth({ user, hashed, roles });
+        navigate("/login", { replace: true });
+      } else {
+        alert("Email already exists");
+      }
+      setUser("");
+      setPwd("");
+      setMatchPwd("");
     } catch (err) {
       if (!err?.response) {
-        setErrMsg("No Server Response");
+        setErrMsg("No server response");
       } else if (err.response?.status === 409) {
-        setErrMsg("Username Taken");
+        setErrMsg("Username taken");
       } else {
-        setErrMsg("Registration Failed");
+        setErrMsg("Registration failed");
       }
       errRef.current.focus();
     }
@@ -101,9 +87,7 @@ const Register = () => {
             </p>
             <h1>Register</h1>
             <form className="start-form" onSubmit={handleSubmit}>
-              <label className="start-label" htmlFor="username">
-                Email:
-              </label>
+              <label className="start-label" htmlFor="username">Email:</label>
               <input
                 className="input-username"
                 type="text"
@@ -119,10 +103,7 @@ const Register = () => {
                 onBlur={() => setUserFocus(false)}
               />
 
-              <label className="start-label" htmlFor="password">
-                Password:
-                <FontAwesomeIcon icon={faCheck} className={"hide"} />
-              </label>
+              <label className="start-label" htmlFor="password">Password:</label>
               <input
                 className="input-password"
                 type="password"
@@ -135,35 +116,17 @@ const Register = () => {
                 onFocus={() => setPwdFocus(true)}
                 onBlur={() => setPwdFocus(false)}
               />
-              <p
-                id="pwdnote"
-                className={pwdFocus && !validPwd ? "instructions" : "offscreen"}
-              >
+              <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
                 <FontAwesomeIcon icon={faInfoCircle} />
                 8 to 24 characters.
                 <br />
                 Must include uppercase and lowercase letters, a number and a
                 special character.
                 <br />
-                Allowed special characters:{" "}
-                <span aria-label="exclamation mark">!</span>{" "}
-                <span aria-label="at symbol">@</span>{" "}
-                <span aria-label="hashtag">#</span>{" "}
-                <span aria-label="dollar sign">$</span>{" "}
-                <span aria-label="percent">%</span>
+                Allowed special characters: ! @ # $ %
               </p>
 
-              <label className="start-label" htmlFor="confirm_pwd">
-                Confirm Password:
-                <FontAwesomeIcon
-                  icon={faCheck}
-                  className={validMatch && matchPwd ? "valid" : "hide"}
-                />
-                <FontAwesomeIcon
-                  icon={faTimes}
-                  className={validMatch || !matchPwd ? "hide" : "invalid"}
-                />
-              </label>
+              <label className="start-label" htmlFor="confirm_pwd">Confirm Password:</label>
               <input
                 className="input-password"
                 type="password"
@@ -176,22 +139,12 @@ const Register = () => {
                 onFocus={() => setMatchFocus(true)}
                 onBlur={() => setMatchFocus(false)}
               />
-              <p
-                id="confirmnote"
-                className={
-                  matchFocus && !validMatch ? "instructions" : "offscreen"
-                }
-              >
+              <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
                 <FontAwesomeIcon icon={faInfoCircle} />
                 Must match the first password input field.
               </p>
 
-              <button
-                className="start-button"
-                disabled={!validMatch ? true : false}
-              >
-                Sign Up
-              </button>
+              <button className="start-button" disabled={!validMatch}>Sign Up</button>
             </form>
             <p>
               Already registered?

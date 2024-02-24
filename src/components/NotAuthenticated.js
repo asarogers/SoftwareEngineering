@@ -14,7 +14,6 @@ import { useNavigate } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
     signIn: {
       fontSize: "8pt",
-      color: "white",
       borderRadius: "30px",
       width: "auto",
       marginTop: 1,

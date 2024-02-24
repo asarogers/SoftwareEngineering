@@ -1,17 +1,16 @@
-// Importing necessary dependencies and components
-import React from "react";
+import React, {useEffect} from "react";
 import {
   Box,
   Button,
+  Card,
   CardMedia,
+  Grid,
   Table,
   TableBody,
   TableCell,
   TableRow,
   Typography,
 } from "@mui/material";
-import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
@@ -20,19 +19,16 @@ import NotAuthenticated from "../components/NotAuthenticated";
 import EmptyCart from "../components/EmptyCart";
 import img from "../components/imgs/green.jpg";
 
-// Styling using makeStyles
 const useStyles = makeStyles((theme) => ({
   signIn: {
     fontSize: "8pt",
-    color: "white",
+    color: "black",
     borderRadius: "30px",
     width: "auto",
     marginTop: 1,
     marginRight: "1vw",
     maxWidth: 300,
     backgroundColor: "#ffb84f",
-    outlineColor: "#ffb84f",
-    color: "black",
     "&:hover": {
       backgroundColor: "#cf7d03",
       color: "white",
@@ -74,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "rgb(246,240,240)",
   },
   subtotalBox: {
-    alignItems: "cemter",
+    alignItems: "center",
     justifyContent: "center",
     display: "flex",
     marginTop: 10,
@@ -83,19 +79,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// Component for rendering individual items in the cart
 const CartItem = ({ item, deleteItem }) => (
-  <TableRow
-    sx={{ background: "white", border: "2px solid #c2c0be", marginTop: 0 }}
-  >
+  <TableRow sx={{ background: "white", border: "2px solid #c2c0be", marginTop: 0 }}>
     <TableCell>
-      <CardMedia
-        component="img"
-        image={item.image}
-        sx={{ height: 50, minWidth: 50 }}
-      />
+      {/* <CardMedia component="img" image={item.image} sx={{ height: 50, minWidth: 50 }} /> */}
+      <img src={require("../components/imgs/icecream.jpg")}/>
     </TableCell>
-    <TableCell>{item.itemName}</TableCell>
+    <TableCell>{item.label}</TableCell>
     <TableCell>${item.price}</TableCell>
     <TableCell>
       <Button size="small" onClick={() => deleteItem(item)}>
@@ -105,119 +95,74 @@ const CartItem = ({ item, deleteItem }) => (
   </TableRow>
 );
 
-// Main Cart component
-const Cart = (props) => {
-  // Initializing styles and extracting order and setOrder from props
+const Cart = ({ order, setOrder }) => {
+  useEffect(()=>{
+    console.log(order)
+  },[])
   const classes = useStyles();
-  const { order, setOrder } = props || [];
   const { auth } = useAuth();
 
-  //console.log("checking", order);
-  // Function to delete an item from the cart
   const deleteItem = (deletedItem) => {
     const newPrice = order.totalPrice - deletedItem.price;
-    const newCart = order.cartItems.filter(
-      (item) => item.id !== deletedItem.id
-    );
+    const newCart = order.cartItems.filter(item => item.id !== deletedItem.id);
     setOrder({ ...order, totalPrice: newPrice, cartItems: newCart });
 
-    // Sending updated cart order to the backend
     if (auth?.user) {
-      axios
-        .post(process.env.REACT_APP_CART_SUBTRACTION, {
-          cart: newCart,
-          auth: auth,
-          totalPrice: newPrice,
-        })
-        .then((response) => {
-          //console.log(response.data);
-        });
+      axios.post(process.env.REACT_APP_CART_SUBTRACTION, {
+        cart: newCart,
+        auth: auth,
+        totalPrice: newPrice,
+      }).then(response => {
+        // Handle response if needed
+      });
     }
   };
 
   return (
     <>
-      {/* Displaying the Navbar */}
       <Navbar />
       <Box>
         {auth?.user ? (
-          //checks if there are items in the carItem array
           order?.cartItems.length > 0 ? (
-            // Rendering the shopping cart when there are items
             <Grid sx={{ display: "flex", justifyContent: "center" }}>
-              <Grid item xs={2} md={2} lg={2}>
-                {/* Shopping Cart card */}
+              <Grid item xs={12} md={6} lg={4}>
                 <Card className={classes.shoppingBackground}>
-                  <Typography
-                    variant="h6"
-                    component="div"
-                    className={classes.tableBody}
-                  >
-                    {/* Table displaying cart items */}
+                  <Typography variant="h6" component="div" className={classes.tableBody}>
                     <Table>
                       <TableBody>
                         <TableRow>
-                          <TableCell> . </TableCell>
+                          <TableCell />
                           <TableCell>
-                            {/* Heading */}
-                            <Typography
-                              variant="body4"
-                              component="p"
-                              sx={{
-                                textAlign: "center",
-                                fontSize: "19pt",
-                              }}
-                            >
-                              {"Shopping Cart"}
+                            <Typography variant="body4" component="p" sx={{ textAlign: "center", fontSize: "19pt" }}>
+                              Shopping Cart
                             </Typography>
                           </TableCell>
-                          <TableCell> Price </TableCell>
+                          <TableCell>Price</TableCell>
                         </TableRow>
-                        {/* Mapping through cart items and rendering each item using CartItem component */}
-                        {[{ itemName: "random", price: "25", image: img }].map(
-                          (item, index) => (
-                            <CartItem
-                              key={index}
-                              item={item}
-                              deleteItem={deleteItem}
-                            />
-                          )
-                        )}
+                        {order.cartItems.map((item, index) => (
+                          <CartItem key={index} item={item} deleteItem={deleteItem} />
+                        ))}
                       </TableBody>
                     </Table>
                   </Typography>
                 </Card>
               </Grid>
-              {/* Subtotal card */}
               <Card className={classes.subtotalBody}>
                 <Box className={classes.subtotalBox}>
-                  {/* Subtotal information */}
                   <h2 style={{ marginRight: 10 }}>Subtotal</h2>
-                  <h2>${order.totalPrice?.toFixed(2)}</h2>
+                  <h2>${order.totalPrice}</h2>
                 </Box>
-                {/* Proceed to Checkout button */}
-                <Box
-                  height={30}
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  display={"flex"}
-                >
-                  <Button
-                    variant="contained"
-                    size="small"
-                    className={classes.signIn}
-                  >
+                <Box height={30} alignItems="center" justifyContent="center" display="flex">
+                  <Button variant="contained" size="small" className={classes.signIn}>
                     Proceed to Checkout
                   </Button>
                 </Box>
               </Card>
             </Grid>
           ) : (
-            // Render when the cart is empty
             <EmptyCart />
           )
         ) : (
-          // Render when the user is not authenticated
           <NotAuthenticated />
         )}
       </Box>

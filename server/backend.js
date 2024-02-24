@@ -1,29 +1,41 @@
-const express = require("express"); //the server
+const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require('dotenv').config();
-const {readFromTable, registerUser, queryData, loginUser, uploadBuilding, retrieveLocationData} = require("./CRUD.js")
-const {sendCommand} = require("./sendCommand.js");
-const connectToServer = require("../sockets/server.js")
+const {
+  postCartItem,
+  readFromTable,
+  registerUser,
+  queryData,
+  loginUser,
+  uploadBuilding,
+  retrieveLocationData
+} = require("./CRUD.js");
+const { sendCommand } = require("./sendCommand.js");
+const connectToServer = require("../sockets/server.js");
 
+// Middleware
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/read-all",(req, res)=>{readFromTable(req, res)})
-app.get("/get-data",(req, res)=>{queryData(req, res)})
-app.get("/get-locations",(req, res)=>{retrieveLocationData(req, res)})
+// Routes
+app.get("/read-all", readFromTable);
+app.get("/get-data", queryData);
+app.get("/get-locations", retrieveLocationData);
 
-app.post("/send-command", (req, res, next)=>{sendCommand(req, res)})
-app.post("/register", (req, res, next) =>{registerUser(req, res)})
-app.post("/login", (req, res, next) =>{loginUser(req, res)})
-app.post("/upload-building", (req, res, next) =>{uploadBuilding(req, res)})
+app.post("/post-cartItem", postCartItem);
+app.post("/send-command", sendCommand);
+app.post("/register", registerUser);
+app.post("/login", loginUser);
+app.post("/upload-building", uploadBuilding);
 
+// Socket Connection
+connectToServer();
 
-connectToServer()
-
-var PORT = parseInt(process.env.PORT) + 1 || 3001;
+// Server Setup
+const PORT = parseInt(process.env.PORT) + 1 || 3001;
 app.listen(PORT, () => {
-  //console.log(`The server is listen to port ${PORT}`);
+  console.log(`Server is listening on port ${PORT}`);
 });

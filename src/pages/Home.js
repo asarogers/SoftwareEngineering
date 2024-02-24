@@ -1,76 +1,83 @@
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Select from "react-select";
-import { useState, useEffect } from "react";
 import axios from "../api/axios";
-import GoogleMapAPI from "../components/GoogleMapAPI";
+import GoogleMapAPI from "../components/GoogleMapAPI"; // Assuming this component uses google.maps API
+import useAuth from "../hooks/useAuth";
 
-function Home(props) {
-  const [selectedOption, setSelectedOption] = useState(null);
-  const { order, setOrder } = props || [];
+function Home({ order = {}, setOrder }) {
+  const { auth } = useAuth();
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-  // on load function
   useEffect(() => {
-    //console.log(order);
-  }, [order]);
-  //on load function
-  useEffect(() => {
-    //requests the locations from the database
     axios
       .get("/get-locations")
-      //
       .then((response) => {
-        // temopraray array that holds the value of building and coordinates
-        const tempArray = [];
-        //dispalys to the screen
-        //console.log(response.data, order)
-        response.data.forEach((element) => {
-          //console.log("label", element.buildingName, "value", element.coordinates)
-          // pushed onj(build and coordinates) to the temporary array
-          tempArray.push({ label: element.buildingName, value: element.coordinates });
-        });
-        // set the order --> takes all the previous orders  + adds the new one
-        setOrder({ ...order, pickupLocation:tempArray, dropoffLocation:tempArray});
-        console.log(order);
+        const tempArray = response.data.map((element) => ({
+          label: element.buildingName,
+          value: element.coordinates,
+        }));
+        setOrder((prevOrder) => ({ ...prevOrder, locations: tempArray }));
+      })
+      .catch((error) => {
+        console.error("Error fetching locations:", error);
       });
-  }, []);
+  }, [setOrder]);
 
   const cycleOptions = [
-    { label: "Move Forward", value: "1" },
-    { label: "Move Backward", value: "2" },
-    { label: "Turn Left", value: "3" },
-    { label: "Turn Right", value: "4" },
+    { label: "Burger", value: "1", price: "9.95", image: "../components/imgs/burger.jpg" },
+    { label: "Fries", value: "1", price: "2.99", image: "../components/imgs/fries.jpg" },
+    { label: "Icecream", value: "1", price: "4.50", image: "../components/imgs/icecream.jpg" },
+    { label: "Drinks", value: "1", price: "2.90", image: "../components/imgs/drinks.jpg" },
   ];
 
-  const handleSelectChange = (selectedOption) => {
-    setSelectedOption(selectedOption);
+  const onSubmit = () => {
+    const newItemPrice = parseFloat(order.selectedItem.price);
+    const currentTotal = parseFloat(order.totalPrice) || 0;
+    const newTotal = (currentTotal + newItemPrice).toFixed(2);
+
+    axios
+      .post("/post-cartItem", { user: auth.user, cartItem: order.selectedItem, totalPrice: newTotal })
+      .then((response) => {
+        if (response.data.code === "success") {
+          setShowSuccessMessage(true);
+          setTimeout(() => {
+            setShowSuccessMessage(false);
+          }, 2000);
+        } else {
+          setShowErrorMessage(true);
+          setTimeout(() => {
+            setShowErrorMessage(false);
+          }, 2000);
+        }
+      })
+      .catch((error) => {
+        console.error("Error posting item to cart:", error);
+        setShowErrorMessage(true);
+        setTimeout(() => {
+          setShowErrorMessage(false);
+        }, 2000);
+      });
   };
 
-  const onSubmit = () => {
-    setOrder({ ...order, totalPrice: 25, cartItems: "newCart" });
-    // if (selectedOption) {
-    //   //console.log("clicked", selectedOption);
-    //   axios
-    //     .post("/send-command", { command: selectedOption })
-    //     .then((response) => {
-    //       //console.log(response.order);
-    //     });
-    // } else {
-    //   //console.log("Please select an option.");
-    // }
+  const handleScreenClick = () => {
+    setShowSuccessMessage(false);
+    setShowErrorMessage(false);
   };
 
   return (
     <div className="App">
       <Navbar />
-      <div className="home-body">
+      <div className="home-body" onClick={handleScreenClick}>
         <div className="home-container">
           <div className="home-form">
             <div className="-pickup-location">
               <strong style={{ color: "white" }}>Pick-Up Location</strong>
               <div className="control-select">
                 <Select
-                  options={order.pickupLocation}
-                  onChange={handleSelectChange}
+                  options={order.locations}
+                  onChange={(location) => setOrder((prevOrder) => ({ ...prevOrder, pickupLocation: location }))}
                 />
               </div>
             </div>
@@ -81,22 +88,7 @@ function Home(props) {
               <div className="control-select">
                 <Select
                   options={cycleOptions}
-                  onChange={handleSelectChange}
-                  styles={{
-                    control: (provided, state) => ({
-                      ...provided,
-                      border: "1px solid #ccc",
-                      borderRadius: "4px",
-                      boxShadow: state.isFocused
-                        ? "0 0 0 2px rgba(0, 123, 255, 0.6)"
-                        : "none",
-                    }),
-                    option: (provided, state) => ({
-                      ...provided,
-                      backgroundColor: state.isSelected ? "#007BFF" : "white",
-                      color: state.isSelected ? "white" : "black",
-                    }),
-                  }}
+                  onChange={(item) => setOrder((prevOrder) => ({ ...prevOrder, selectedItem: item }))}
                 />
               </div>
             </div>
@@ -105,40 +97,22 @@ function Home(props) {
               <strong style={{ color: "white" }}>Drop-Off Location</strong>
               <div className="control-select">
                 <Select
-                  options={cycleOptions}
-                  onChange={handleSelectChange}
-                  styles={{
-                    control: (provided, state) => ({
-                      ...provided,
-                      border: "1px solid #ccc",
-                      borderRadius: "4px",
-                      boxShadow: state.isFocused
-                        ? "0 0 0 2px rgba(0, 123, 255, 0.6)"
-                        : "none",
-                    }),
-                    option: (provided, state) => ({
-                      ...provided,
-                      backgroundColor: state.isSelected ? "#007BFF" : "white",
-                      color: state.isSelected ? "white" : "black",
-                    }),
-                  }}
+                  options={order.locations}
+                  onChange={(location) => setOrder((prevOrder) => ({ ...prevOrder, dropoffLocation: location }))}
                 />
-                <button
-                  className="home-btn"
-                  onClick={() => {
-                    onSubmit();
-                  }}
-                >
-                  Start
+                <button className="home-btn" onClick={onSubmit}>
+                  Add to Cart
                 </button>
-                
               </div>
             </div>
           </div>
-          <div className="map"><GoogleMapAPI /></div>
+          <div className="map">
+            <GoogleMapAPI />
+          </div>
         </div>
-        
       </div>
+      {showSuccessMessage && <div className="success-message">Item added to cart successfully!</div>}
+      {showErrorMessage && <div className="error-message">Failed to add item to cart. Please try again later.</div>}
     </div>
   );
 }

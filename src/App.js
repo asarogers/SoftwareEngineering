@@ -1,31 +1,24 @@
 import { useState } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 import Missing from "./pages/Missing";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
-import useAuth from "./hooks/useAuth";
 import RequireAuth from "./components/RequireAuth";
 import CartPage from "./pages/CartPage";
 import About from "./pages/About";
 import AdminPage from "./pages/AdminPage";
 
 function App() {
-  const { auth, setAuth } = useAuth();
   const [order, setOrder] = useState({
-    pickupLocation: [
-      { label: "Move Forward", value: "1" },
-      { label: "Move Backward", value: "2" },
-      { label: "Turn Left", value: "3" },
-      { label: "Turn Right", value: "4" },
-    ],
-    fitemSelection: [],
-    dropoffLocation: [],
+    locations: [],
+    cartItems: [],
+    pickupLocation: {},
+    dropoffLocation: {},
+    selectedItem: {},
+    totalPrice: Number
   });
-
-  var appConditon = ["/show", "/Control", "/assign"];
-  var cond = appConditon.indexOf(useLocation().pathname);
 
   return (
     <>
