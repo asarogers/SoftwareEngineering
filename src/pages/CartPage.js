@@ -1,223 +1,172 @@
-// Importing necessary dependencies and components
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
+  Card,
   CardMedia,
+  Grid,
   Table,
   TableBody,
   TableCell,
   TableRow,
   Typography,
 } from "@mui/material";
-import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
 import Navbar from "../components/Navbar";
 import NotAuthenticated from "../components/NotAuthenticated";
 import EmptyCart from "../components/EmptyCart";
-import img from "../components/imgs/green.jpg";
+import styles from "../components/styles"
 
-// Styling using makeStyles
-const useStyles = makeStyles((theme) => ({
-  signIn: {
-    fontSize: "8pt",
-    color: "white",
-    borderRadius: "30px",
-    width: "auto",
-    marginTop: 1,
-    marginRight: "1vw",
-    maxWidth: 300,
-    backgroundColor: "#ffb84f",
-    outlineColor: "#ffb84f",
-    color: "black",
-    "&:hover": {
-      backgroundColor: "#cf7d03",
-      color: "white",
-    },
-  },
-  tableBody: {
-    alignSelf: "center",
-    position: "relative",
-    fontSize: "1.5rem",
-    fontWeight: 500,
-    marginBottom: 0,
-    top: 20,
-    maxWidth: 600,
-    minWidth: 400,
-    width: "45vw",
-    height: "85vh",
-    backgroundColor: "#e8dfd1",
-    borderRadius: "30px  30px 30px 30px",
-  },
-  subtotalBody: {
-    marginLeft: 5,
-    marginTop: "20vh",
-    width: 250,
-    minWidth: 200,
-    height: 80,
-    backgroundColor: "#e8dfd1",
-    justifyContent: "center",
-    borderRadius: "10px  10px 10px 10px",
-  },
-  shoppingBackground: {
-    display: "flex",
-    flexDirection: "column",
-    maxWidth: 600,
-    minWidth: 400,
-    width: "45vw",
-    height: "85vh",
-    borderRadius: 1,
-    boxShadow: 2,
-    backgroundColor: "rgb(246,240,240)",
-  },
-  subtotalBox: {
-    alignItems: "cemter",
-    justifyContent: "center",
-    display: "flex",
-    marginTop: 10,
-    height: 30,
-    width: "inherit",
-  },
-}));
 
-// Component for rendering individual items in the cart
-const CartItem = ({ item, deleteItem }) => (
-  <TableRow
-    sx={{ background: "white", border: "2px solid #c2c0be", marginTop: 0 }}
-  >
-    <TableCell>
-      <CardMedia
-        component="img"
-        image={item.image}
-        sx={{ height: 50, minWidth: 50 }}
-      />
-    </TableCell>
-    <TableCell>{item.itemName}</TableCell>
-    <TableCell>${item.price}</TableCell>
-    <TableCell>
-      <Button size="small" onClick={() => deleteItem(item)}>
-        Delete
-      </Button>
-    </TableCell>
-  </TableRow>
-);
+const useStyles = styles
 
-// Main Cart component
-const Cart = (props) => {
-  // Initializing styles and extracting order and setOrder from props
-  const classes = useStyles();
-  const { order, setOrder } = props || [];
+const Cart = ({ order, setOrder, robotPosition , setRobotPosition }) => {
+  const onLoad=()=>{
+     // Fetch cart items and calculate total on component mount
+     axios
+     .post("/retrieve-cartItem", { auth })
+     .then((response) => {
+       const totalPrice = response.data.total;
+       setOrder({ ...order, cartItems: response.data.result, totalPrice: totalPrice.toFixed(2), pickupLocation: response.data.pickupLocation, dropoffLocation:response.data.dropoffLocation });
+       //console.log(response.data)
+     })
+     .catch((error) => {
+       console.error("Error fetching cart items:", error);
+     });
+  }
   const { auth } = useAuth();
 
-  //console.log("checking", order);
-  // Function to delete an item from the cart
-  const deleteItem = (deletedItem) => {
-    const newPrice = order.totalPrice - deletedItem.price;
-    const newCart = order.cartItems.filter(
-      (item) => item.id !== deletedItem.id
-    );
-    setOrder({ ...order, totalPrice: newPrice, cartItems: newCart });
+  useEffect(() => {
+    onLoad()
+  }, [auth]);
 
-    // Sending updated cart order to the backend
+  const classes = useStyles();
+
+  const deleteItem = (item) => {
+    
+
     if (auth?.user) {
-      axios
-        .post(process.env.REACT_APP_CART_SUBTRACTION, {
-          cart: newCart,
-          auth: auth,
-          totalPrice: newPrice,
-        })
-        .then((response) => {
-          //console.log(response.data);
-        });
+      const newPrice = order.totalPrice - item.price;
+      const newCart = order.cartItems.filter(item => item.orderID !== item.orderID);
+      setOrder({ ...order, totalPrice: newPrice, cartItems: newCart });
+
+      axios.post("delete-item", {
+        orderID:item.orderID,
+        auth: auth,
+      }).then(response => {
+        console.log(response.data)
+        onLoad()
+      });
     }
   };
 
+  const CartItem = ({ item}) => (
+    <TableRow sx={{ background: "white", border: "2px solid #c2c0be", marginTop: 0 }}>
+      <TableCell>
+        <img src={require(`../components/imgs/${item.image}`)} alt={item.label} style={{height: 55, width:50}}/>
+      </TableCell>
+      <TableCell>{item.label}</TableCell>
+      <TableCell>${item.price}</TableCell>
+      <TableCell>
+        <Button size="small" onClick={() => deleteItem(item)}>
+          Delete
+        </Button>
+      </TableCell>
+    </TableRow>
+  );
+
+  const startRobot = ()=>{
+    //console.log(order)
+    axios.post("start-robot", {
+      pickupLocation: order.pickupLocation,
+      dropoffLocation: order.dropoffLocation
+    }).then(response => {
+      console.log(response.data)
+      if (response.data === "stop") {
+        console.log("Stop signal received from backend");
+      } else {
+        // Continuously receive messages until a stop signal is received
+        console.log("beginning loop")
+        setTimeout(() => {
+          receiveMessages(1);
+        }, 3000);
+       
+      }
+    });
+  };
+
+  const receiveMessages = async(num) => {
+    const response = await axios.get("retrieve-gps-coordinates")
+    if(response){
+        if (response.data === "stop") {
+          console.log("Stop signal received from backend");
+        } else {
+
+          // Continue receiving messages
+          console.log(response.data, num)
+          const newPosition = {
+            lat: robotPosition.lat + (0.0001 * num), // Adjust the movement speed if needed
+            lng: robotPosition.lng // Keep the longitude the same
+          };
+
+          num = num +1
+          setRobotPosition(newPosition);
+          setTimeout(() => {
+            receiveMessages(num);
+          }, 3000);
+        }
+    }
+  };
+
+
+
   return (
     <>
-      {/* Displaying the Navbar */}
       <Navbar />
       <Box>
         {auth?.user ? (
-          //checks if there are items in the carItem array
-          order.cartItems.length === 1 ? (
-            // Rendering the shopping cart when there are items
+          order?.cartItems.length > 0 ? (
             <Grid sx={{ display: "flex", justifyContent: "center" }}>
-              <Grid item xs={2} md={2} lg={2}>
-                {/* Shopping Cart card */}
+              <Grid item xs={12} md={6} lg={4}>
                 <Card className={classes.shoppingBackground}>
-                  <Typography
-                    variant="h6"
-                    component="div"
-                    className={classes.tableBody}
-                  >
-                    {/* Table displaying cart items */}
+                  <Typography variant="h6" component="div" className={classes.tableBody}>
                     <Table>
                       <TableBody>
                         <TableRow>
-                          <TableCell> . </TableCell>
+                          <TableCell />
                           <TableCell>
-                            {/* Heading */}
-                            <Typography
-                              variant="body4"
-                              component="p"
-                              sx={{
-                                textAlign: "center",
-                                fontSize: "19pt",
-                              }}
-                            >
-                              {"Shopping Cart"}
+                            <Typography variant="body4" component="p" sx={{ textAlign: "center", fontSize: "19pt" }}>
+                              Shopping Cart
                             </Typography>
                           </TableCell>
-                          <TableCell> Price </TableCell>
+                          <TableCell>Price</TableCell>
                         </TableRow>
-                        {/* Mapping through cart items and rendering each item using CartItem component */}
-                        {[{ itemName: "random", price: "25", image: img }].map(
-                          (item, index) => (
-                            <CartItem
-                              key={index}
-                              item={item}
-                              deleteItem={deleteItem}
-                            />
-                          )
-                        )}
+                        {order.cartItems.map((item, index) => (
+                          <CartItem key={index} item={item} deleteItem={deleteItem} />
+                        ))}
                       </TableBody>
                     </Table>
                   </Typography>
                 </Card>
               </Grid>
-              {/* Subtotal card */}
               <Card className={classes.subtotalBody}>
                 <Box className={classes.subtotalBox}>
-                  {/* Subtotal information */}
                   <h2 style={{ marginRight: 10 }}>Subtotal</h2>
-                  <h2>${order.totalPrice?.toFixed(2)}</h2>
+                  <h2>${order.totalPrice}</h2>
                 </Box>
-                {/* Proceed to Checkout button */}
-                <Box
-                  height={30}
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  display={"flex"}
-                >
-                  <Button
-                    variant="contained"
-                    size="small"
-                    className={classes.signIn}
-                  >
-                    Proceed to Checkout
+                <Box height={30} alignItems="center" justifyContent="center" display="flex">
+                  <Button variant="contained" size="small" className={classes.signIn} onClick={()=>{startRobot()}}>
+                    start robot
                   </Button>
                 </Box>
               </Card>
             </Grid>
           ) : (
-            // Render when the cart is empty
             <EmptyCart />
           )
         ) : (
-          // Render when the user is not authenticated
           <NotAuthenticated />
         )}
       </Box>
@@ -226,3 +175,4 @@ const Cart = (props) => {
 };
 
 export default Cart;
+                                        

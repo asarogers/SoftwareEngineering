@@ -1,70 +1,43 @@
 import { useState } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 import Missing from "./pages/Missing";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
-import useAuth from "./hooks/useAuth";
 import RequireAuth from "./components/RequireAuth";
 import CartPage from "./pages/CartPage";
 import About from "./pages/About";
 import AdminPage from "./pages/AdminPage";
 
 function App() {
-  const { auth, setAuth } = useAuth();
   const [order, setOrder] = useState({
-    pickupLocation: [
-      { label: "Move Forward", value: "1" },
-      { label: "Move Backward", value: "2" },
-      { label: "Turn Left", value: "3" },
-      { label: "Turn Right", value: "4" },
-    ],
-    fitemSelection: [],
-    dropoffLocation: [],
+    locations: [],
+    cartItems: [],
+    pickupLocation: {},
+    dropoffLocation: {},
+    selectedItem: {},
+    totalPrice: 0
   });
 
-  var appConditon = ["/show", "/Control", "/assign"];
-  var cond = appConditon.indexOf(useLocation().pathname);
+  const startLocation = { lat: 34.7838, lng: -86.5722 };
+  const [robotPosition, setRobotPosition] = useState(startLocation);
+  const [deliveryInfo, setDeliveryInfo] = useState(null);
 
   return (
-    <>
-      {/* Routes are different ways to move between URLs, the home URL has a path of '/', so by given it the element of Home, we have made that the base url */}
-      <Routes>
-        <Route
-          path="/login"
-          element={<Login order={order} setOrder={setOrder} />}
-        />
-        <Route
-          path="Registration"
-          element={<Registration order={order} setOrder={setOrder} />}
-        />
-        <Route
-          path="About"
-          element={<About order={order} setOrder={setOrder} />}
-        />
-        <Route
-          path="CartPage"
-          element={<CartPage order={order} setOrder={setOrder} />}
-        />
-        <Route
-          path="AdminPage"
-          element={<AdminPage order={order} setOrder={setOrder} />}
-        />
-
-        <Route
-          element={<RequireAuth allowedRoles={process.env.REACT_APP_ALLOWED} />}
-        >
-          <Route
-            path="/"
-            element={<Home order={order} setOrder={setOrder} />}
-          />
-        </Route>
-
-        {/* catch all */}
-        <Route path="*" element={<Missing />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/login" element={<Login order={order} setOrder={setOrder} />} />
+      <Route path="/registration" element={<Registration order={order} setOrder={setOrder} />} />
+      <Route path="/about" element={<About order={order} setOrder={setOrder} />} />
+      <Route path="/cartpage" element={<CartPage order={order} setOrder={setOrder} deliveryInfo={deliveryInfo} setDeliveryInfo={setDeliveryInfo} robotPosition={robotPosition} setRobotPosition={setRobotPosition} />} />
+      <Route path="/adminpage" element={<AdminPage order={order} setOrder={setOrder} />} />
+      
+      <Route element={<RequireAuth allowedRoles={process.env.REACT_APP_ALLOWED} />}>
+        <Route path="/" element={<Home order={order} setOrder={setOrder} robotPosition={robotPosition} setRobotPosition={setRobotPosition} />} />
+      </Route>
+      
+      <Route path="*" element={<Missing />} />
+    </Routes>
   );
 }
 

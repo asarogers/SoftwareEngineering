@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "../api/axios";
+import Navbar from "../components/Navbar";
 
 const AdminPage = () => {
   const [upload, setUpload] = useState({
@@ -24,6 +25,7 @@ const AdminPage = () => {
 
   return (
     <div className="upload-body">
+    <Navbar />
       <div className="upload-container">
         <form
           id="upload-form"

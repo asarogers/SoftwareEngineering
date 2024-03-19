@@ -1,20 +1,60 @@
-import socket
+import socketio
+import time
 
-#                  ipv4             tcp
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# pass tuple of ip and port we wish to connect to
-        #   ip                  port
-# s.connect(("192.168.1.209", 1234))
-#s.connect((socket.gethostname(), 1234))
-s.connect(("192.168.104.34", 1234))
-#socket sends and recieves data
-
-#how much data would we like to recieve at once?
-msg = s.recv(1024)
-
-print(msg.decode("utf-8"))
-
-if msg:
-    s.send(bytes("more data","utf-8"))
+# Create a Socket.IO client instance
+sio = socketio.Client()
 
 
+# Define a function to send location every 3 seconds if connected
+def send_location():
+    if sio.connected:
+        lat = "34.78254556615218"
+        long = "-86.56983030137167"
+        coordinates = {'latitude': lat, 'longitude': long}
+        sio.emit('confirm_robot_started', coordinates)
+
+# Define event handlers
+@sio.event
+def connect():
+    print('Connected to server')
+    sio.emit('client_connected', 'Connection established with client')
+
+@sio.event
+def connect_error():
+    print('Connection failed')
+
+@sio.event
+def disconnect():
+    print('Disconnected')
+
+@sio.event
+def server_message(data):
+    print('Message from server:', data)
+
+@sio.event
+def start_robot(data):
+    print(data)
+
+    # Tell the robot to move towards the new pickup location
+
+    # Tell the website the robot has received the start command and send current coordinates
+    if sio.connected:
+        lat = "34.78254556615218"
+        long = "-86.56983030137167"
+        coordinates = {'latitude': lat, 'longitude': long, "code": 200}
+        sio.emit('confirm_robot_started', coordinates)
+
+@sio.event
+def return_robots_gps_coordinates(data):
+    # Send the new coordinates
+    if sio.connected:
+        lat = 34.78254556615218
+        long = -86.56983030137167
+        coordinates = {'latitude': lat, 'longitude': long, "code": 200}
+        sio.emit('send_robots_current_gps_coordinates', coordinates)
+
+
+# Connect to the server
+sio.connect('http://192.168.1.229:1234')
+
+sio.wait()

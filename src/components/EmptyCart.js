@@ -1,15 +1,10 @@
 import React from "react";
-import {
-  Button,
-  Typography,
-} from "@mui/material";
+import { Button, Typography, Grid } from "@mui/material";
 import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
+import { useNavigate } from "react-router-dom";
 
 
-
-// Styling using makeStyles
 const useStyles = makeStyles((theme) => ({
   signIn: {
     fontSize: "8pt",
@@ -27,109 +22,54 @@ const useStyles = makeStyles((theme) => ({
       color: "white",
     },
   },
-  tableBody: {
+  emptyCartCard: {
+    display: "flex",
+    flexDirection: "column",
+    width: 800,
+    height: 650,
+    borderRadius: 1,
+    boxShadow: 2,
+    backgroundColor: "rgb(246,240,240)",
+  },
+  messageContainer: {
     alignSelf: "center",
     position: "relative",
     fontSize: "1.5rem",
     fontWeight: 500,
     marginBottom: 0,
-    top: 20,
-    maxWidth: 600,
-    minWidth: 400,
-    width: "45vw",
-    height: "85vh",
+    top: 70,
+    right: 50,
+    width: 600,
+    height: 120,
     backgroundColor: "#e8dfd1",
-    borderRadius: "30px  30px 30px 30px",
   },
-  subtotalBody: {
-    marginLeft: 5,
-    marginTop: "20vh",
-    width: 250,
-    minWidth: 200,
-    height: 80,
-    backgroundColor: "#e8dfd1",
-    justifyContent: "center",
-    borderRadius: "10px  10px 10px 10px",
-  },
-  shoppingBackground: {
-    display: "flex",
-    flexDirection: "column",
-    maxWidth: 600,
-    minWidth: 400,
-    width: "45vw",
-    height: "85vh",
-    borderRadius: 1,
-    boxShadow: 2,
-    backgroundColor: "rgb(246,240,240)",
-  },
-  subtotalBox: {
-    alignItems: "cemter",
-    justifyContent: "center",
-    display: "flex",
-    marginTop: 10,
-    height: 30,
-    width: "inherit",
+  continueShoppingButton: {
+    marginTop: 2,
+    textAlign: "center",
+    fontSize: "19pt",
   },
 }));
 
-
 const EmptyCart = () => {
-    const classes = useStyles();
+  const classes = useStyles();
+  const navigate = useNavigate();
+
   return (
     <Grid align="center">
-              <Grid item xs={1} md={1} lg={1.1}>
-                {/* Empty Cart card */}
-                <Card
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: 800,
-                    height: 650,
-                    borderRadius: 1,
-                    boxShadow: 2,
-                    backgroundColor: "rgb(246,240,240)",
-                  }}
-                >
-                  <Typography
-                    variant="h6"
-                    component="div"
-                    sx={{
-                      alignSelf: "center",
-                      position: "relative",
-                      fontSize: "1.5rem",
-                      fontWeight: 500,
-                      marginBottom: 0,
-                      top: 70,
-                      right: 50,
-                      width: 600,
-                      height: 120,
-                      backgroundColor: "#e8dfd1",
-                    }}
-                  >
-                    <Typography
-                      variant="body4"
-                      component="p"
-                      sx={{
-                        marginTop: 2,
-                        textAlign: "center",
-                        fontSize: "19pt",
-                      }}
-                    >
-                      {"Your Cart is Empty"}
-                    </Typography>
-                    {/* Continue Shopping button */}
-                    <Button
-                      variant="contained"
-                      size="small"
-                      className={classes.signIn}
-                    >
-                      Continue Shopping
-                    </Button>
-                  </Typography>
-                </Card>
-              </Grid>
-            </Grid>
-  )
-}
+      <Grid item xs={1} md={1} lg={1.1}>
+        <Card className={classes.emptyCartCard}>
+          <Typography variant="h6" component="div" className={classes.messageContainer}>
+            <Typography variant="body4" component="p" className={classes.continueShoppingButton}>
+              Your Cart is Empty
+            </Typography>
+            <Button variant="contained" size="small" className={classes.signIn} onClick={() =>{navigate("/")}}>
+              Continue Shopping
+            </Button>
+          </Typography>
+        </Card>
+      </Grid>
+    </Grid>
+  );
+};
 
-export default EmptyCart
+export default EmptyCart;
