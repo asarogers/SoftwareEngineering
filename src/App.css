@@ -63,8 +63,8 @@ a{
   font-weight: 100;
   position: relative;
   cursor: pointer;
-  background-color: #cf7d03;
-  border-color: #cf7d03;
+  background-color: rgb(72, 11, 11);
+  border-color: rgb(72, 11, 11);
   color:rgb(255, 255, 255);
   margin-top: 1rem;
   font-family: "Nunito", sans-serif;
@@ -89,8 +89,10 @@ a:hover{
 
 .upload-body{
 
-  background-color: rgb(37, 33, 19);
+  background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2));
   height: 100vh;
+  width: 100vw;
+  min-height: 800px;
 }
 .hide {
     display: none;
@@ -98,7 +100,7 @@ a:hover{
 /*------------------------------About page------------------------- */
 
 .About_body{
-  background-color: rgb(37, 33, 19);
+  background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2));
   height: 100vh
 }
 
@@ -121,13 +123,13 @@ a:hover{
 
 
 .valid {
-    color: rgb(71, 77, 71);
-    margin-left: 0.25rem;
+  color: rgb(75, 61, 61);
+  margin-left: 0.25rem;
 }
 
 .invalid {
-    color: red;
-    margin-left: 0.25rem;
+  color: red;
+  margin-left: 0.25rem;
 }
 
 ul{
@@ -279,7 +281,7 @@ img{
 main{
   max-width: 900px;
   margin: auto;
-  box-shadow: 30px 0px 40px rgba(0,0,0,0.1) -30px 0px 40px rgba(0,0,0,0.1);
+  box-shadow: 30px 0px 40px rgb(75, 61, 61) -30px 0px 40px rgb(75, 61, 61);
 }
 /*------------------------Search Area START------------------------- */
 .view-text{
@@ -442,8 +444,8 @@ main{
 }
 .footer-body a:hover{
   cursor: pointer;
-    color: rgb(246, 166, 17) !important;
-    transition: color 500ms ease;
+  color: rgb(246, 166, 17) !important;
+  transition: color 500ms ease;
 }
 .signUp-text{
   background-color: rgb(103, 100, 100);
@@ -473,7 +475,7 @@ main{
 .back-top:hover{
   cursor: pointer;
   color: rgb(246, 166, 17) !important;
-    transition: color 500ms ease;
+  transition: color 500ms ease;
 }
 
 
@@ -497,13 +499,27 @@ main{
 .start-body{
   justify-content: center;
   min-height: 100vh;
-    position: relative;
-    background-color: rgb(70, 57, 14);
-    overflow: hidden;
-    overflow-x:hidden;
+  position: relative;
+  background-color: rgb(238, 185, 12);
+  overflow: hidden;
+  overflow-x:hidden;
     
 }
+.aamu-logo-left {
+  position: absolute;
+  left: 0;
+  width: 100px;
+  height: 90px;
+  margin-top: 5px;
+}
 
+.aamu-logo {
+  position: absolute;
+  right: 0;
+  width: 100px;
+  height: 90px;
+  margin-top: 5px;
+}
 
 .forgot-password{
   position: absolute;
@@ -530,27 +546,27 @@ main{
 .start-section {
   position: relative;
   font-family: 'Nunito', sans-serif;
-    font-size: 2rem;
-    color: #fff;
-    width: 94vw;
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 1rem;
-    background-color: rgba(0,0,0,0.4);
+  font-size: 2rem;
+  color: #fff;
+  width: 94vw;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  background-color: rgba(0,0,0,0.4);
 }
 
 
 .start-form{
   font-family: 'Nunito', sans-serif;
-    font-size: 22px;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    flex-grow: 1;
-    padding-bottom: 1rem;
+  font-size: 22px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  padding-bottom: 1rem;
 }
 
 
@@ -579,21 +595,19 @@ main{
 }
 .start-button:hover {
   background-color: #a96602;
-    border-color: #a66402;
+  border-color: #a66402;
   transition: background 500ms ease;
 }
 
 
 
 
-
-
 .errmsg {
-    background-color: lightpink;
-    color: firebrick;
-    font-weight: bold;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .offscreen {
@@ -1000,10 +1014,12 @@ main{
 .start-body{
   justify-content: center;
   min-height: 100vh;
-    position: relative;
-    background-color: rgb(37, 33, 19);
-    overflow: hidden;
-    overflow-x:hidden;
+  width: 100vw;
+
+  position: relative;
+  background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2));
+  overflow: hidden;
+  overflow-x:hidden;
 }
 .start-container{
   display: flex;
@@ -1102,16 +1118,16 @@ main{
 
 
 .errmsg {
-    background-color: lightpink;
-    color: firebrick;
-    font-weight: bold;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .offscreen {
-    position: absolute;
-    left: -9999px;
+  position: absolute;
+  left: -9999px;
 }
 
 /*-----------------------SIGN IN END ----------------------*/
