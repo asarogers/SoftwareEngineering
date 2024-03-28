@@ -516,7 +516,7 @@ main{
   position: absolute;
   left: 0;
   width: 100px;
-  height: 90px;
+  height: 80px;
   margin-top: 5px;
 }
 
@@ -524,7 +524,7 @@ main{
   position: absolute;
   right: 0;
   width: 100px;
-  height: 90px;
+  height: 80px;
   margin-top: 5px;
 }
 .start-form {
