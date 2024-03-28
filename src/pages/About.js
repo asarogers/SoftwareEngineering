@@ -1,5 +1,4 @@
 import Navbar from "../components/Navbar";
-import Background from "../components/imgs/green.jpg";
 
 function About() {
     return (
@@ -7,7 +6,6 @@ function About() {
         <Navbar />
         <h2><u>About</u></h2>
         
-       <img src= {Background} className="Image_background_aboutpage" alt= "about page"/>
        <div class="text-block">
         <h1 style={{fontSize: "800%", textAlign: "center"}}> E  S  D  I R </h1>
         <h2 style={{fontSize: "300%", textAlign: "center"}} >Electromechanical Self-Driven Intelligent Rover </h2>

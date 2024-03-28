@@ -67,8 +67,8 @@ function Login() {
             >
               {errMsg}
             </p>
-            <h1>Sign In</h1>
             <form className="start-form" onSubmit={handleSubmit}>
+              <div className="signin-title"> Sign In</div>
               <label className="start-label" htmlFor="username">
                 Username:
               </label>
@@ -85,9 +85,6 @@ function Login() {
               <label className="start-label" htmlFor="password">
                 Password:
               </label>
-              <a className="forgot-password" href="/forgot">
-                Forgot Password?
-              </a>
               <input
                 className="input-password"
                 type="password"
@@ -96,11 +93,14 @@ function Login() {
                 value={pwd}
                 required
               />
+              <a className="forgot-password" href="/forgot">
+                Forgot Password?
+              </a>
               <button className="start-button" type="submit">
-                Sign In
+                Login
               </button>
             </form>
-            <span className="start-text">New to Exclusive Rewards?</span>
+            <span className="start-text">New to our website?</span>
             <button className="start-create">
               <Link to={"/Registration"}>CREATE AN ACCOUNT</Link>
             </button>

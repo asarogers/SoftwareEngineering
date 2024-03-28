@@ -251,7 +251,7 @@ footer{
   text-align: center;
   padding: 2rem 1rem;
   margin: auto;
-  color: #333;
+  color: #d70b0b;
 
 }
 
@@ -386,8 +386,6 @@ main{
   background-color: white;
 }
 
-
-
 #landing-text h2{
   color: #888;
 }
@@ -505,6 +503,15 @@ main{
   overflow-x:hidden;
     
 }
+.signin-title {
+  color: white;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 45pt;
+  letter-spacing: 5px;
+}
 .aamu-logo-left {
   position: absolute;
   left: 0;
@@ -520,13 +527,16 @@ main{
   height: 90px;
   margin-top: 5px;
 }
-
-.forgot-password{
+.start-form {
+  position: relative;
+}
+.forgot-password {
   position: absolute;
-  text-align: end;
-  right: 20px;
-  color: #4899eb;
-  text-decoration:underline;
+  bottom: 67px;
+  text-align: right;
+  right:0;
+  color: rgb(234, 224, 224);
+  text-decoration: underline;
   font-size: 0.9rem !important;
 }
 
@@ -541,7 +551,7 @@ main{
   font-family: 'Nunito', sans-serif;
   font-size: 22px;
   padding: 0.25rem;
-  background-color: black !important;
+  background-color: #432727 !important;
 }
 .start-section {
   position: relative;
@@ -568,13 +578,15 @@ main{
   flex-grow: 1;
   padding-bottom: 1rem;
 }
-
-
-.start-label,
-.start-button {
-  margin-top: 1rem;
-  
+.start-label {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #eeee;
 }
+
 
 .input-username,
 .input-password{
@@ -582,20 +594,26 @@ main{
   font-size: 22px;
   padding: 0.25rem;
   border-radius: 0.5rem;
-  
+  background-color: #b7b0b0ee;
+  align-self: flex-end;
 }
 
 .start-button {
+  background-color: black;
+  width: 100%;
+  height: 50px;
+  font-size: 25pt;
+  color: #a14545;
+  border: none;
+  letter-spacing: 5px;
   padding: 0.5rem;
   cursor: pointer;
-  background-color: #cf7d03;
-    border-color: #cf7d03;
-    color:rgb(255, 255, 255);
+  border-color: #170909;
     
 }
 .start-button:hover {
-  background-color: #a96602;
-  border-color: #a66402;
+  background-color: #a14545;
+  border-color: #a14545;
   transition: background 500ms ease;
 }
 
@@ -611,8 +629,8 @@ main{
 }
 
 .offscreen {
-    position: absolute;
-    left: -9999px;
+  position: absolute;
+  left: -9999px;
 }
 
 /*-----------------------------------------SIGN IN END -----------------------------------------*/
@@ -680,13 +698,11 @@ main{
   padding-right: 4vw;
   left: 30%;
   position: relative;
-  background-color: #cf7d03;
-  border-color: #cf7d03;
-  color: white;
+  background-color: #000000;
+  color: #a14545;
 }
 .start-button:hover{
-  background-color: #965a00;
-  border-color: #935800;
+  background-color: #2d2020;
   color: rgb(255, 255, 255);
   transition: color 500ms ease;
 }
@@ -876,13 +892,18 @@ main{
 
   /*-----------------NAVBAR START --------------------- */
   .navbar{
-    display: none;
-    background-color: rgb(7, 7, 4);
-    justify-content: space-around !important;
-    align-items: center; /* align vertical */
-    color:white;
+    display: flex;
+    justify-content: space-evenly;
+    background: rgb(74, 31, 31);
+    height: 40px;
+    font-size: 1.3rem;
+    font-family: 'Mplus 1p', sans-serif;
+    font-weight: 100;
   }
-
+  .nav-items {
+    display: flex;
+    align-items: center;
+  }
   .cart-counter{
     position: absolute;
     z-index: 2;
@@ -1008,8 +1029,7 @@ main{
   /*-----------------NAVBAR END --------------------- */
 
   
-
-  /*-----------------------SIGN IN START ----------------------*/
+/*-----------------------SIGN IN START ----------------------*/
 
 .start-body{
   justify-content: center;
@@ -1022,36 +1042,34 @@ main{
   overflow-x:hidden;
 }
 .start-container{
+  background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2));
+  width: 100vw;
+  height: auto;
+  min-height: 550px;
   display: flex;
   justify-content: center;
 }
 
 .start-section {
-  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  background-color: rgb(75, 61, 61);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+.start-form{
   font-family: 'Nunito', sans-serif;
   font-size: 22px;
   color: #fff;
-  width: 100%;
-  max-width: 420px;
-  min-height: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding: 1rem;
-  background-color: rgba(0,0,0,0.4);
-  left: 0;
-}
-
-
-.start-form{
-  font-family: 'Nunito', sans-serif;
-    font-size: 22px;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    flex-grow: 1;
-    padding-bottom: 1rem;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  padding-bottom: 1rem;
 }
 .start-label,
 .start-button {
@@ -1088,27 +1106,24 @@ main{
 .start-button {
   padding: 0.5rem;
   cursor: pointer;
-  background-color: #cf7d03;
-  border-color: #cf7d03;
-  color:rgb(255, 255, 255);
+  background-color: #010101;
+  color:#ff0303;
 }
 .start-button:hover {
-  background-color: #a96602;
-    border-color: #a66402;
+  background-color: #332222;
   transition: background 500ms ease;
 }
 
 .start-text{
-  text-align: center;
-  font-size: 0.9rem;
-  margin-bottom: 15px;
+  color: rgb(255, 255, 255);
+  height: 10px;
 }
 .start-create{
   font-family: 'Nunito', sans-serif;
-  font-size: 22px;
+  font-size: 20px;
   padding: 0.25rem;
   cursor: pointer;
-  background-color: black !important;
+  background-color: #432727 !important;
   
 }
 .start-create:hover{
@@ -1165,8 +1180,6 @@ main{
   height: auto;
   padding-bottom: 40px;
   cursor: pointer;
-}
-.your-order a{
 }
 .your-order a:hover{
   text-decoration: underline;
