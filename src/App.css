@@ -59,13 +59,12 @@ a{
 }
 
 .home-btn{
-  width:125px;
+  width:150px;
   font-weight: 100;
   position: relative;
   cursor: pointer;
-  background-color: rgb(72, 11, 11);
-  border-color: rgb(72, 11, 11);
-  color:rgb(255, 255, 255);
+  background-color: rgb(62, 47, 47);
+  color:rgb(5, 5, 5);
   margin-top: 1rem;
   font-family: "Nunito", sans-serif;
   font-size: 22px;
@@ -75,8 +74,7 @@ a{
 
 
 .home-btn:hover{
-  background-color: #965a00;
-  border-color: #935800;
+  background-color: rgb(35, 21, 21);
   transition: background 500ms ease;
 }
 
@@ -1363,8 +1361,11 @@ main{
   }
 
 }
-/*---------------------HOME CONTAINER -----------------------*/
+/*---------------------HOME CONTAINER START-----------------------*/
 .home-container {
+  background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2));
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
 }
@@ -1373,12 +1374,13 @@ main{
   float: right;
   margin-top: 100px;
   text-align: center;
+  font-size: 17pt;
   display: flex;
   flex-direction:column;
   justify-content: space-between;
   align-items: center;
   width: 35%;
-  background-color: rgb(37, 33, 19);
+  background-color: rgb(42, 18, 18);
   height: 250px;
   padding: 90px;
   border-radius: 70px;
