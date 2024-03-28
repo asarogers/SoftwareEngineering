@@ -593,7 +593,6 @@ main{
   font-family: 'Nunito', sans-serif;
   font-size: 22px;
   padding: 0.25rem;
-  border-radius: 0.5rem;
   background-color: #b7b0b0ee;
   align-self: flex-end;
 }
@@ -1054,7 +1053,7 @@ main{
   width: 100%;
   height: 100%;
   max-width: 600px;
-  background-color: rgb(75, 61, 61);
+  background: linear-gradient(to bottom, rgb(87, 65, 65), rgb(15, 14, 14));
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -1080,9 +1079,9 @@ main{
 .input-password,
 .start-button {
   font-family: 'Nunito', sans-serif;
+  background-color: #b7b0b0ee;
   font-size: 22px;
   padding: 0.25rem;
-  border-radius: 0.5rem;
 }
 
 .admin-button{
