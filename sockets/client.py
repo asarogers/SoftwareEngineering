@@ -55,6 +55,6 @@ def return_robots_gps_coordinates(data):
 
 
 # Connect to the server
-sio.connect('http://192.168.1.229:1234')
+sio.connect('http://192.168.50.34:1234')
 
 sio.wait()

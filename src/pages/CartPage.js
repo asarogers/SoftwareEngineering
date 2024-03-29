@@ -98,12 +98,14 @@ const Cart = ({ order, setOrder, robotPosition , setRobotPosition }) => {
   };
 
   const receiveMessages = async(num) => {
+    
     const response = await axios.get("retrieve-gps-coordinates")
     if(response){
+
         if (response.data === "stop") {
           console.log("Stop signal received from backend");
         } else {
-
+          
           // Continue receiving messages
           console.log(response.data, num)
           const newPosition = {
