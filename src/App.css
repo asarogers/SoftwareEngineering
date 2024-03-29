@@ -1277,6 +1277,7 @@ main{
 .start-line {
   width: 125px !important;
   font-weight: 100;
+  font-size:30px;
   left: 39%;
   position: relative;
   color: #a14545;

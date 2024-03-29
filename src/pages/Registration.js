@@ -99,11 +99,9 @@ const Register = () => {
                   src={building}
                   alt="Building Image"
                 />
-                <div className="start-line">
-                  <button className="register-button" type="submit">
-                    Sign In
-                  </button>
-                </div>
+                <span className="start-line">
+                  <Link to="/signin">Sign In</Link>
+                </span>
               </div>
             </section>
 
@@ -122,31 +120,6 @@ const Register = () => {
                   <input
                     className="account-input"
                     placeholder="First Name"
-                    type="text"
-                    id="username"
-                    ref={userRef}
-                    autoComplete="off"
-                    onChange={(e) => setUser(e.target.value)}
-                    value={user}
-                    required
-                    aria-invalid={validName ? "false" : "true"}
-                    aria-describedby="uidnote"
-                    onFocus={() => setUserFocus(true)}
-                    onBlur={() => setUserFocus(false)}
-                  />
-                </div>
-                <div className="account-item">
-                  <div className="image-holder">
-                    <img
-                      className="account-image"
-                      src={signInIcon}
-                      alt="Sign In Icon"
-                    />
-                  </div>
-
-                  <input
-                    className="account-input"
-                    placeholder="Last Name"
                     type="text"
                     id="username"
                     ref={userRef}
