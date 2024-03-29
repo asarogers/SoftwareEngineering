@@ -496,7 +496,7 @@ main{
   justify-content: center;
   min-height: 100vh;
   position: relative;
-  background-color: rgb(238, 185, 12);
+  background-color: rgb(160, 155, 136);
   overflow: hidden;
   overflow-x:hidden;
     
@@ -1128,21 +1128,161 @@ main{
 }
 
 
-
-.errmsg {
-  background-color: lightpink;
-  color: firebrick;
-  font-weight: bold;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.offscreen {
-  position: absolute;
-  left: -9999px;
-}
-
 /*-----------------------SIGN IN END ----------------------*/
+
+
+/*----------------------------Register start-------------------------*/
+.register-container {
+  background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2));
+  /* Vertical gradient */
+  width: 100vw;
+  height: 150vh;
+  min-width: 900px;
+  display: flex;
+  flex-direction: column;
+  /* Arrange items vertically */
+  align-items: center;
+  /* Center items horizontally */
+}
+
+.register-title {
+  height: 100px;
+  font-size: 35pt;
+  font-family: 'Mplus 1p', Arial, Helvetica, sans-serif;
+  letter-spacing: 30px;
+  color: rgba(245, 245, 245, 0.784);
+  display: flex;
+  align-items: center;
+}
+
+.register-body {
+  background: linear-gradient(to bottom, #926a6a, rgb(59, 54, 54));
+  /* Vertical gradient */
+  ;
+  width: 80%;
+  height: 75%;
+  max-width: 1100px;
+  max-height: 800px;
+  min-width: inherit;
+  background-color: rgb(75, 61, 61);
+  border-radius: 10px;
+  display: flex;
+}
+.register-left-container {
+  background-color: #3e1414;
+  width: 50%;
+  height: 80%;
+  margin: 50px;
+  border-radius: 25px 25px;
+}
+
+
+
+.register-text {
+  color: rgb(253, 253, 253);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  font-size: 20pt;
+  letter-spacing: 6px;
+}
+
+
+.image-container {
+  width: 100%;
+}
+
+.register-image {
+  height: inherit;
+  /*inherits from the image-container */
+  width: inherit;
+}
+
+.register-button {
+  width: 120px;
+  height: 50px;
+  font-size: 20pt;
+}
+
+.create-account-text {
+  margin-top: 20px;
+  color: white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  letter-spacing: 10px;
+  font-weight: 900;
+  font-size: 25pt;
+}
+
+.register-form {
+  width: 100%;
+}
+
+.account-image {
+  width: 35px;
+  height: 35px;
+}
+
+.account-item {
+  display: flex;
+  height: inherit;
+  margin-bottom: 10px;
+}
+
+.account-input {
+  width: 65%;
+  background: #4c3939;
+  height: inherit;
+  border: 0;
+  font-size: 22pt;
+  text-align: start;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.image-holder {
+  width: 30%;
+  height: 50px;
+  background: #4c3939;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.register-button-dark {
+  width: 96%;
+  height: 50px;
+  font-size: 20pt;
+  color: #ce1d1d;
+  background: black;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.account-input {
+  width: 65%;
+  background: #4c3939;
+  height: inherit;
+  border: 0;
+  font-size: 22pt;
+  text-align: start;
+  border-radius: 0px 5px 5px 0px;
+}
+.start-line {
+  width: 125px !important;
+  font-weight: 100;
+  left: 39%;
+  position: relative;
+  color: #a14545;
+}
+/*----------------------------register end--------------------------------*/
+
 
 /*---------------------------------------Orders START------------------------------------------ */
 .order-sidebar-body{
