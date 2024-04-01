@@ -19,7 +19,7 @@ function GoogleMapAPI({ robotPosition }) {
   }
 
     return (
-        <div style={{ position: 'relative', height: '100vh', width: '100vw' }}>
+        <div style={{ position: 'relative', height: '100vh', width: '100vw', minHeight:"650px"}}>
             <GoogleMap center={alabamaLocation} zoom={15} mapContainerStyle={{ width: '100%', height: '100%' }}>
                 <Marker position={robotPosition} icon={robot} />
                 <Marker position={endLocation} />
@@ -27,5 +27,4 @@ function GoogleMapAPI({ robotPosition }) {
         </div>
     );
 }
-
 export default GoogleMapAPI;
