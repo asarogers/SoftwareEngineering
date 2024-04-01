@@ -14,7 +14,8 @@ const readFromTable = async (req, res) => {
 };
 
 const registerUser = async (req, res) => {
-  const { email, password } = req.body;
+   const { email, password } = req.body;
+   //console.log(email, password)
   try {
     const result = await queryAsync(
       `INSERT INTO user (email, password) VALUES ('${email}', '${password}');`

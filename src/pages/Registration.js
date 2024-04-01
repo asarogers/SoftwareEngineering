@@ -1,4 +1,8 @@
-import { faCheck, faInfoCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheck,
+  faInfoCircle,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -21,19 +25,21 @@ const Register = () => {
   const errRef = useRef();
 
   const [user, setUser] = useState("");
+  const [email, setEmail] = useState("");
+
   const [validName, setValidName] = useState(false);
   const [userFocus, setUserFocus] = useState(false);
 
   const [pwd, setPwd] = useState("");
+  const [confirmPwd, setConfirmPwd] = useState("");
+
   const [validPwd, setValidPwd] = useState(false);
   const [pwdFocus, setPwdFocus] = useState(false);
 
   const [matchPwd, setMatchPwd] = useState("");
   const [validMatch, setValidMatch] = useState(false);
-  const [matchFocus, setMatchFocus] = useState(false);
 
   const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     userRef.current.focus();
@@ -49,22 +55,27 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      const salt = await bcrypt.genSalt();
-      const hashed = bcrypt.hashSync(pwd, salt);
-      const response = await axios.post(REGISTER_URL, { email: user, password: hashed });
-      if (response?.data?.code === "success") {
-        const roles = response?.data?.role;
-        setAuth({ user, hashed, roles });
-        navigate("/login", { replace: true });
-      } else {
-        alert("Email already exists");
-      }
-      setUser("");
-      setPwd("");
-      setMatchPwd("");
-    } catch (err) {
+    
+    
+    if (pwd === confirmPwd){
+      try {
+        const salt = await bcrypt.genSalt();
+        const hashed = bcrypt.hashSync(pwd, salt);
+        const response = await axios.post(REGISTER_URL, {
+          email: email,
+          password: hashed,
+         });
+         if (response?.data?.code === "success") {
+          const roles = response?.data?.role;
+          setAuth({ user, hashed, roles });
+          navigate("/login", { replace: true });
+        } else {
+          alert("Email already exists");
+        }
+        setUser("");
+        setPwd("");
+        setMatchPwd("");
+      } catch (err) {
       if (!err?.response) {
         setErrMsg("No server response");
       } else if (err.response?.status === 409) {
@@ -74,8 +85,9 @@ const Register = () => {
       }
       errRef.current.focus();
     }
+    }
   };
-
+  
   return (
     <>
       <div className="start-body">
@@ -100,7 +112,7 @@ const Register = () => {
                   alt="Building Image"
                 />
                 <span className="start-line">
-                  <Link to="/signin">Sign In</Link>
+                  <Link to="/login">Sign In</Link>
                 </span>
               </div>
             </section>
@@ -149,13 +161,9 @@ const Register = () => {
                     id="username"
                     ref={userRef}
                     autoComplete="off"
-                    onChange={(e) => setUser(e.target.value)}
-                    value={user}
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
                     required
-                    aria-invalid={validName ? "false" : "true"}
-                    aria-describedby="uidnote"
-                    onFocus={() => setUserFocus(true)}
-                    onBlur={() => setUserFocus(false)}
                   />
                 </div>
                 <div className="account-item">
@@ -194,17 +202,18 @@ const Register = () => {
                     className="account-input"
                     type="password"
                     id="password"
-                    onChange={(e) => setPwd(e.target.value)}
-                    value={pwd}
+                    onChange={(e) => setConfirmPwd(e.target.value)}
+                    value={confirmPwd}
                     required
-                    aria-invalid={validPwd ? "false" : "true"}
-                    aria-describedby="pwdnote"
-                    onFocus={() => setPwdFocus(true)}
-                    onBlur={() => setPwdFocus(false)}
                   />
                 </div>
                 <div className="btn-container-dark">
-                  <button className="register-button-dark">Register</button>
+                  <button
+                    className="register-button-dark"
+                    onClick={handleSubmit}
+                  >
+                    Register
+                  </button>
                 </div>
               </form>
             </section>
