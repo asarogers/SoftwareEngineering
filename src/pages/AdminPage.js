@@ -27,7 +27,7 @@ const AdminPage = () => {
   return (
     <div className="upload-body">
       <Navbar />
-      <div className="upload-container">
+      <div className="admin-container">
         <div className="aamu-logo-left ">
           <img
             src={AmmuLogo}
@@ -47,23 +47,36 @@ const AdminPage = () => {
           className="upload-form"
           onSubmit={(e) => handleSubmit(e)}
         >
-          <h1>Welcome to the building upload page</h1>
+          <div className="divider" />
+          <h1>Upload a New Building</h1>
+          <div className="divider" />
+          <div className="upload-items">
+            <label className="item-label">New Building</label>
+            <input
+              className="item-input"
+              type={"text"}
+              onChange={(e) =>
+                setUpload({ ...upload, buildingName: e.target.value })
+              }
+              placeholder="Building Name?"
+            />
+          </div>
 
-          <input
-            type={"text"}
-            onChange={(e) =>
-              setUpload({ ...upload, buildingName: e.target.value })
-            }
-            placeholder="Building Name?"
-          />
-          <input
-            type={"text"}
-            onChange={(e) =>
-              setUpload({ ...upload, coordinates: e.target.value })
-            }
-            placeholder="Building Coordinates?"
-          />
-          <button className="admin-button">Upload</button>
+          <div className="upload-items">
+            <label className="item-label">Coordinates</label>
+            <input
+              className="item-input"
+              type={"text"}
+              onChange={(e) =>
+                setUpload({ ...upload, coordinates: e.target.value })
+              }
+              placeholder="Building Coordinates?"
+            />
+          </div>
+
+          <div className="btn-container">
+            <button className="admin-button">Submit</button>
+          </div>
         </form>
       </div>
     </div>
