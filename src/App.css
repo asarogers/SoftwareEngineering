@@ -13,6 +13,10 @@ a{
   color:white;
 }
 
+button{
+  border: none;
+}
+
 .success-message, .error-message {
   position: fixed;
   bottom: 20px;
@@ -36,51 +40,7 @@ a{
 
 
 
-/*-------------------home page controls------------- */
-.home-body{
-  width: 100vw;
-}
-.control{
-  float: left;
-  width: 50vw;
-}
 
-
-
-.control-select{
-  width: 20vw;
-}
-
-.start-button {
-  font-family: "Nunito", sans-serif;
-  font-size: 22px;
-  padding: 0.25rem;
-  border-radius: 0.5rem;
-}
-
-.home-btn{
-  width:125px;
-  font-weight: 100;
-  position: relative;
-  cursor: pointer;
-  background-color: #cf7d03;
-  border-color: #cf7d03;
-  color:rgb(255, 255, 255);
-  margin-top: 1rem;
-  font-family: "Nunito", sans-serif;
-  font-size: 22px;
-  padding: 0.25rem;
-  border-radius: 0.5rem;
-}
-
-
-.home-btn:hover{
-  background-color: #965a00;
-  border-color: #935800;
-  transition: background 500ms ease;
-}
-
-/*-----------------------home page end controls---------------- */
 a:hover{
   text-decoration: none;
   color: rgb(246, 166, 17) !important;
@@ -89,8 +49,10 @@ a:hover{
 
 .upload-body{
 
-  background-color: rgb(37, 33, 19);
+  background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2));
   height: 100vh;
+  width: 100vw;
+  min-height: 800px;
 }
 .hide {
     display: none;
@@ -98,7 +60,7 @@ a:hover{
 /*------------------------------About page------------------------- */
 
 .About_body{
-  background-color: rgb(37, 33, 19);
+  background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2));
   height: 100vh
 }
 
@@ -121,13 +83,13 @@ a:hover{
 
 
 .valid {
-    color: rgb(71, 77, 71);
-    margin-left: 0.25rem;
+  color: rgb(75, 61, 61);
+  margin-left: 0.25rem;
 }
 
 .invalid {
-    color: red;
-    margin-left: 0.25rem;
+  color: red;
+  margin-left: 0.25rem;
 }
 
 ul{
@@ -249,7 +211,7 @@ footer{
   text-align: center;
   padding: 2rem 1rem;
   margin: auto;
-  color: #333;
+  color: #d70b0b;
 
 }
 
@@ -279,7 +241,7 @@ img{
 main{
   max-width: 900px;
   margin: auto;
-  box-shadow: 30px 0px 40px rgba(0,0,0,0.1) -30px 0px 40px rgba(0,0,0,0.1);
+  box-shadow: 30px 0px 40px rgb(75, 61, 61) -30px 0px 40px rgb(75, 61, 61);
 }
 /*------------------------Search Area START------------------------- */
 .view-text{
@@ -384,8 +346,6 @@ main{
   background-color: white;
 }
 
-
-
 #landing-text h2{
   color: #888;
 }
@@ -442,8 +402,8 @@ main{
 }
 .footer-body a:hover{
   cursor: pointer;
-    color: rgb(246, 166, 17) !important;
-    transition: color 500ms ease;
+  color: rgb(246, 166, 17) !important;
+  transition: color 500ms ease;
 }
 .signUp-text{
   background-color: rgb(103, 100, 100);
@@ -473,7 +433,7 @@ main{
 .back-top:hover{
   cursor: pointer;
   color: rgb(246, 166, 17) !important;
-    transition: color 500ms ease;
+  transition: color 500ms ease;
 }
 
 
@@ -497,20 +457,46 @@ main{
 .start-body{
   justify-content: center;
   min-height: 100vh;
-    position: relative;
-    background-color: rgb(70, 57, 14);
-    overflow: hidden;
-    overflow-x:hidden;
+  position: relative;
+  background-color: rgb(238, 185, 12);
+  overflow: hidden;
+  overflow-x:hidden;
     
 }
-
-
-.forgot-password{
+.signin-title {
+  color: white;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 45pt;
+  letter-spacing: 5px;
+}
+.aamu-logo-left {
   position: absolute;
-  text-align: end;
-  right: 20px;
-  color: #4899eb;
-  text-decoration:underline;
+  left: 0;
+  width: 100px;
+  height: 80px;
+  margin-top: 5px;
+}
+
+.aamu-logo {
+  position: absolute;
+  right: 0;
+  width: 100px;
+  height: 80px;
+  margin-top: 5px;
+}
+.start-form {
+  position: relative;
+}
+.forgot-password {
+  position: absolute;
+  bottom: 67px;
+  text-align: right;
+  right:0;
+  color: rgb(234, 224, 224);
+  text-decoration: underline;
   font-size: 0.9rem !important;
 }
 
@@ -525,80 +511,85 @@ main{
   font-family: 'Nunito', sans-serif;
   font-size: 22px;
   padding: 0.25rem;
-  background-color: black !important;
+  background-color: #432727 !important;
 }
 .start-section {
   position: relative;
   font-family: 'Nunito', sans-serif;
-    font-size: 2rem;
-    color: #fff;
-    width: 94vw;
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 1rem;
-    background-color: rgba(0,0,0,0.4);
+  font-size: 2rem;
+  color: #fff;
+  width: 94vw;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  background-color: rgba(0,0,0,0.4);
 }
 
 
 .start-form{
   font-family: 'Nunito', sans-serif;
-    font-size: 22px;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    flex-grow: 1;
-    padding-bottom: 1rem;
+  font-size: 22px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  padding-bottom: 1rem;
+}
+.start-label {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #eeee;
 }
 
-
-.start-label,
-.start-button {
-  margin-top: 1rem;
-  
-}
 
 .input-username,
 .input-password{
   font-family: 'Nunito', sans-serif;
   font-size: 22px;
   padding: 0.25rem;
-  border-radius: 0.5rem;
-  
+  background-color: #b7b0b0ee;
+  align-self: flex-end;
 }
 
 .start-button {
+  background-color: black;
+  width: 100%;
+  height: 50px;
+  font-size: 25pt;
+  color: #a14545;
+  border: none;
+  letter-spacing: 5px;
   padding: 0.5rem;
   cursor: pointer;
-  background-color: #cf7d03;
-    border-color: #cf7d03;
-    color:rgb(255, 255, 255);
+  border-color: #170909;
     
 }
 .start-button:hover {
-  background-color: #a96602;
-    border-color: #a66402;
+  background-color: #a14545;
+  border-color: #a14545;
   transition: background 500ms ease;
 }
 
 
 
 
-
-
 .errmsg {
-    background-color: lightpink;
-    color: firebrick;
-    font-weight: bold;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .offscreen {
-    position: absolute;
-    left: -9999px;
+  position: absolute;
+  left: -9999px;
 }
 
 /*-----------------------------------------SIGN IN END -----------------------------------------*/
@@ -666,13 +657,11 @@ main{
   padding-right: 4vw;
   left: 30%;
   position: relative;
-  background-color: #cf7d03;
-  border-color: #cf7d03;
-  color: white;
+  background-color: #000000;
+  color: #a14545;
 }
 .start-button:hover{
-  background-color: #965a00;
-  border-color: #935800;
+  background-color: #2d2020;
   color: rgb(255, 255, 255);
   transition: color 500ms ease;
 }
@@ -862,13 +851,18 @@ main{
 
   /*-----------------NAVBAR START --------------------- */
   .navbar{
-    display: none;
-    background-color: rgb(7, 7, 4);
-    justify-content: space-around !important;
-    align-items: center; /* align vertical */
-    color:white;
+    display: flex;
+    justify-content: space-evenly;
+    background: rgb(74, 31, 31);
+    height: 40px;
+    font-size: 1.3rem;
+    font-family: 'Mplus 1p', sans-serif;
+    font-weight: 100;
   }
-
+  .nav-items {
+    display: flex;
+    align-items: center;
+  }
   .cart-counter{
     position: absolute;
     z-index: 2;
@@ -994,48 +988,47 @@ main{
   /*-----------------NAVBAR END --------------------- */
 
   
-
-  /*-----------------------SIGN IN START ----------------------*/
+/*-----------------------SIGN IN START (REGISTER) ----------------------*/
 
 .start-body{
   justify-content: center;
   min-height: 100vh;
-    position: relative;
-    background-color: rgb(37, 33, 19);
-    overflow: hidden;
-    overflow-x:hidden;
+  width: 100vw;
+
+  position: relative;
+  background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2));
+  overflow: hidden;
+  overflow-x:hidden;
 }
 .start-container{
+  background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2));
+  width: 100vw;
+  height: auto;
+  min-height: 550px;
   display: flex;
   justify-content: center;
 }
 
 .start-section {
-  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  background: linear-gradient(to bottom, rgb(87, 65, 65), rgb(15, 14, 14));
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+.start-form{
   font-family: 'Nunito', sans-serif;
   font-size: 22px;
   color: #fff;
-  width: 100%;
-  max-width: 420px;
-  min-height: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding: 1rem;
-  background-color: rgba(0,0,0,0.4);
-  left: 0;
-}
-
-
-.start-form{
-  font-family: 'Nunito', sans-serif;
-    font-size: 22px;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    flex-grow: 1;
-    padding-bottom: 1rem;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  padding-bottom: 1rem;
 }
 .start-label,
 .start-button {
@@ -1046,9 +1039,9 @@ main{
 .input-password,
 .start-button {
   font-family: 'Nunito', sans-serif;
+  background-color: #b7b0b0ee;
   font-size: 22px;
   padding: 0.25rem;
-  border-radius: 0.5rem;
 }
 
 .admin-button{
@@ -1072,27 +1065,24 @@ main{
 .start-button {
   padding: 0.5rem;
   cursor: pointer;
-  background-color: #cf7d03;
-  border-color: #cf7d03;
-  color:rgb(255, 255, 255);
+  background-color: #010101;
+  color:#ff0303;
 }
 .start-button:hover {
-  background-color: #a96602;
-    border-color: #a66402;
+  background-color: #332222;
   transition: background 500ms ease;
 }
 
 .start-text{
-  text-align: center;
-  font-size: 0.9rem;
-  margin-bottom: 15px;
+  color: rgb(255, 255, 255);
+  height: 10px;
 }
 .start-create{
   font-family: 'Nunito', sans-serif;
-  font-size: 22px;
+  font-size: 20px;
   padding: 0.25rem;
   cursor: pointer;
-  background-color: black !important;
+  background-color: #432727 !important;
   
 }
 .start-create:hover{
@@ -1102,16 +1092,16 @@ main{
 
 
 .errmsg {
-    background-color: lightpink;
-    color: firebrick;
-    font-weight: bold;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .offscreen {
-    position: absolute;
-    left: -9999px;
+  position: absolute;
+  left: -9999px;
 }
 
 /*-----------------------SIGN IN END ----------------------*/
@@ -1149,8 +1139,6 @@ main{
   height: auto;
   padding-bottom: 40px;
   cursor: pointer;
-}
-.your-order a{
 }
 .your-order a:hover{
   text-decoration: underline;
@@ -1335,8 +1323,11 @@ main{
   }
 
 }
-/*---------------------HOME CONTAINER -----------------------*/
+/*---------------------HOME CONTAINER START-----------------------*/
 .home-container {
+  background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2));
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
 }
@@ -1345,13 +1336,14 @@ main{
   float: right;
   margin-top: 100px;
   text-align: center;
+  font-size: 17pt;
   display: flex;
   flex-direction:column;
   justify-content: space-between;
   align-items: center;
   width: 35%;
-  background-color: rgb(37, 33, 19);
-  height: 250px;
+  background-color: rgb(42, 18, 18);
+  height: 370px;
   padding: 90px;
   border-radius: 70px;
   margin-right: 50px;
@@ -1379,6 +1371,47 @@ main{
   min-width: 250px;
 }
 
+.home-body{
+  width: 100vw;
+}
+.control{
+  float: left;
+  width: 50vw;
+}
+
+.control-select{
+  width: 20vw;
+}
+
+.start-button {
+  font-family: "Nunito", sans-serif;
+  font-size: 22px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+}
+
+.home-btn{
+  width:175px;
+  font-weight: 100;
+  position: relative;
+  cursor: pointer;
+  background-color: rgb(87, 71, 71);
+  color:rgb(255, 255, 255);
+  margin-top: 50px;
+  font-family: "Nunito", sans-serif;
+  font-size: 20pt;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  height: 50px;
+ 
+}
 
 
-/*----------------------HOME CONTAINER ENDS -----------------------*/
+.home-btn:hover{
+  color:rgb(177, 143, 143);
+  background-color: rgb(57, 25, 25);
+  transition: background 700ms ease;
+  transition: color 500ms ease;
+}
+
+/*-----------------------home page end controls---------------- */

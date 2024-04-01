@@ -77,7 +77,7 @@ function Home({ order = {}, setOrder, robotPosition, setRobotPosition }) {
       <div className="home-body" onClick={handleScreenClick}>
         <div className="home-container">
           <div className="home-form">
-            <div className="-pickup-location">
+            <div className="pickup-location">
               <strong style={{ color: "white" }}>Pick-Up Location</strong>
               <div className="control-select">
                 <Select

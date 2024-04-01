@@ -116,16 +116,6 @@ const Register = () => {
                 onFocus={() => setPwdFocus(true)}
                 onBlur={() => setPwdFocus(false)}
               />
-              <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
-                <FontAwesomeIcon icon={faInfoCircle} />
-                8 to 24 characters.
-                <br />
-                Must include uppercase and lowercase letters, a number and a
-                special character.
-                <br />
-                Allowed special characters: ! @ # $ %
-              </p>
-
               <label className="start-label" htmlFor="confirm_pwd">Confirm Password:</label>
               <input
                 className="input-password"
@@ -139,11 +129,7 @@ const Register = () => {
                 onFocus={() => setMatchFocus(true)}
                 onBlur={() => setMatchFocus(false)}
               />
-              <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
-                <FontAwesomeIcon icon={faInfoCircle} />
-                Must match the first password input field.
-              </p>
-
+            
               <button className="start-button" disabled={!validMatch}>Sign Up</button>
             </form>
             <p>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "../api/axios";
 import Navbar from "../components/Navbar";
+import AmmuLogo from "../components/imgs/aamu_logo.jpg";
 
 const AdminPage = () => {
   const [upload, setUpload] = useState({
@@ -25,8 +26,22 @@ const AdminPage = () => {
 
   return (
     <div className="upload-body">
-    <Navbar />
+      <Navbar />
       <div className="upload-container">
+        <div className="aamu-logo-left ">
+          <img
+            src={AmmuLogo}
+            style={{ width: "inherit", height: "inherit" }}
+            alt="Ammu Logo"
+          />
+        </div>
+        <div className="aamu-logo algin-right">
+          <img
+            src={AmmuLogo}
+            style={{ width: "inherit", height: "inherit" }}
+            alt="Ammu Logo"
+          />
+        </div>
         <form
           id="upload-form"
           className="upload-form"

@@ -6,17 +6,17 @@ const alabamaLocation = { lat: 34.7838, lng: -86.5622 };
 const endLocation = { lat: 34.7938, lng: -86.5702 };
 
 function GoogleMapAPI({ robotPosition }) {
-    const { isLoaded, loadError } = useJsApiLoader({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    });
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+  });
 
-    if (loadError) {
-        return <div>Error loading Google Maps API</div>;
-    }
+  if (loadError) {
+    return <div>Error loading Google Maps API</div>;
+  }
 
-    if (!isLoaded) {
-        return <div>Loading...</div>;
-    }
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
 
     return (
         <div style={{ position: 'relative', height: '100vh', width: '100vw' }}>

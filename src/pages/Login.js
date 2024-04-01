@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
+import AmmuLogo from "../components/imgs/aamu_logo.jpg";
 
 function Login() {
   const { setAuth } = useAuth();
@@ -44,13 +45,33 @@ function Login() {
       <div className="start-body">
         <Navbar />
         <div className="start-container">
+          <div className="aamu-logo-left ">
+            <img
+              src={AmmuLogo}
+              style={{ width: "inherit", height: "inherit" }}
+              alt="Ammu Logo"
+            />
+          </div>
+          <div className="aamu-logo algin-right">
+            <img
+              src={AmmuLogo}
+              style={{ width: "inherit", height: "inherit" }}
+              alt="Ammu Logo"
+            />
+          </div>
           <section className="start-section">
-            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">
+            <p
+              ref={errRef}
+              className={errMsg ? "errmsg" : "offscreen"}
+              aria-live="assertive"
+            >
               {errMsg}
             </p>
-            <h1>Sign In</h1>
             <form className="start-form" onSubmit={handleSubmit}>
-              <label className="start-label" htmlFor="username">Username:</label>
+              <div className="signin-title"> Sign In</div>
+              <label className="start-label" htmlFor="username">
+                Username:
+              </label>
               <input
                 className="input-username"
                 type="text"
@@ -61,8 +82,9 @@ function Login() {
                 value={user}
                 required
               />
-              <label className="start-label" htmlFor="password">Password:</label>
-              <a className="forgot-password" href="/forgot">Forgot Password?</a>
+              <label className="start-label" htmlFor="password">
+                Password:
+              </label>
               <input
                 className="input-password"
                 type="password"
@@ -71,9 +93,14 @@ function Login() {
                 value={pwd}
                 required
               />
-              <button className="start-button" type="submit">Sign In</button>
+              <a className="forgot-password" href="/forgot">
+                Forgot Password?
+              </a>
+              <button className="start-button" type="submit">
+                Login
+              </button>
             </form>
-            <span className="start-text">New to Exclusive Rewards?</span>
+            <span className="start-text">New to our website?</span>
             <button className="start-create">
               <Link to={"/Registration"}>CREATE AN ACCOUNT</Link>
             </button>
