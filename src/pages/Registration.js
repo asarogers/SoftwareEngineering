@@ -99,9 +99,10 @@ const Register = () => {
               ref={errRef}
               className={errMsg ? "errmsg" : "offscreen"}
               aria-live="assertive"
-            >
+              >
               {errMsg}
             </p>
+
             <section className="register-left-container float-left">
               <div className="grey-bar"></div>
               <p className="register-text">Glad to see you again!</p>
@@ -116,7 +117,6 @@ const Register = () => {
                 </span>
               </div>
             </section>
-
             <section className="float-right">
               <h2 className="create-account-text">Create Account</h2>
               <form className="register-form">

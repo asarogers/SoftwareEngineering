@@ -115,6 +115,7 @@ a:hover {
   background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2));
   height: 100vh;
   position: relative;
+  min-height: 650px;
 }
 
 .text-block {
@@ -1302,10 +1303,9 @@ main {
 
   .register-body {
     background: linear-gradient(to bottom, #926a6a, rgb(59, 54, 54));
-    /* Vertical gradient */
-    ;
     width: 80%;
     height: 75%;
+    min-height: 800px;
     max-width: 1100px;
     max-height: 800px;
     min-width: inherit;
@@ -1320,8 +1320,8 @@ main {
     height: 80%;
     margin: 50px;
     border-radius: 25px 25px;
+    min-height: 500px;
   }
-
 
 
   .register-text {
