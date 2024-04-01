@@ -70,7 +70,7 @@ function Login() {
             <form className="start-form" onSubmit={handleSubmit}>
               <div className="signin-title"> Sign In</div>
               <label className="start-label" htmlFor="username">
-                Username:
+                Email:
               </label>
               <input
                 className="input-username"
