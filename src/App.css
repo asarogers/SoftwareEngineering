@@ -1014,14 +1014,13 @@ main {
     justify-content: center;
     background-color: none;
   }
-
   /*-----------------Admin END --------------------- */
 
   /*-----------------NAVBAR START --------------------- */
   .navbar {
     display: flex;
     justify-content: space-evenly;
-    background: rgb(74, 31, 31);
+    background: rgb(96, 37, 37);
     height: 45px;
     font-size: 1.3rem;
     font-family: 'Mplus 1p', sans-serif;
@@ -1293,9 +1292,9 @@ main {
 
   .register-title {
     height: 100px;
-    font-size: 35pt;
+    font-size: 37pt;
     font-family: 'Mplus 1p', Arial, Helvetica, sans-serif;
-    letter-spacing: 30px;
+    letter-spacing: 25px;
     color: rgba(245, 245, 245, 0.784);
     display: flex;
     align-items: center;

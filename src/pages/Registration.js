@@ -131,7 +131,7 @@ const Register = () => {
 
                   <input
                     className="account-input"
-                    placeholder="First Name"
+                    placeholder="Username"
                     type="text"
                     id="username"
                     ref={userRef}
