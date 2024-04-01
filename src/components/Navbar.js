@@ -13,7 +13,7 @@ export default function Navbar() {
       <div className="exclusive-text">
         <div className="exclusive">
           <Link to="/" className="visit">
-            home
+            Home
           </Link>
         </div>{" "}
       </div>
@@ -37,22 +37,21 @@ export default function Navbar() {
             Admin Page
           </Link>
         </div>
-        </div>
-
+      </div>
       <div className="call-text">
         <div>
           <Link to="/Registration" className="visit">
             Registration
           </Link>
         </div>
-      </div> <div className="call-text">
+      </div>{" "}
+      <div className="call-text">
         <div>
           <Link to="/Login" className="visit">
             Login
           </Link>
         </div>
       </div>
-
     </div>
   );
 }
