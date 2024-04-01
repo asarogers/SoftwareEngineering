@@ -1006,14 +1006,13 @@ main {
     justify-content: center;
     background-color: none;
   }
-
   /*-----------------Admin END --------------------- */
 
   /*-----------------NAVBAR START --------------------- */
   .navbar {
     display: flex;
     justify-content: space-evenly;
-    background: rgb(74, 31, 31);
+    background: rgb(96, 37, 37);
     height: 45px;
     font-size: 1.3rem;
     font-family: 'Mplus 1p', sans-serif;
@@ -1285,9 +1284,9 @@ main {
 
   .register-title {
     height: 100px;
-    font-size: 35pt;
+    font-size: 37pt;
     font-family: 'Mplus 1p', Arial, Helvetica, sans-serif;
-    letter-spacing: 30px;
+    letter-spacing: 25px;
     color: rgba(245, 245, 245, 0.784);
     display: flex;
     align-items: center;
@@ -1297,8 +1296,8 @@ main {
     background: linear-gradient(to bottom, #926a6a, rgb(59, 54, 54));
     /* Vertical gradient */
     ;
-    width: 80%;
-    height: 75%;
+    width: 60%;
+    height: 60%;
     max-width: 1100px;
     max-height: 800px;
     min-width: inherit;
