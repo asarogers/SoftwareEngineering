@@ -59,7 +59,6 @@ const SocketServer = {
   },
 
   retrieveGPSCoordinates(req, res) {
-    console.log("called")
     // Emit to all connected clients
     for (const [socketId, socket] of SocketServer.connectedClients.entries()) {
       socket.emit('return_robots_gps_coordinates', req.body); // Assuming req.body contains coordinates

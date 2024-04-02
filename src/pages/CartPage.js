@@ -88,7 +88,6 @@ const Cart = ({ order, setOrder, robotPosition , setRobotPosition }) => {
         console.log("Stop signal received from backend");
       } else {
         // Continuously receive messages until a stop signal is received
-        console.log("beginning loop")
         setTimeout(() => {
           receiveMessages(1);
         }, 3000);
@@ -107,13 +106,14 @@ const Cart = ({ order, setOrder, robotPosition , setRobotPosition }) => {
         } else {
           
           // Continue receiving messages
-          console.log(response.data, num)
+          var lat = response.data["latitude"]
+          var long = response.data["longitude"]
           const newPosition = {
-            lat: robotPosition.lat + (0.0001 * num), // Adjust the movement speed if needed
-            lng: robotPosition.lng // Keep the longitude the same
+            lat: lat, // Adjust the movement speed if needed
+            lng: long // Keep the longitude the same
           };
 
-          num = num +1
+
           setRobotPosition(newPosition);
           setTimeout(() => {
             receiveMessages(num);
@@ -129,6 +129,7 @@ const Cart = ({ order, setOrder, robotPosition , setRobotPosition }) => {
       <Navbar />
       <div className="cart-body">
         {
+
         auth?.user ? (
           order?.cartItems.length > 0 ? (
             <Grid sx={{ display: "flex", justifyContent: "center" }}>
