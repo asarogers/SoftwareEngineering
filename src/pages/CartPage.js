@@ -127,51 +127,54 @@ const Cart = ({ order, setOrder, robotPosition , setRobotPosition }) => {
   return (
     <>
       <Navbar />
-      <Box>
-        {auth?.user ? (
+      <div className="cart-body">
+        {
+        auth?.user ? (
           order?.cartItems.length > 0 ? (
             <Grid sx={{ display: "flex", justifyContent: "center" }}>
               <Grid item xs={12} md={6} lg={4}>
-                <Card className={classes.shoppingBackground}>
-                  <Typography variant="h6" component="div" className={classes.tableBody}>
+                <div >
+                  <div className="tableBody">
                     <Table>
                       <TableBody>
                         <TableRow>
                           <TableCell />
                           <TableCell>
-                            <Typography variant="body4" component="p" sx={{ textAlign: "center", fontSize: "19pt" }}>
+                            <Typography variant="body4" component="p" sx={{ textAlign: "center", fontSize: "19pt" , color:"white"}}>
                               Shopping Cart
                             </Typography>
                           </TableCell>
-                          <TableCell>Price</TableCell>
+                          <TableCell><div className="price-text">Price</div></TableCell>
                         </TableRow>
                         {order.cartItems.map((item, index) => (
                           <CartItem key={index} item={item} deleteItem={deleteItem} />
                         ))}
                       </TableBody>
                     </Table>
-                  </Typography>
-                </Card>
+                  </div>
+                </div>
               </Grid>
-              <Card className={classes.subtotalBody}>
-                <Box className={classes.subtotalBox}>
-                  <h2 style={{ marginRight: 10 }}>Subtotal</h2>
+              <div className="subtotalBody">
+                <div className="subtotalBox" >
+                  <h3 style={{ marginRight: 10 }}>Subtotal</h3>
                   <h2>${order.totalPrice}</h2>
-                </Box>
-                <Box height={30} alignItems="center" justifyContent="center" display="flex">
-                  <Button variant="contained" size="small" className={classes.signIn} onClick={()=>{startRobot()}}>
+                </div>
+                <div className="start-robot-container">
+                  <button className="start-btn"  onClick={()=>{startRobot()}}>
                     start robot
-                  </Button>
-                </Box>
-              </Card>
+                  </button>
+                </div>
+              </div>
             </Grid>
           ) : (
             <EmptyCart />
           )
         ) : (
           <NotAuthenticated />
-        )}
-      </Box>
+        )
+        
+        }
+      </div>
     </>
   );
 };

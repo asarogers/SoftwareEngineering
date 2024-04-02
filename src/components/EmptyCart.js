@@ -55,20 +55,16 @@ const EmptyCart = () => {
   const navigate = useNavigate();
 
   return (
-    <Grid align="center">
-      <Grid item xs={1} md={1} lg={1.1}>
-        <Card className={classes.emptyCartCard}>
-          <Typography variant="h6" component="div" className={classes.messageContainer}>
-            <Typography variant="body4" component="p" className={classes.continueShoppingButton}>
-              Your Cart is Empty
-            </Typography>
-            <Button variant="contained" size="small" className={classes.signIn} onClick={() =>{navigate("/")}}>
-              Continue Shopping
-            </Button>
-          </Typography>
-        </Card>
-      </Grid>
-    </Grid>
+    <div >
+          <div className="cart-container">
+            <div className="cart-inner-container">
+                <h2 className="cart-text">Your Cart is Empty</h2>
+                <div className="cart-btn-container">
+                <button className="continue-shopping-button">Continue Shopping </button>
+                </div>
+            </div>
+          </div>
+      </div>
   );
 };
 

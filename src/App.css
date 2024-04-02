@@ -20,7 +20,9 @@ input{
 
 button{
   cursor: pointer;
+  border: none;
 }
+
 
 .success-message,
 .error-message {
@@ -62,6 +64,7 @@ button{
 
 .control-select {
   width: 20vw;
+  max-width: 500px;
 }
 
 .start-button {
@@ -1732,3 +1735,132 @@ main {
 
 
 /*----------------------HOME CONTAINER ENDS -----------------------*/
+
+/*----------------------Cart Page--------------------------*/
+.price-text{
+  color: white;
+  font-size: 15pt;
+}
+.tableBody {
+  align-self: center;
+  position: relative;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0;
+  top: 20px;
+  max-width: 600px;
+  min-width: 400px;
+  width: 45vw;
+  height: 85vh;
+  background-color: rgb(92, 71, 71);
+  border-radius: 30px;
+}
+
+
+
+
+.cart-body{
+  background-color: rgb(32, 22, 22);
+  height: 100vh;
+}
+.start-btn {
+  width: 200px;
+  height: 50px;
+  font-size: 8pt;
+  color: rgb(172, 5, 5);
+  border-radius: 10px;
+  font-size: 20pt;
+  font-weight: 1000;
+  background-color: #070707;
+}
+
+.start-btn:hover {
+  transition: background-color 500ms ease, color 500ms ease;
+  background-color: #4b4a4a;
+  color: rgb(199, 12, 12);
+}
+
+
+.start-robot-container{
+  height: 80px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.subtotalBody {
+  margin-left: 50px;
+  margin-top: 15vh;
+  width: 250px;
+  min-width: 200px;
+  height: 220px;
+  background-color: rgb(179, 171, 171);
+  justify-content: center;
+  border-radius: 10px;
+  color: black;
+}
+
+.subtotalBox h2{
+  color: rgb(192, 28, 28);
+  font-size: 20pt;
+  border-bottom: 2px solid black; /* Adjust the width and color as needed */
+  padding-bottom: 10px; /* Adjust this value to push the underline down */
+  width: 150px;
+  text-align: center;
+}
+
+
+.subtotalBox h3{
+  font-size: 20pt;
+}
+
+.subtotalBox{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.cart-container {
+  background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2)); /* Vertical gradient */
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-inner-container{
+  width: 80%;
+  height: 80%;
+  background-color: rgb(90, 75, 75);
+}
+
+.cart-btn-container{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  background-color: none;
+}
+
+.cart-text{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  font-size: 25pt;
+}
+
+.cart-inner-btn-container{
+  display: flex;
+  justify-content: space-evenly;
+  width:400px;
+}
+.continue-shopping-button{
+  background-color: rgb(44, 34, 34);
+  border: 2px solid black; 
+  color: white;
+}
+.continue-shopping-button:hover{
+  background: rgb(105, 59, 59);
+  transition: background 500ms ease;
+}
+/*----------------------Cart Page End--------------*/
