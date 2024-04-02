@@ -1,6 +1,6 @@
 import React from 'react';
 import { useJsApiLoader, GoogleMap, Marker } from '@react-google-maps/api';
-import robot from "./imgs/robot.png";
+import robot from "./imgs/_robot.png";
 
 const alabamaLocation = { lat: 34.7838, lng: -86.5622 };
 const endLocation = { lat: 34.7938, lng: -86.5702 };
