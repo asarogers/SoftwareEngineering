@@ -112,53 +112,83 @@ a:hover {
   display: none;
 }
 
-/*------------------------------About page------------------------- */
-
-.About_body {
-  background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2));
-  height: 100vh;
-  position: relative;
-  min-height: 650px;
+/* --------------       About page     ----------------    */
+.e-s-d-i-r{
+  position: relative; 
+  font-size: 40px; 
+  width:100vw;
+  height: 140px;
+  background: linear-gradient(to bottom, #b8b1b1, 
+  #645f5f); 
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70pt;
+  letter-spacing: 5px;
+  color: #ffffff;
+  margin: 0;
 }
 
-.text-block {
-  position: absolute;
-  bottom: 70px;
-  right: 25px;
-  /* Adjusted */
-  background-color: rgb(47, 35, 35);
+.About-container {
+  background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2)); /* Vertical gradient */
+  width: 100vw;
+  min-height: 1300px;
+}
+
+.esdir-name{
+  font-size: 40px; 
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+            
+            background: linear-gradient(to bottom, #b8b1b1, 
+                    #645f5f); 
+                    -webkit-text-fill-color: transparent;
+                    -webkit-background-clip: text;
+                    display: flex;
+                    align-items: center;
+}
+
+.ESDIR-description{
+  display: flex;
+  text-align: center;
+  font-size: 23pt; 
+  background: linear-gradient(to bottom, #b8b1b1, 
+#645f5f); 
+
+ -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+.esdir-text{
+  font-size: 15pt;
+  float: right;
+  width: 60%;
   color: white;
-  padding-left: 20px;
-  padding-right: 20px;
-  top: 90px;
-  font-size: 1.3vw;
-  width: calc(100% - 600px);
-  /* Adjusted */
+  line-height: 1.5;
+  word-spacing: 5px;
+}
+.text-robot-container{
+  width: 100vw;
+  display: flex;
+}
+.robot{
+  height: inherit;
+  width: inherit;
 }
 
-.about-text {
-  margin-left: 100px;
-  /* Adjust according to your image width */
-  text-align: right;
-  /* Align text to the right */
+.robot-container{
+  width: 400px;
 }
 
-.about-image-container {
-  position: absolute;
-  top: 150px;
-  /* Adjusted */
-  left: 40px;
-  /* Adjusted */
-
+.div{
+  color: white;
+  padding-bottom: 120px;
+  text-align: center;
+  width: 100vw;
 }
-
-.about-image {
-  max-width: 400px;
-  /* Adjusted */
-  height: auto;
-}
-
-/*------------------------------About page------------------------- */
 
 
 .valid {
