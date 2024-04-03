@@ -112,7 +112,7 @@ a:hover {
   display: none;
 }
 
-/* --------------       About page     ----------------    */
+/* ----------------------About page--------------------    */
 .e-s-d-i-r{
   position: relative; 
   font-size: 40px; 
@@ -134,7 +134,7 @@ a:hover {
 .About-container {
   background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2)); /* Vertical gradient */
   width: 100vw;
-  min-height: 1300px;
+  min-height: 800px;
 }
 
 .esdir-name{
@@ -1254,7 +1254,7 @@ main {
   .input-password,
   .start-button {
     font-family: 'Nunito', sans-serif;
-    background-color: #b7b0b0ee;
+    background-color: #4c3939;
     font-size: 22px;
     padding: 0.25rem;
   }
@@ -1396,7 +1396,7 @@ main {
     font-weight: 900;
     font-size: 25pt;
   }
-
+  
   .register-form {
     width: 100%;
   }

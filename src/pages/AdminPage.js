@@ -17,7 +17,7 @@ const AdminPage = () => {
     try {
       e.preventDefault();
       axios.post("/upload-building", { upload: upload }).then((response) => {
-        //console.log(response.data)
+        console.log(response.data)
       });
     } catch (error) {
       //console.log(error);
