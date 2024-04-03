@@ -34,7 +34,7 @@ export default function Navbar() {
       <div className="call-text">
         <div>
           <Link to="/AdminPage" className="visit">
-            Admin Page
+            Admin
           </Link>
         </div>
       </div>
