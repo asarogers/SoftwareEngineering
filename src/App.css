@@ -68,7 +68,6 @@ button{
 }
 
 .start-button {
-  font-family: "Nunito", sans-serif;
   font-size: 22px;
   padding: 0.25rem;
   border-radius: 0.5rem;
@@ -82,7 +81,6 @@ button{
   background-color: rgb(62, 47, 47);
   color: rgb(5, 5, 5);
   margin-top: 1rem;
-  font-family: "Nunito", sans-serif;
   font-size: 22px;
   padding: 0.25rem;
   border-radius: 0.5rem;
@@ -241,7 +239,6 @@ ul {
   width: 3vw;
   font-weight: 600;
   font-size: 4vw;
-  font-family: 'roboto,arial,verdana,sans-serif';
 }
 
 .Order-text {
@@ -627,7 +624,6 @@ main {
 }
 
 .start-create {
-  font-family: 'Nunito', sans-serif;
   font-size: 22px;
   padding: 0.25rem;
   background-color: #432727 !important;
@@ -635,7 +631,6 @@ main {
 
 .start-section {
   position: relative;
-  font-family: 'Nunito', sans-serif;
   font-size: 2rem;
   color: #fff;
   width: 94vw;
@@ -649,7 +644,6 @@ main {
 
 
 .start-form {
-  font-family: 'Nunito', sans-serif;
   font-size: 22px;
   color: #fff;
   display: flex;
@@ -671,7 +665,6 @@ main {
 
 .input-username,
 .input-password {
-  font-family: 'Nunito', sans-serif;
   font-size: 22px;
   padding: 0.25rem;
   background-color: #b7b0b0ee;
@@ -777,7 +770,6 @@ main {
   width: 125px !important;
   font-weight: 100;
   font-size: 1.2rem;
-  font-family: 'roboto,arial,verdana,sans-serif';
   clear: both;
   display: inline-block;
   overflow: hidden;
@@ -962,7 +954,6 @@ main {
     display: flex;
     align-items: center;
     font-size: 35pt;
-    font-family: 'Mplus 1p', Arial, Helvetica, sans-serif;
     letter-spacing: 15px;
     color: rgba(245, 245, 245, 0.784);
   }
@@ -1056,7 +1047,6 @@ main {
     background: rgb(96, 37, 37);
     height: 45px;
     font-size: 1.3rem;
-    font-family: 'Mplus 1p', sans-serif;
     font-weight: 100;
   }
 
@@ -1101,7 +1091,6 @@ main {
     width: 15vw;
     font-weight: 100;
     font-size: 1.2rem;
-    font-family: 'roboto,arial,verdana,sans-serif';
     clear: both;
     display: inline-block;
     overflow: hidden;
@@ -1235,7 +1224,6 @@ main {
   }
 
   .start-form {
-    font-family: 'Nunito', sans-serif;
     font-size: 22px;
     color: #fff;
     display: flex;
@@ -1253,7 +1241,6 @@ main {
   .input-username,
   .input-password,
   .start-button {
-    font-family: 'Nunito', sans-serif;
     background-color: #4c3939;
     font-size: 22px;
     padding: 0.25rem;
@@ -1293,7 +1280,6 @@ main {
   }
 
   .start-create {
-    font-family: 'Nunito', sans-serif;
     font-size: 20px;
     padding: 0.25rem;
     cursor: pointer;
@@ -1326,8 +1312,7 @@ main {
   .register-title {
     height: 100px;
     font-size: 37pt;
-    font-family: 'Mplus 1p', Arial, Helvetica, sans-serif;
-    letter-spacing: 25px;
+    letter-spacing: 30px;
     color: rgba(245, 245, 245, 0.784);
     display: flex;
     align-items: center;
@@ -1337,7 +1322,7 @@ main {
     background: linear-gradient(to bottom, #926a6a, rgb(59, 54, 54));
     width: 80%;
     height: 75%;
-    min-height: 800px;
+    min-height: 700px;
     max-width: 1100px;
     max-height: 800px;
     min-width: inherit;
