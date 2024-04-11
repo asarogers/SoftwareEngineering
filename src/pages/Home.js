@@ -28,7 +28,7 @@ function Home({ order = {}, setOrder, robotPosition, setRobotPosition }) {
   }, [setOrder]);
 
   useEffect(() => {
-    console.log(robotPosition);
+    console.log(robotPosition, " works");
   }, [robotPosition]);
 
   const cycleOptions = [

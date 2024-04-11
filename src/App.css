@@ -15,6 +15,7 @@ a {
   color: white;
 }
 input{
+  color: white;
   outline: none
 }
 
@@ -78,8 +79,8 @@ button{
   font-weight: 100;
   position: relative;
   cursor: pointer;
-  background-color: rgb(62, 47, 47);
-  color: rgb(5, 5, 5);
+  background-color: rgb(150, 65, 65);
+  color: rgb(250, 250, 250);
   margin-top: 1rem;
   font-size: 22px;
   padding: 0.25rem;
@@ -89,7 +90,8 @@ button{
 
 .home-btn:hover {
   background-color: rgb(35, 21, 21);
-  transition: background 500ms ease;
+  color: rgb(212, 59, 59);
+  transition: background 500ms ease, color 500ms ease;
 }
 
 /*-----------------------home page end controls---------------- */
@@ -111,13 +113,48 @@ a:hover {
 }
 
 /* ----------------------About page--------------------    */
-.e-s-d-i-r{
-  position: relative; 
-  font-size: 40px; 
-  width:100vw;
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+}
+
+.about-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.about-content {
+  background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2));
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.e-s-d-i-r {
+  position: relative;
+  font-size: 40px;
+  width: 100vw;
   height: 140px;
-  background: linear-gradient(to bottom, #b8b1b1, 
-  #645f5f); 
+  background: linear-gradient(to bottom, #b8b1b1, #645f5f);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   display: flex;
@@ -130,37 +167,35 @@ a:hover {
 }
 
 .About-container {
-  background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2)); /* Vertical gradient */
+  background: linear-gradient(to bottom, rgb(74, 52, 52), rgb(3, 2, 2));
   width: 100vw;
+  height: 100vh;
   min-height: 800px;
 }
 
-.esdir-name{
-  font-size: 40px; 
+.esdir-name {
+  font-size: 40px;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-            
-            background: linear-gradient(to bottom, #b8b1b1, 
-                    #645f5f); 
-                    -webkit-text-fill-color: transparent;
-                    -webkit-background-clip: text;
-                    display: flex;
-                    align-items: center;
+  background: linear-gradient(to bottom, #b8b1b1, #645f5f);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  display: flex;
+  align-items: center;
 }
 
-.ESDIR-description{
+.ESDIR-description {
   display: flex;
   text-align: center;
-  font-size: 23pt; 
-  background: linear-gradient(to bottom, #b8b1b1, 
-#645f5f); 
-
- -webkit-text-fill-color: transparent;
+  font-size: 23pt;
+  background: linear-gradient(to bottom, #b8b1b1, #645f5f);
+  -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
 }
-.esdir-text{
+
+.esdir-text {
   font-size: 15pt;
   float: right;
   width: 60%;
@@ -168,50 +203,31 @@ a:hover {
   line-height: 1.5;
   word-spacing: 5px;
 }
-.text-robot-container{
+
+.text-robot-container {
   width: 100vw;
   display: flex;
 }
-.robot{
+
+.robot {
   height: inherit;
   width: inherit;
 }
 
-.robot-container{
+.robot-container {
   width: 400px;
 }
 
-.div{
+.div {
   color: white;
   padding-bottom: 120px;
   text-align: center;
   width: 100vw;
 }
-
-
-.valid {
-  color: rgb(75, 61, 61);
-  margin-left: 0.25rem;
+.click-to-continue{
+  
+  font-size: 25pt;
 }
-
-.invalid {
-  color: red;
-  margin-left: 0.25rem;
-}
-
-ul {
-  list-style-type: none;
-}
-
-#header h2 {
-  border-left: dotted 1px #fff;
-  border-right: dotted 1px #fff;
-  display: inline-block;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-
 
 
 /*-----------------NAVBAR START --------------------- */

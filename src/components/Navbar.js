@@ -17,13 +17,6 @@ export default function Navbar() {
           </Link>
         </div>{" "}
       </div>
-      <div className="Order-text">
-        <div>
-          <Link to="/About" className="visit">
-            About
-          </Link>
-        </div>
-      </div>
       <div className="payment-text offscreen">
         <div>
           <Link to="/CartPage" className="visit">

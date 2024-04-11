@@ -90,7 +90,7 @@ const Cart = ({ order, setOrder, robotPosition , setRobotPosition }) => {
         // Continuously receive messages until a stop signal is received
         setTimeout(() => {
           receiveMessages(1);
-        }, 3000);
+        }, 2500);
        
       }
     });
@@ -98,7 +98,7 @@ const Cart = ({ order, setOrder, robotPosition , setRobotPosition }) => {
 
   const receiveMessages = async(num) => {
     
-    const response = await axios.get("retrieve-gps-coordinates")
+    const response = await axios.post("retrieve-gps-coordinates",{counter: num})
     if(response){
 
         if (response.data === "stop") {
@@ -112,12 +112,12 @@ const Cart = ({ order, setOrder, robotPosition , setRobotPosition }) => {
             lat: lat, // Adjust the movement speed if needed
             lng: long // Keep the longitude the same
           };
-
-
+          
+          num = num+1
           setRobotPosition(newPosition);
           setTimeout(() => {
             receiveMessages(num);
-          }, 3000);
+          }, 2500);
         }
     }
   };

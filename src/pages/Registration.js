@@ -91,7 +91,6 @@ const Register = () => {
   return (
     <>
       <div className="start-body">
-        <Navbar />
         <div className="register-container">
           <h1 className="register-title">Welcome to ESDIR</h1>
           <section className="register-body">

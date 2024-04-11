@@ -47,8 +47,8 @@ const loginUser = async (req, res) => {
   try {
     const result = await queryAsync(query);
 
-    if (!result) {
-      return res.status(401).send("Invalid email or password");
+    if (result.length === 0) {
+      return res.status(401).send("Invalid email");
     }
 
     const { password: hashedPassword } = result[0];
@@ -62,7 +62,7 @@ const loginUser = async (req, res) => {
         roles: 2001,
       });
     } else {
-      res.status(401).send("Invalid email or password");
+      return res.status(401).send("Invalid password");
     }
   } catch (error) {
     console.error(error);

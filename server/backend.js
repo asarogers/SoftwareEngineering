@@ -16,12 +16,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const socket = SocketServer;
 socket.startServer();
 
+
 // Routes
 app.get("/read-all", CRUD.readFromTable);
 app.get("/get-data", CRUD.queryData);
 app.get("/get-locations", CRUD.retrieveLocationData);
-app.get("/retrieve-gps-coordinates", SocketServer.retrieveGPSCoordinates);
 
+
+app.post("/retrieve-gps-coordinates", SocketServer.retrieveGPSCoordinates);
 app.post("/post-cartItem", CRUD.postCartItem);
 app.post("/send-command", sendCommand);
 app.post("/register", CRUD.registerUser);
@@ -39,3 +41,4 @@ const PORT = parseInt(process.env.PORT) + 1 || 3001;
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
+

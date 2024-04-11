@@ -4,18 +4,17 @@ import Navbar from "../components/Navbar";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
 import AmmuLogo from "../components/imgs/aamu_logo.jpg";
+import About from "./About";
 
 function Login() {
   const { setAuth } = useAuth();
-
   const navigate = useNavigate();
-
   const userRef = useRef();
   const errRef = useRef();
-
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const [showAbout, setShowAbout] = useState(true);
 
   useEffect(() => {
     userRef.current.focus();
@@ -29,21 +28,34 @@ function Login() {
     e.preventDefault();
 
     try {
-      axios.post("/login", { pwd: pwd, user: user }).then((response) => {
-        const { user, roles } = response.data;
-        setAuth({ roles, user });
+      const response = await axios.post("/login", { user, pwd });
+      const { code, message, user: loggedInUser, roles } = response.data;
+
+      if (code === "success") {
+        setAuth({ roles, user: loggedInUser });
         navigate("/", { replace: true });
-        ////console.log(roles, user)
-      });
+      } else {
+        setErrMsg(message);
+      }
     } catch (error) {
-      setErrMsg("Invalid username or password");
+      if (!error.response) {
+        setErrMsg("No server response");
+      } else if (error.response.status === 401) {
+        setErrMsg(error.response.data);
+      } else {
+        setErrMsg("Login failed");
+      }
+      errRef.current.focus();
     }
+  };
+
+  const handleCloseAbout = () => {
+    setShowAbout(false);
   };
 
   return (
     <>
       <div className="start-body">
-        <Navbar />
         <div className="start-container">
           <div className="aamu-logo-left ">
             <img
@@ -107,6 +119,7 @@ function Login() {
           </section>
         </div>
       </div>
+      {showAbout && <About onClose={handleCloseAbout} />}
     </>
   );
 }
