@@ -130,7 +130,6 @@ The project will address various risks including theft prevention, safeguarding 
 - Stores user authentication information.
 - Fields include password, email, first name, last name.
 ### Cart Table
-- Stores user's email and ordered items.
-## GitHub Repository
-For detailed code, documentation, and project management, please refer to our GitHub repository [here](link-to-your-github-repo).
+- Ordered items.
+
 
