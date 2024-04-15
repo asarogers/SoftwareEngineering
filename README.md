@@ -68,3 +68,99 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+```markdown
+# ESDIR - The Electromechanical Self-Driven Intelligent Rover
+
+## Project Overview
+### Project Title:
+ESDIR - The Electromechanical Self-Driven Intelligent Rover
+
+### Team Name:
+4RoboTech
+
+### Time frame:
+6 – 8 Months
+
+### Project Summary:
+The project aims to develop an autonomous delivery robot capable of navigating through a campus environment, picking up food orders, and delivering them to designated locations. Additionally, a user-friendly web application will be built to facilitate delivery requests and administer the system.
+
+## Project Objectives
+- Develop a robot capable of autonomous navigation through a maze while avoiding obstacles and people.
+- Build a web application with robust user authentication for submitting delivery requests.
+- Implement two-factor authentication for user security.
+- Utilize machine learning for object detection during robot navigation.
+- Develop features for notifying users of obstacles and enabling the robot to return.
+
+## Project Methodology
+The project will follow a structured approach including:
+- Building the robot and ensuring its functionality.
+- Developing the web application with user-friendly interfaces.
+- Implementing necessary security measures such as two-factor authentication.
+- Integrating machine learning algorithms for object detection.
+- Testing and refining both the robot and web application.
+
+## Project Risk Management
+The project will address various risks including theft prevention, safeguarding against falls and collisions, and ensuring safe navigation in different terrains.
+
+## Milestones
+- Building the website
+- Command message implementation for the robot
+- Successful movement of the robot
+- Navigation and live map implementation
+- Object detection integration
+- Cliff avoidance mechanism
+
+## Software Requirements List
+- React Framework
+- Programming Languages:
+  - HTML
+  - CSS
+  - JavaScript
+  - Python
+  - MySQL
+  - Node.JS
+
+## UI Design
+### About Page
+- Provides information about the project and mission statement.
+- Navigation buttons for easy access.
+
+### Home Page
+- Controls for robot navigation and delivery requests.
+- Live map showing the robot's position.
+- Navigation buttons for user convenience.
+
+### Cart Page
+- Displays user's requested items and allows addition of special instructions.
+- Navigation buttons for easy access.
+
+### Login Page
+- User authentication interface with registration option.
+- Navigation buttons for seamless navigation.
+
+## Database Design
+### Login Table
+- Stores user authentication information.
+- Fields include password, email, first name, last name.
+
+### Cart Table
+- Stores user's email and ordered items.
+
+## Process Design
+- Detailed processes for various project phases.
+
+## Implementation
+- Execution of project tasks based on the defined methodology.
+
+## Unit Testing
+- Comprehensive testing of website functionalities and robot operations.
+
+## System Testing
+- End-to-end testing of the entire system to ensure seamless operation.
+
+## GitHub Repository
+For detailed code, documentation, and project management, please refer to our GitHub repository [here](link-to-your-github-repo).
+
+```
+Feel free to adjust any details or add specific links to your GitHub repository as needed!
