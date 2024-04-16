@@ -133,3 +133,213 @@ The project will address various risks including theft prevention, safeguarding 
 - Ordered items.
 
 
+
+Prerequisites
+
+1) Visual Studio Code
+
+2) Git
+
+3) Hardware
+
+a) The perseids DIY Robot Smart Car Chassis Kit :<https://a.co/d/87nUZFw>
+
+b) 2 Packs Portable Chargers with Built in Cables: <https://a.co/d/dBFm5lU>
+
+c) VK-162 G-Mouse USB GPS Dongle Navigation Module External GPS Antenna Remote Mount USB GPS Receiver for Raspberry Pi: <https://a.co/d/bFsVIrM>
+
+d) RPLIDAR A1M8 2D 360 Degree: <https://a.co/d/8bvFpHP>
+
+e) 10cm+20cm 240pcs Breadboard Jumper Dupont Wires: <https://a.co/d/fIJk2GR>
+
+f) Raspberry Pi 4 Extreme Kit: <https://a.co/d/eClN85N>
+
+g) Wireless Keyboard and Mouse Combo: <https://a.co/d/0RmZPCn>
+
+h) Soldering Iron Kit: <https://a.co/d/5kqSgqI>
+
+i) Duracell Coppertop AA Batteries: <https://a.co/d/0BrpBa5>
+
+Languages used:
+
+1) HTML + CSS
+
+2) Javascript
+
+3) Framework: React
+
+4) Sql databases
+
+5) Nodejs
+
+Website
+
+Getting started:
+
+We have two main components to set up here:
+
+A) A website
+
+B) A robot
+
+**Download**
+
+Let's begin with the website set up
+
+1.  Download Node.js here: <https://nodejs.org/en/download/current>
+2.  Install VS Code: <https://code.visualstudio.com/>
+
+1.  Ensure you add VS Code to path
+
+4.  Install git ot github desktop
+
+1.  <https://desktop.github.com/>
+2.  https://git-scm.com/downloads
+
+**Set up**
+
+1) Open terminal
+
+- Click the windows button
+
+- Type "terminal", click on terminal
+
+2) Clone the repo
+
+- Type "git clone <https://github.com/asarogers/SoftwareEngineering.git>" in the terminal window to clone the repo
+
+3) Start the project
+
+- Type "pwd" in the terminal to get the current path
+
+- Save that path
+
+- Open up visual studio code
+
+- Navigate to the path and open the project
+
+- Open up a terminal in your Visual Studio Code project
+
+- Type "npm i -f" in your Visual Studio Code
+
+- Type "npm install @babel/plugin-proposal-private-property-in-object @emotion/react @emotion/styled @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome @mui/material @mui/styles @testing-library/jest-dom @testing-library/react @testing-library/user-event bcryptjs crypto-browserify dot mysql2 parsed react react-dom react-google-maps react-router-dom react-scripts socket.io-client web-vitals -f" in the terminal and run it
+
+**Start the Project**
+
+In your Visual Studio Code,
+
+Run the following command: "npm start" in your terminal
+
+If the project does not start, delete your node_modules
+
+Then Type "npm i -f" in your Visual Studio Code
+
+Type "npm install @babel/plugin-proposal-private-property-in-object @emotion/react @emotion/styled @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome @mui/material @mui/styles @testing-library/jest-dom @testing-library/react @testing-library/user-event bcryptjs crypto-browserify dot mysql2 parsed react react-dom react-google-maps react-router-dom react-scripts socket.io-client web-vitals -f" in the terminal and run it
+
+Retype "npm start" in terminal
+
+RASPBERRY PI
+
+Soldering a motor: <https://www.youtube.com/watch?v=phVXMl_nk3I&t=107s>
+
+Motor driver setup: <https://www.youtube.com/watch?v=OV0S_3KMj2A&t=161s>
+
+Watch the setup, part 1 and part 2 from this list to understand how to setup the motors and begin the code:
+
+<https://youtube.com/playlist?list=PLPzi8mfxG8q-p5CcCbPC0o049iov5XaPf&si=m8rOGo2DfM5urgPd>
+
+- Additional video below for wiring motor driver
+
+ <https://www.youtube.com/watch?v=OtokrOZvz9o>
+
+Follow these video for both the raspberry pi set up and gps set up: <https://youtube.com/playlist?list=PLO6KswO64zVuZcANrQqRRG9yiHGiHdgPf&si=pv_EKlRd455uMKl7>
+
+Connecting Lidar: <https://www.youtube.com/watch?v=7iKLvyU2_QE&t=135s>
+
+Coding Lidar:
+
+I don't recall the full set up process, but I am sure you can find it on youtube. All you need to do is plug in the raspberry pi 4 into the monitor, give it power, and go through the setup process that it prompts you
+
+Connecting to the wifi
+
+After you are set up, you'll have a basic Linux home screen, top right hand corner is the wifi, go ahead and connect
+
+We need the IP address
+
+Open the terminal, type ipconfig, you have your ip address.
+
+Enabling SSH
+
+Follow this video: <https://youtu.be/HU6Wk0hkpVQ?si=QEQLVcQpTgTEUbp2>
+
+Setting up SSH
+
+To install the OpenSSH components on Windows 10 devices:
+
+1.  Open **Settings**, select **System**, then select **Optional Features**.
+
+2.  Scan the list to see if the OpenSSH is already installed. If not, at the top of the page, select **Add a feature**, then:
+
+○ Find **OpenSSH Client**, then select **Install**
+
+○ Find **OpenSSH Server**, then select **Install**
+
+1.  Open the **Services** desktop app. (Select **Start**, type *services.msc* in the search box, and then select the **Service** app or press ENTER.)
+
+2.  In the details pane, double-click **OpenSSH SSH Server**.
+
+3.  On the **General** tab, from the **Startup type** drop-down menu, select **Automatic** and then select **Ok**.
+
+4.  To start the service, select **Start**.
+
+To install the OpenSSH components on Windows 11 devices:
+
+1.  Open **Settings**, select **System**, then select **Optional Features**.
+
+2.  Scan the list to see if the OpenSSH is already installed. If not, at the top of the page, select **View Features**, then:
+
+○ Search for **OpenSSH Client**, select **Next**, then select **Install**
+
+○ Search for **OpenSSH Server**, select **Next**, then select **Install**
+
+1.  Open the **Services** desktop app. (Select **Start**, type *services.msc* in the search box, and then select the **Service** app or press ENTER.)
+
+2.  In the details pane, double-click **OpenSSH SSH Server**.
+
+3.  On the **General** tab, from the **Startup type** drop-down menu, select **Automatic** and then select **Ok**.
+
+4.  To start the service, select **Start**.
+
+To install the OpenSSH components on Windows Server devices:
+
+1.  Open **Settings**, select **System**, then select **Optional Features** (also referred to as **Manage optional features**).
+
+2.  Scan the list to see if the OpenSSH is already installed. If not, at the top of the page, select **Add a feature**, then:
+
+○ Search for **OpenSSH Client**, then select **Install**
+
+○ Search for **OpenSSH Server**, then select **Install**
+
+1.  Open the **Services** desktop app. (Select **Start**, type *services.msc* in the search box, and then select the **Service** app or press ENTER.)
+
+2.  In the details pane, double-click **OpenSSH SSH Server**.
+
+3.  On the **General** tab, from the **Startup type** drop-down menu, select **Automatic** and then select **Ok**.
+
+4.  To start the service, select **Start**.
+
+● Username:esdir
+
+● Password: 123456789
+
+Set up vnc
+
+Download it here: <https://manage.realvnc.com/en/download?state=account-created>
+
+Get the ip address from pc
+
+Now that this is set up, we need to ensure the raspberry pi has the project install on it
+
+
+
+
